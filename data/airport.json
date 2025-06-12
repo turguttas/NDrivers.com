@@ -1,6 +1,19 @@
 {
-    "Terminal 1": ["Southwest", "Breeze Airways", "Sun Country"],
-    "Terminal 2": ["Delta (International)", "Aer Lingus", "Virgin Atlantic", "WestJet", "Air Canada"],
-    "Terminal 3": ["Delta (Domestic)", "LATAM"]
+    "LAX": {
+      "terminals": [
+        {
+          "name": "Terminal 1",
+          "airlines": ["Southwest", "Breeze Airways", "Sun Country"]
+        },
+        {
+          "name": "Terminal 2",
+          "airlines": ["Delta (International)", "Aer Lingus", "Virgin Atlantic", "WestJet", "Air Canada"]
+        },
+        {
+          "name": "Terminal 3",
+          "airlines": ["Delta (Domestic)", "LATAM"]
+        }
+      ]
+    }
   }
   

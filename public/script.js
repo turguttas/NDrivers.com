@@ -1,72 +1,74 @@
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init("ufT1pFlXWfC1M0mfj"); // Public Key
-
-    const form = document.getElementById("rideForm");
-    const pickup = document.getElementById("pickup");
-    const dropoff = document.getElementById("dropoff");
-    const terminalWrapper = document.getElementById("terminalSelectWrapper");
-    const terminalSelect = document.getElementById("terminalSelect");
-
-    // Static array of LAX terminals
-    const laxTerminals = [
-      "Terminal 1",
-      "Terminal 2",
-      "Terminal 3",
-      "Terminal 4",
-      "Terminal 5",
-      "Terminal 6",
-      "Terminal 7",
-      "Terminal 8",
-      "Tom Bradley International Terminal (Terminal B)"
-    ];
-
-    function showLAXTerminalDropdownIfNeeded() {
-      const pickupVal = pickup.value.toUpperCase();
-      const dropoffVal = dropoff.value.toUpperCase();
-      const shouldShow = pickupVal.includes("LAX") || dropoffVal.includes("LAX");
-
-      if (shouldShow) {
-        terminalWrapper.style.display = "block";
-
-        // Populate only once
-        if (terminalSelect.options.length <= 1) {
-          terminalSelect.innerHTML = '<option disabled selected>Select a terminal</option>';
-          laxTerminals.forEach(name => {
-            const opt = document.createElement('option');
-            opt.value = name;
-            opt.textContent = name;
-            terminalSelect.appendChild(opt);
-          });
-        }
-      } else {
-        terminalWrapper.style.display = "none";
-        terminalSelect.value = "";
-      }
-    }
-
-    pickup.addEventListener("input", showLAXTerminalDropdownIfNeeded);
-    dropoff.addEventListener("input", showLAXTerminalDropdownIfNeeded);
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const templateParams = {
-        pickup: pickup.value,
-        dropoff: dropoff.value,
-        email: document.getElementById("email").value,
-        date: document.getElementById("date").value,
-        time: document.getElementById("time").value,
-        terminal: terminalSelect.value || "N/A"
-      };
-
-      emailjs.send("service_m9hf1b8", "template_odu6xgm", templateParams)
-        .then(() => emailjs.send("service_m9hf1b8", "template_2fhl4rb", templateParams))
-        .then(() => window.location.href = "/thank-you.html")
-        .catch(error => {
-          console.error("EmailJS error:", error);
-          alert("Failed to send ride request. Please try again.");
+document.addEventListener('DOMContentLoaded', () => {
+    const pickupInput = document.getElementById('pickup');
+    const terminalContainer = document.createElement('div');
+    const airlineContainer = document.createElement('div');
+  
+    terminalContainer.style.display = 'none';
+    airlineContainer.style.display = 'none';
+  
+    // Create Terminal Dropdown
+    const terminalLabel = document.createElement('label');
+    terminalLabel.textContent = 'LAX Terminal (If applicable)';
+    const terminalSelect = document.createElement('select');
+    terminalSelect.id = 'terminalSelect';
+    terminalSelect.innerHTML = `<option disabled selected>Loading terminals...</option>`;
+    terminalContainer.appendChild(terminalLabel);
+    terminalContainer.appendChild(terminalSelect);
+  
+    // Create Airline Dropdown
+    const airlineLabel = document.createElement('label');
+    airlineLabel.textContent = 'Airline (If applicable)';
+    const airlineSelect = document.createElement('select');
+    airlineSelect.id = 'airlineSelect';
+    airlineContainer.appendChild(airlineLabel);
+    airlineContainer.appendChild(airlineSelect);
+  
+    // Append to form
+    const form = document.getElementById('rideForm');
+    form.insertBefore(terminalContainer, form.querySelector('button'));
+    form.insertBefore(airlineContainer, form.querySelector('button'));
+  
+    let terminalData = [];
+  
+    // Fetch terminal data
+    fetch('/api/lax-terminals')
+      .then(res => res.json())
+      .then(data => {
+        terminalData = data;
+        terminalSelect.innerHTML = `<option disabled selected>Select a terminal</option>`;
+        data.forEach(terminal => {
+          const option = document.createElement('option');
+          option.value = terminal.name;
+          option.textContent = terminal.name;
+          terminalSelect.appendChild(option);
         });
+      });
+  
+    // Show terminal dropdown only when "LAX" is typed
+    pickupInput.addEventListener('input', () => {
+      if (pickupInput.value.trim().toUpperCase() === 'LAX') {
+        terminalContainer.style.display = 'block';
+      } else {
+        terminalContainer.style.display = 'none';
+        airlineContainer.style.display = 'none';
+      }
+    });
+  
+    // Show airline list when terminal is selected
+    terminalSelect.addEventListener('change', () => {
+      const selectedTerminal = terminalData.find(t => t.name === terminalSelect.value);
+      if (selectedTerminal && selectedTerminal.airlines.length > 0) {
+        airlineSelect.innerHTML = `<option disabled selected>Select an airline</option>`;
+        selectedTerminal.airlines.forEach(airline => {
+          const option = document.createElement('option');
+          option.value = airline;
+          option.textContent = airline;
+          airlineSelect.appendChild(option);
+        });
+        airlineContainer.style.display = 'block';
+      } else {
+        airlineContainer.style.display = 'none';
+      }
     });
   });
-</script>
+  

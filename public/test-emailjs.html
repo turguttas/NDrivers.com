@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>EmailJS Test</title>
-  <!-- Load EmailJS SDK FIRST -->
+  <meta charset="UTF-8">
+  <title>EmailJS Load Test</title>
+  <!-- Load SDK first -->
   <script src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("typeof emailjs:", typeof emailjs);  // Should log 'object'
+      if (typeof emailjs === "undefined") {
+        alert("❗ emailjs is NOT loaded. SDK link likely blocked.");
+        return;
+      }
       emailjs.init("ufT1pFlXWfC1M0mfj");
-      console.log("EmailJS initialized");
-
-      // Simple test send email function on button click
-      document.getElementById("sendBtn").addEventListener("click", function () {
-        emailjs.send("service_hwcnjld", "template_odu6xgm", {
-          pickup: "Test Pickup",
-          dropoff: "Test Dropoff",
-          email: "test@example.com",
-          date: "2025-06-30",
-          time: "12:00",
-        }).then(() => {
-          alert("Test email sent!");
-        }).catch((err) => {
-          alert("Error sending test email: " + JSON.stringify(err));
-          console.error(err);
-        });
+      document.getElementById("sendBtn").addEventListener("click", () => {
+        alert("emailjs is loaded and event works.");
       });
     });
   </script>
 </head>
 <body>
-  <h1>EmailJS Basic Test</h1>
-  <button id="sendBtn">Send Test Email</button>
+  <h2>EmailJS SDK Load Test</h2>
+  <button id="sendBtn">Click me</button>
 </body>
 </html>

@@ -5,23 +5,19 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
-// Serve static files from 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API endpoint to serve LAX terminals JSON
 app.get('/api/lax-terminals', (req, res) => {
   const filePath = path.join(__dirname, 'data', 'airport.json');
-
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading airport.json:', err);
       return res.status(500).json({ error: 'Failed to load terminals data' });
     }
-
     try {
-      const terminals = JSON.parse(data);
-      // Convert your object keys to an array of terminal objects with name and airlines
-      const terminalsArray = Object.entries(terminals).map(([name, airlines]) => ({
+      const terminalsObj = JSON.parse(data);
+      // Convert to array of objects
+      const terminalsArray = Object.entries(terminalsObj).map(([name, airlines]) => ({
         name,
         airlines,
       }));
@@ -33,7 +29,6 @@ app.get('/api/lax-terminals', (req, res) => {
   });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });

@@ -1,0 +1,43 @@
+{
+    "LAX": {
+      "terminals": [
+        {
+          "name": "Terminal 1",
+          "airlines": ["Southwest", "Breeze Airways", "Sun Country"]
+        },
+        {
+          "name": "Terminal 2",
+          "airlines": ["Delta (International)", "Aeromexico", "Air Canada"]
+        },
+        {
+          "name": "Terminal 3",
+          "airlines": ["Delta (Domestic)", "LATAM"]
+        },
+        {
+          "name": "Tom Bradley International (Terminal B)",
+          "airlines": ["ANA", "Emirates", "Qatar", "Lufthansa"]
+        },
+        {
+          "name": "Terminal 4",
+          "airlines": ["American Airlines"]
+        },
+        {
+          "name": "Terminal 5",
+          "airlines": ["JetBlue", "Spirit", "Hawaiian"]
+        },
+        {
+          "name": "Terminal 6",
+          "airlines": ["Alaska Airlines", "Advanced Air"]
+        },
+        {
+          "name": "Terminal 7",
+          "airlines": ["United Airlines"]
+        },
+        {
+          "name": "Terminal 8",
+          "airlines": ["United Express"]
+        }
+      ]
+    }
+  }
+  

@@ -1,23 +1,45 @@
-const select = document.getElementById('terminalSelect');
+const terminalSection = document.getElementById('terminalSection');
+const terminalSelect = document.getElementById('terminalSelect');
+const pickupInput = document.getElementById('pickup');
+const dropoffInput = document.getElementById('dropoff');
+const datalist = document.getElementById('lax-terminals-list');
 
-// Fetch LAX terminals
+let laxTerminals = [];
+
 fetch('/api/lax-terminals')
   .then(res => res.json())
-  .then(terminals => {
-    select.disabled = false;
-    select.style.display = 'block';
-    select.innerHTML = '<option disabled selected>Select a terminal</option>';
+  .then(data => {
+    laxTerminals = data;
 
-    terminals.forEach(t => {
+    // Fill datalist for autocomplete
+    laxTerminals.forEach(t => {
       const option = document.createElement('option');
       option.value = t.name;
-      option.textContent = t.name;
-      select.appendChild(option);
+      datalist.appendChild(option);
     });
   })
   .catch(err => {
-    console.error('Error loading terminals:', err);
-    select.style.display = 'block';
-    select.innerHTML = '<option disabled selected>⚠️ Terminal list failed to load</option>';
-    select.disabled = true;
+    console.error('Failed to fetch terminals', err);
   });
+
+function updateTerminalSection() {
+  const pickup = pickupInput.value.toLowerCase();
+  const dropoff = dropoffInput.value.toLowerCase();
+
+  if (pickup.includes('lax') || dropoff.includes('lax')) {
+    terminalSection.style.display = 'block';
+    terminalSelect.disabled = false;
+    terminalSelect.innerHTML = '<option disabled selected>Select a terminal</option>';
+    laxTerminals.forEach(t => {
+      const option = document.createElement('option');
+      option.value = t.name;
+      option.textContent = t.name;
+      terminalSelect.appendChild(option);
+    });
+  } else {
+    terminalSection.style.display = 'none';
+  }
+}
+
+pickupInput.addEventListener('input', updateTerminalSection);
+dropoffInput.addEventListener('input', updateTerminalSection);

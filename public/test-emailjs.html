@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EmailJS Test</title>
+  <!-- Load EmailJS SDK FIRST -->
+  <script src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      emailjs.init("ufT1pFlXWfC1M0mfj");
+      console.log("EmailJS initialized");
+
+      // Simple test send email function on button click
+      document.getElementById("sendBtn").addEventListener("click", function () {
+        emailjs.send("service_hwcnjld", "template_odu6xgm", {
+          pickup: "Test Pickup",
+          dropoff: "Test Dropoff",
+          email: "test@example.com",
+          date: "2025-06-30",
+          time: "12:00",
+        }).then(() => {
+          alert("Test email sent!");
+        }).catch((err) => {
+          alert("Error sending test email: " + JSON.stringify(err));
+          console.error(err);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>EmailJS Basic Test</h1>
+  <button id="sendBtn">Send Test Email</button>
+</body>
+</html>

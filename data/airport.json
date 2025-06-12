@@ -1,43 +1,107 @@
+// === server.js ===
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const path = require('path');
+
+app.use(express.static('public'));
+
+// API for LAX terminals
+app.get('/api/lax-terminals', (req, res) => {
+  const filePath = path.join(__dirname, 'data', 'airport.json');
+  const data = JSON.parse(fs.readFileSync(filePath));
+  res.json(data.LAX.terminals);
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+// === /data/airport.json ===
+/*
 {
-    "LAX": {
-      "terminals": [
-        {
-          "name": "Terminal 1",
-          "airlines": ["Southwest", "Breeze Airways", "Sun Country"]
-        },
-        {
-          "name": "Terminal 2",
-          "airlines": ["Delta (International)", "Aeromexico", "Air Canada"]
-        },
-        {
-          "name": "Terminal 3",
-          "airlines": ["Delta (Domestic)", "LATAM"]
-        },
-        {
-          "name": "Tom Bradley International (Terminal B)",
-          "airlines": ["ANA", "Emirates", "Qatar", "Lufthansa"]
-        },
-        {
-          "name": "Terminal 4",
-          "airlines": ["American Airlines"]
-        },
-        {
-          "name": "Terminal 5",
-          "airlines": ["JetBlue", "Spirit", "Hawaiian"]
-        },
-        {
-          "name": "Terminal 6",
-          "airlines": ["Alaska Airlines", "Advanced Air"]
-        },
-        {
-          "name": "Terminal 7",
-          "airlines": ["United Airlines"]
-        },
-        {
-          "name": "Terminal 8",
-          "airlines": ["United Express"]
-        }
-      ]
-    }
+  "LAX": {
+    "terminals": [
+      {
+        "name": "Terminal 1",
+        "airlines": ["Allegiant Air", "Breeze Airways", "Cayman Airways", "Frontier", "Southwest (Domestic Flights)", "Southwest (Int'l Check-in)", "Sun Country", "Viva Aerobus"]
+      },
+      {
+        "name": "Terminal 2",
+        "airlines": ["Condor", "Norse", "Virgin Atlantic", "West Jet"]
+      },
+      {
+        "name": "Terminal 3",
+        "airlines": ["Aeromexico", "Delta", "WestJet"]
+      },
+      {
+        "name": "Terminal 4",
+        "airlines": ["American Airlines"]
+      },
+      {
+        "name": "Terminal 5",
+        "airlines": ["American Airlines", "JetBlue", "Spirit"]
+      },
+      {
+        "name": "Terminal 6",
+        "airlines": ["Air Canada", "Alaska Airlines", "Hawaiian Airlines", "Horizon", "Porter", "Southern Airways Express"]
+      },
+      {
+        "name": "Terminal 7",
+        "airlines": ["United Airlines", "United Express"]
+      },
+      {
+        "name": "Terminal 8",
+        "airlines": ["United Airlines", "United Express"]
+      },
+      {
+        "name": "Tom Bradley International Terminal",
+        "airlines": [
+          "Aer Lingus", "Air China", "Air France", "Air New Zealand", "Air Premia", "Air Tahiti Nui", "All Nippon Airways", "Asiana Airlines", "Austrian Airlines", "Avianca", "British Airways", "Cathay Pacific Airways", "China Airlines", "China Eastern", "China Southern", "Copa", "El Al Israel Airlines", "Emirates Airlines", "Etihad", "EVA Airlines", "Fiji Airways", "Finnair", "Flair Airlines", "French Bee", "Hainan Airlines", "Iberia Airlines", "ITA Airways", "Japan Airlines", "KLM Royal Dutch Airlines", "Korean Airlines", "LATAM", "LOT Polish Airlines", "Lufthansa", "Philippine Airlines", "QANTAS", "Qatar Airways", "SAUDIA", "Scandinavian Airlines", "Sichuan Airlines", "Singapore", "SWISS", "Turkish Airlines", "Volaris", "Xiamen Airlines", "ZIPAIR"
+        ]
+      }
+    ]
   }
-  
+}
+*/
+
+
+// === /public/index.html ===
+/*
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ride Request – LAX Terminal</title>
+</head>
+<body>
+  <h1>Select LAX Terminal</h1>
+  <select id="terminalSelect">
+    <option disabled selected>Loading terminals...</option>
+  </select>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+*/
+
+
+// === /public/js/script.js ===
+/*
+fetch('/api/lax-terminals')
+  .then(res => res.json())
+  .then(terminals => {
+    const select = document.getElementById('terminalSelect');
+    select.innerHTML = '<option disabled selected>Select a terminal</option>';
+    terminals.forEach(t => {
+      const option = document.createElement('option');
+      option.value = t.name;
+      option.textContent = `${t.name}`;
+      select.appendChild(option);
+    });
+  })
+  .catch(err => {
+    console.error('Error loading terminals:', err);
+  });
+*/

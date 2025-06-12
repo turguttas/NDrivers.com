@@ -1,42 +1,35 @@
-const express = require("express");
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+
 const app = express();
-const fs = require("fs");
+const PORT = process.env.PORT || 3000;
 
-const cityToZone = require("./data/cityToZone.json");
-const zonePricing = require("./data/zonePricing.json");
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.json());
+app.get('/api/lax-terminals', (req, res) => {
+  const filePath = path.join(__dirname, 'data', 'airport.json');
 
-app.get("/api/fare", (req, res) => {
-  const { pickup, dropoff } = req.query;
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading airport.json:', err);
+      return res.status(500).json({ error: 'Failed to load terminals data' });
+    }
 
-  if (!pickup || !dropoff) {
-    return res.status(400).json({ error: "pickup and dropoff parameters required" });
-  }
-
-  const pickupZone = cityToZone[pickup];
-  const dropoffZone = cityToZone[dropoff];
-
-  if (!pickupZone || !dropoffZone) {
-    return res.status(404).json({ error: "City not found in zone map" });
-  }
-
-  const fare = zonePricing[pickupZone][dropoffZone];
-
-  if (fare === undefined) {
-    return res.status(404).json({ error: "Pricing not available for this route" });
-  }
-
-  res.json({
-    pickup,
-    dropoff,
-    pickupZone,
-    dropoffZone,
-    fare
+    try {
+      const terminalsObj = JSON.parse(data);
+      const terminalsArray = Object.entries(terminalsObj).map(([name, airlines]) => ({
+        name,
+        airlines,
+      }));
+      res.json(terminalsArray);
+    } catch (parseErr) {
+      console.error('Error parsing airport.json:', parseErr);
+      res.status(500).json({ error: 'Invalid JSON format in terminals data' });
+    }
   });
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Ride pricing API running on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

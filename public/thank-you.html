@@ -2,104 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You!</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f8f8;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: system-ui, sans-serif, Arial;
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #f9f9f9;
       color: #333;
     }
-
-    .thank-you-container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      text-align: center;
-      max-width: 400px;
-    }
-
     h1 {
-      margin-bottom: 20px;
-      font-size: 28px;
+      font-size: 32px;
+      margin-bottom: 16px;
     }
-
     p {
-      font-size: 16px;
-      margin-bottom: 30px;
+      font-size: 18px;
     }
-
-    a {
-      text-decoration: none;
-      background-color: #000;
+    a.button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #007bff;
       color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
+      text-decoration: none;
+      border-radius: 8px;
       font-size: 16px;
-      transition: background-color 0.3s ease;
     }
-
-    a:hover {
-      background-color: #333;
+    a.button:hover {
+      background-color: #0056b3;
     }
-    <h1>Ride Zones and Pricing</h1>
-  <p>Check the map below to see which zone your pickup and drop-off locations are in. Then refer to the pricing table for the flat rate.</p>
-
-  <div id="map-container">
-    <iframe
-      src="https://fortress.maptive.com/ver4/62b0cebc91ef19ad79a7465b3c5f1e1c/671652"
-      frameborder="0"
-      width="100%"
-      height="100%"
-      allow="geolocation"
-      style="border:none;"
-      title="Service Zones Map"
-    ></iframe>
-  </div>
-
-  <h2>Zone Pricing Table</h2>
-  <table id="pricing-table" aria-label="Ride Zone Pricing">
-    <thead>
-      <tr>
-        <th>Zone</th>
-        <th>Example Cities</th>
-        <th>Flat Rate Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Zone 1</td>
-        <td>Irvine, Newport Beach, Costa Mesa</td>
-        <td>$80 (to/from LAX)</td>
-      </tr>
-      <tr>
-        <td>Zone 2</td>
-        <td>Palm Springs</td>
-        <td>$150 (to/from LAX)</td>
-      </tr>
-      <tr>
-        <td>Zone 3</td>
-        <td>Orange, Anaheim</td>
-        <td>$90 (to/from LAX)</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-</html>
   </style>
 </head>
 <body>
-  <div class="thank-you-container">
-    <h1>Thank You!</h1>
-    <p>Your ride request has been submitted successfully.<br>We’ll get back to you shortly via email.</p>
-    <a href="/">Back to Home</a>
-  </div>
+  <h1>Thank You!</h1>
+  <p>Your ride request has been successfully submitted.</p>
+  <p>We’ll confirm your ride shortly. Please check your email.</p>
+  <a href="index.html" class="button">Request Another Ride</a>
 </body>
 </html>

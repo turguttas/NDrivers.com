@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Existing endpoint: LAX terminals
 app.get('/api/lax-terminals', (req, res) => {
   const filePath = path.join(__dirname, 'data', 'airport.json');
 
@@ -26,6 +27,26 @@ app.get('/api/lax-terminals', (req, res) => {
     } catch (parseErr) {
       console.error('Error parsing airport.json:', parseErr);
       res.status(500).json({ error: 'Invalid JSON format in terminals data' });
+    }
+  });
+});
+
+// ✅ New endpoint: Service zones
+app.get('/api/service-zones', (req, res) => {
+  const filePath = path.join(__dirname, 'data', 'zones.json');
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading zones.json:', err);
+      return res.status(500).json({ error: 'Failed to load service zones data' });
+    }
+
+    try {
+      const zonesData = JSON.parse(data);
+      res.json(zonesData);
+    } catch (parseErr) {
+      console.error('Error parsing zones.json:', parseErr);
+      res.status(500).json({ error: 'Invalid JSON format in service zones data' });
     }
   });
 });

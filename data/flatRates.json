@@ -1,0 +1,18 @@
+{
+  "LAX": {
+    "Zone A": 45,
+    "Zone B": 55,
+    "Zone C": 70,
+    "Zone D": 80,
+    "Zone E": 100,
+    "Zone F": 120
+  },
+  "John Wayne Airport (SNA)": {
+    "Zone A": 50,
+    "Zone B": 60,
+    "Zone C": 75,
+    "Zone D": 85,
+    "Zone E": 110,
+    "Zone F": 130
+  }
+}

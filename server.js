@@ -1,13 +1,23 @@
+// server.js - unified entry point
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Existing endpoint: LAX terminals
+// Route for homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+// === API endpoint: LAX terminals ===
 app.get('/api/lax-terminals', (req, res) => {
   const filePath = path.join(__dirname, 'data', 'airport.json');
 
@@ -31,7 +41,7 @@ app.get('/api/lax-terminals', (req, res) => {
   });
 });
 
-// ✅ New endpoint: Service zones
+// === API endpoint: Service zones ===
 app.get('/api/service-zones', (req, res) => {
   const filePath = path.join(__dirname, 'data', 'zones.json');
 
@@ -51,6 +61,7 @@ app.get('/api/service-zones', (req, res) => {
   });
 });
 
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });

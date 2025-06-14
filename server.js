@@ -59,18 +59,12 @@ app.get('/api/service-zones', (req, res) => {
       res.status(500).json({ error: 'Invalid JSON format in service zones data' });
     }
   });
-});app.get('/api/flat-rates', (req, res) => {
+});
+
+// === API endpoint: Flat rates ===
+app.get('/api/flat-rates', (req, res) => {
   const filePath = path.join(__dirname, 'data', 'flatRates.json');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) return res.status(500).json({ error: 'Could not load flat rates' });
-    try {
-      res.json(JSON.parse(data));
-    } catch {
-      res.status(500).json({ error: 'Invalid JSON in flatRates.json' });
-    }
-  });
-});app.get('/api/flat-rates', (req, res) => {
-  const filePath = path.join(__dirname, 'data', 'flatRates.json');
+
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading flatRates.json:', err);

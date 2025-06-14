@@ -1,19 +1,13 @@
 {
-    "LAX": {
-      "terminals": [
-        {
-          "name": "Terminal 1",
-          "airlines": ["Southwest", "Breeze Airways", "Sun Country"]
-        },
-        {
-          "name": "Terminal 2",
-          "airlines": ["Delta (International)", "Aer Lingus", "Virgin Atlantic", "WestJet", "Air Canada"]
-        },
-        {
-          "name": "Terminal 3",
-          "airlines": ["Delta (Domestic)", "LATAM"]
-        }
-      ]
-    }
+  "LAX": {
+    "Terminal 1": ["Southwest"],
+    "Terminal 2": ["Delta"]
+  },
+  "SFO": {
+    "Terminal 1": ["Alaska"],
+    "Terminal 2": ["JetBlue"]
+  },
+  "SAN": {
+    "Terminal 1": ["Spirit"]
   }
-  
+}

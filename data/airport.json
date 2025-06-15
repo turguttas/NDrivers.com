@@ -1,13 +1,28 @@
 {
   "LAX": {
     "Terminal 1": ["Southwest"],
-    "Terminal 2": ["Delta"]
+    "Terminal 2": ["Delta"],
+    "Terminal 3": ["Delta"],
+    "Terminal 4": ["Delta"],
+    "Terminal 5": ["Delta"],
+    "Terminal 6": ["Delta"],
+    "Terminal 7": ["Delta"],
+    "Terminal 8": ["Delta"],
+    "Tom Bradley International Terminal (Terminal B)": ["Delta"]
   },
-  "SFO": {
+  "BUR": {
     "Terminal 1": ["Alaska"],
     "Terminal 2": ["JetBlue"]
   },
   "SAN": {
     "Terminal 1": ["Spirit"]
+  },
+  "SNA": {
+    "Terminal 1": ["Alaska"],
+    "Terminal 2": ["JetBlue"]
+  },
+  "ONT": {
+    "Terminal 1": ["Alaska"],
+    "Terminal 2": ["JetBlue"]
   }
 }

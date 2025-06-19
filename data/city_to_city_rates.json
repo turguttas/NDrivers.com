@@ -1,0 +1,7 @@
+{
+  "Zone A-Zone B": 60,
+  "Zone A-Zone D": 70,
+  "Zone B-Zone D": 65,
+  "Zone D-Zone D": 35,
+  "Zone A-Zone A": 30,
+}

@@ -2,42 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank You!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You - Ndrivers</title>
   <style>
     body {
-      font-family: system-ui, sans-serif, Arial;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
       text-align: center;
-      padding: 60px 20px;
-      background-color: #f9f9f9;
-      color: #333;
     }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 16px;
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
     }
-    p {
-      font-size: 18px;
+
+    /* ✅ Hero/Header with Logo + Slogan */
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
     }
-    a.button {
+
+    .hero .logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 150px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 15px;
+    }
+
+    .btn {
       display: inline-block;
       margin-top: 30px;
       padding: 12px 24px;
-      background-color: #007bff;
+      background: #000;
       color: white;
       text-decoration: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-weight: bold;
     }
-    a.button:hover {
-      background-color: #0056b3;
+
+    .btn:hover {
+      background: #333;
     }
   </style>
 </head>
+
 <body>
-  <h1>Thank You!</h1>
-  <p>Your ride request has been successfully submitted.</p>
-  <p>We’ll confirm your ride shortly. Please check your email.</p>
-  <a href="/" class="button">Request Another Ride</a>
+  <div class="container">
+    <!-- ✅ Logo + Slogan -->
+    <div class="hero">
+      <a href="/" class="logo-link">
+        <img src="/img/logo.png" alt="Ndrivers Logo" class="logo">
+      </a>
+      <h1>Your Neighbor, Your Driver</h1>
+      <p>Thank you! Your ride request has been submitted. We’ll get back to you shortly to confirm.</p>
+    </div>
+
+    <!-- ✅ Optional Back Button -->
+    <a href="/" class="btn">Back to Home</a>
+  </div>
 </body>
 </html>

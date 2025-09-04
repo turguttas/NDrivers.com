@@ -13,7 +13,7 @@ body {
 .logo {
   display: block;
   margin: 20px auto 15px auto;
-  max-width: 200px;   /* Adjust logo size */
+  max-width: 200px;
   height: auto;
   cursor: pointer;
 }
@@ -34,7 +34,7 @@ body {
   z-index: 10000;
   width: auto;
   height: auto;
-  display: inline; 
+  display: inline;
   padding: 0;
   transition: color 0.3s;
 }
@@ -48,7 +48,8 @@ form {
   border-radius: 8px;
 }
 
-input, button {
+input,
+button {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
@@ -70,33 +71,41 @@ input, button {
   padding: 10px;
 }
 
-/* -------------------- Footer -------------------- */
+/* -------------------- Footer (NEW & UPDATED) -------------------- */
 footer {
   background: #000;
   color: #fff;
-  padding: 20px 0;
+  padding: 2rem 1rem;
   text-align: center;
   margin-top: auto;
+  
+  /* Stacks the different footer sections vertically */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem; /* Space between the lines */
 }
 
-footer .footer-links {
-  margin-bottom: 10px;
-}
-
-footer .footer-links a {
+/* General styling for all links in the footer */
+footer a {
   color: #fff;
   text-decoration: none;
-  margin: 0 12px;
-  display: inline-block; /* keeps links side by side */
 }
 
-footer .footer-links a:hover {
+footer a:hover {
   text-decoration: underline;
 }
 
-footer p {
-  margin: 5px 0 0;
-  font-size: 14px;
+/* Styling for the smaller, grey links and copyright text */
+.footer-links-secondary,
+.copyright {
+  font-size: 0.8em;
+  color: #888;
+}
+
+/* Ensures the secondary links themselves are also grey */
+.footer-links-secondary a {
+  color: #888;
 }
 
 /* -------------------- Dark Mode -------------------- */
@@ -113,6 +122,16 @@ body.dark-mode footer {
   background: #111;
 }
 
-body.dark-mode footer .footer-links a {
+/* Updated to work with the new footer structure */
+body.dark-mode footer a {
   color: #f0f0f0;
+}
+
+body.dark-mode .footer-links-secondary,
+body.dark-mode .copyright {
+  color: #aaa; /* A lighter grey for better readability on dark background */
+}
+
+body.dark-mode .footer-links-secondary a {
+  color: #aaa;
 }

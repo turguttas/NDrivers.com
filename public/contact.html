@@ -1,62 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - Ndrivers</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ndrivers - Contact Us</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #fff; color: #000; transition: background-color 0.3s, color 0.3s; }
+    body.dark-mode { background-color: #121212; color: #f0f0f0; }
+    .container { display: flex; flex-direction: column; max-width: 600px; margin: 0 auto; padding: 30px; }
+    @media (max-width: 600px) { .container { padding: 20px; } }
+    .logo { display: block; margin: 0 auto 15px auto; max-width: 350px; height: auto; cursor: pointer; }
+    @media (max-width: 400px) { .logo { max-width: 200px; } }
+    h1 { text-align: center; margin-bottom: 30px; }
+    p, label, input, textarea, button { margin-bottom: 15px; }
+    input, textarea, button { width: 100%; padding: 8px; box-sizing: border-box; transition: background-color 0.3s, color 0.3s, border 0.3s; }
+    body.dark-mode input, body.dark-mode textarea, body.dark-mode button { background-color: #1e1e1e; color: #f0f0f0; border: 1px solid #555; }
+    button { background-color: #000; color: #fff; border: none; font-size: 16px; cursor: pointer; }
+    body.dark-mode button { background-color: #333; }
+    #darkModeToggle { position: fixed; bottom: 20px; right: 20px; cursor: pointer; background: none; border: none; font-size: 28px; z-index: 10000; }
+    footer { background-color: #000; color: #fff; padding: 20px; text-align: center; font-size: 14px; margin-top: 40px; }
+    footer a { color: #fff; margin: 0 10px; text-decoration: none; display: inline-block; transition: color 0.3s; }
+    footer a:hover { color: #f39c12; }
+    @media (max-width: 500px) { footer a { display: block; margin: 5px 0; } }
+  </style>
 </head>
 <body>
 
   <button id="darkModeToggle">🌙</button>
 
   <div class="container">
+    <a href="/" class="logo-link">
+      <img id="logoImg" src="/img/logo.png" alt="NDrive Logo" class="logo">
+    </a>
     <h1>Contact Us</h1>
-    <p>If you have questions or need help, send us a message using the form below:</p>
 
     <form id="contactForm">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required />
 
       <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+      <textarea id="message" name="message" rows="6" required></textarea>
 
       <button type="submit">Send Message</button>
     </form>
   </div>
 
-  <!-- Footer -->
   <footer>
     <a href="index.html">Home</a> |
     <a href="faq.html">FAQ</a> |
-    <a href="contact.html">Contact Us</a>
+    <a href="contact.html">Contact Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms of Service</a>
     <p>© 2025 Ndrivers. All rights reserved.</p>
   </footer>
 
   <script>
-    // Dark Mode Toggle
-    const toggle = document.getElementById("darkModeToggle");
-    const body = document.body;
-    toggle.addEventListener("click", () => body.classList.toggle("dark-mode"));
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById('darkModeToggle');
+      const logoImg = document.getElementById('logoImg');
 
-    // Simple contact form alert
-    document.getElementById('contactForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      alert('Message sent!');
-      this.reset();
+      toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
+      });
+
+      // Optional: Handle form submission via EmailJS or another service
     });
   </script>
-
 </body>
-    <footer style="background:#f0f0f0; padding:20px; text-align:center; font-size:14px; color:#333; margin-top:40px;">
-  <a href="index.html" style="margin:0 10px; text-decoration:none; color:#333;">Home</a> |
-  <a href="faq.html" style="margin:0 10px; text-decoration:none; color:#333;">FAQ</a> |
-  <a href="contact.html" style="margin:0 10px; text-decoration:none; color:#333;">Contact Us</a>
-  <p style="margin-top:10px;">© 2025 Ndrivers. All rights reserved.</p>
-  <p style="margin-top:5px;"><a href="privacy.html" style="color:#333; text-decoration:none;">Privacy Policy</a> | <a href="terms.html" style="color:#333; text-decoration:none;">Terms of Service</a></p>
-</footer>
-
 </html>

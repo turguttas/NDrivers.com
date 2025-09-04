@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ndrivers - Terms of Service</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#fff; color:#000; transition: background-color 0.3s, color 0.3s; }
+    body.dark-mode { background-color:#121212; color:#f0f0f0; }
+    .container { max-width: 800px; margin:0 auto; padding:30px; }
+    h1 { text-align:center; margin-bottom:30px; }
+    .logo { display:block; margin:0 auto 15px; width:350px; height:auto; cursor:pointer; }
+    #darkModeToggle { position:fixed; bottom:20px; right:20px; font-size:28px; background:none; border:none; cursor:pointer; z-index:10000; }
+    footer { background-color:#000; color:#fff; padding:20px; text-align:center; font-size:14px; margin-top:40px; }
+    footer a { color:#fff; margin:0 10px; text-decoration:none; transition:color 0.3s; }
+    footer a:hover { color:#f39c12; }
+  </style>
+</head>
+<body>
+
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle">🌙</button>
+
+  <!-- Header -->
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img id="logoImg" src="/img/logo.png" alt="NDrive Logo" class="logo">
+    </a>
+    <h1>Terms of Service</h1>
+
+    <p>By using Ndrivers services, you agree to comply with our terms of service. This includes responsible use of the ride request platform and respect for others.</p>
+    <p>All rides requested through Ndrivers are subject to availability, and Ndrivers is not responsible for delays caused by external factors.</p>
+    <p>We reserve the right to modify these terms at any time. Continued use of the website constitutes acceptance of any changes.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <a href="index.html">Home</a> |
+    <a href="faq.html">FAQ</a> |
+    <a href="contact.html">Contact Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms of Service</a>
+    <p>© 2025 Ndrivers. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const logoImg = document.getElementById('logoImg');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+      logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
+    });
+  </script>
+
+</body>
+</html>

@@ -5,18 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ndrivers - FAQ</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#fff; color:#000; transition: background-color 0.3s, color 0.3s; }
-    body.dark-mode { background-color:#121212; color:#f0f0f0; }
-    .container { max-width: 800px; margin: 0 auto; padding: 30px; }
-    h1 { text-align:center; margin-bottom:30px; }
-    .faq-item { margin-bottom:20px; }
-    .faq-question { font-weight:bold; margin-bottom:5px; }
-    .faq-answer { margin-left:15px; }
-    .logo { display:block; margin:0 auto 15px; width:350px; height:auto; cursor:pointer; }
-    #darkModeToggle { position:fixed; bottom:20px; right:20px; font-size:28px; background:none; border:none; cursor:pointer; z-index:10000; }
-    footer { background-color:#000; color:#fff; padding:20px; text-align:center; font-size:14px; margin-top:40px; }
-    footer a { color:#fff; margin:0 10px; text-decoration:none; transition:color 0.3s; }
-    footer a:hover { color:#f39c12; }
+    /* Body & Dark Mode */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+
+    /* Container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+    }
+
+    /* Logo */
+    .logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 350px;
+      height: auto;
+      cursor: pointer;
+    }
+    @media (max-width: 400px) {
+      .logo { max-width: 200px; }
+    }
+
+    h1 { text-align: center; margin-bottom: 30px; }
+    p { line-height: 1.6; margin-bottom: 15px; }
+
+    /* Dark Mode Toggle Button */
+    #darkModeToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 28px;
+      z-index: 10000;
+    }
+
+    /* Date & Time Inputs */
+    .datetime-wrapper {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .datetime-wrapper input {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: inline-block;
+    }
+    footer a:hover { color: #f39c12; }
+    @media (max-width: 500px) {
+      footer a {
+        display: block;
+        margin: 5px 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -24,26 +102,25 @@
   <!-- Dark Mode Toggle -->
   <button id="darkModeToggle">🌙</button>
 
-  <!-- Header -->
   <div class="container">
+    <!-- Header Logo -->
     <a href="/" class="logo-link">
       <img id="logoImg" src="/img/logo.png" alt="NDrive Logo" class="logo">
     </a>
-    <h1>Frequently Asked Questions</h1>
+    <h1>FAQ</h1>
+
+    <!-- Example Date & Time -->
+    <div class="datetime-wrapper">
+      <input type="date" id="date">
+      <input type="time" id="time">
+    </div>
 
     <!-- FAQ Content -->
-    <div class="faq-item">
-      <div class="faq-question">Q1: How do I request a ride?</div>
-      <div class="faq-answer">You can request a ride from the home page by filling out the ride request form with pick-up, drop-off, date, and time.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">Q2: How do I change or cancel my ride?</div>
-      <div class="faq-answer">Please contact us via the Contact Us page. We will assist you promptly.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">Q3: Is my information secure?</div>
-      <div class="faq-answer">Yes, we follow strict privacy policies to protect your data.</div>
-    </div>
+    <p><strong>Q1:</strong> How do I request a ride?</p>
+    <p>A: Use our homepage form to submit your pick-up, drop-off, date, and time.</p>
+    <p><strong>Q2:</strong> Is there a cancellation fee?</p>
+    <p>A: No, rides can be canceled at any time before the scheduled pickup.</p>
+    <!-- Add more FAQ questions/answers as needed -->
   </div>
 
   <!-- Footer -->
@@ -57,13 +134,15 @@
   </footer>
 
   <script>
-    // Dark Mode Toggle
-    const toggle = document.getElementById('darkModeToggle');
-    const logoImg = document.getElementById('logoImg');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-      logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById('darkModeToggle');
+      const logoImg = document.getElementById('logoImg');
+
+      toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
+      });
     });
   </script>
 </body>

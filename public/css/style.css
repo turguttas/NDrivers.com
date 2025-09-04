@@ -1,31 +1,19 @@
-/* -------------------- Base Styles -------------------- */
+/* -------------------- Global -------------------- */
 body {
   font-family: Arial, sans-serif;
+  background: #f0f0f0;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
-  color: #000;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-.container {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 30px;
+  min-height: 100vh;
 }
 
 /* -------------------- Logo -------------------- */
 .logo {
   display: block;
-  margin: 0 auto 15px auto;
-  width: 350px;   /* force bigger logo */
+  margin: 20px auto 15px auto;
+  max-width: 200px;   /* Adjust logo size */
   height: auto;
   cursor: pointer;
 }
@@ -34,33 +22,37 @@ body.dark-mode {
   text-decoration: none;
 }
 
-/* -------------------- Heading -------------------- */
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
+/* -------------------- Dark Mode Toggle -------------------- */
+#darkModeToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 28px;
+  z-index: 10000;
+  width: auto;
+  height: auto;
+  display: inline; 
+  padding: 0;
+  transition: color 0.3s;
 }
 
-/* -------------------- Form -------------------- */
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
+/* -------------------- Form Styling -------------------- */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
 }
 
-input, select, button {
+input, button {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
-}
-
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode button {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-  border: 1px solid #555;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 16px;
 }
 
 .date-time-row {
@@ -73,76 +65,54 @@ body.dark-mode button {
   flex: 1;
 }
 
-button {
-  margin-top: 20px;
-  background-color: #000;
-  color: white;
-  border: none;
+.date-time-row input {
   font-size: 16px;
-  cursor: pointer;
+  padding: 10px;
 }
 
-body.dark-mode button {
-  background-color: #333;
+/* -------------------- Footer -------------------- */
+footer {
+  background: #000;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
 }
 
-/* -------------------- Map -------------------- */
-.map-container {
-  margin-top: 40px;
+footer .footer-links {
+  margin-bottom: 10px;
 }
 
-.map-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: filter 0.3s;
+footer .footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 12px;
+  display: inline-block; /* keeps links side by side */
 }
 
-/* -------------------- LAX Terminal -------------------- */
-#terminalSelectWrapper {
-  display: none;
-  margin-top: 10px;
+footer .footer-links a:hover {
+  text-decoration: underline;
 }
 
-/* -------------------- Dark Mode Toggle -------------------- */
-#darkModeToggle {
-  position: fixed;
-  bottom: 20px;      /* 20px from bottom of browser window */
-  right: 20px;       /* 20px from right of browser window */
-  margin: 0;
-  padding: 8px 12px;
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10000;    /* stay on top of everything */
-  transition: color 0.3s;
+footer p {
+  margin: 5px 0 0;
+  font-size: 14px;
 }
 
-/* Optional hover effect for toggle */
-#darkModeToggle:hover {
-  transform: scale(1.1);
-}
-/* Base Styles */
-body { font-family: Arial,sans-serif; margin:0; padding:0; background:#f0f0f0; color:#000; transition: all 0.3s; }
-body.dark-mode { background:#121212; color:#f0f0f0; }
-.container { max-width:600px; margin:0 auto; padding:30px; }
-
-/* Logo */
-.logo { display:block; margin:0 auto 15px; width:350px; height:auto; cursor:pointer; }
-
-/* Dark Mode Toggle */
-#darkModeToggle { position:fixed; bottom:20px; right:20px; font-size:28px; background:none; border:none; cursor:pointer; z-index:10000; }
-
-/* Footer Styles */
-footer { background:#000; color:#fff; padding:20px; text-align:center; font-size:14px; }
-footer a { color:#fff; margin:0 10px; text-decoration:none; transition:color 0.3s; }
-footer a:hover { color:#f39c12; }
-
-/* Form Elements Dark Mode */
-body.dark-mode input, body.dark-mode select, body.dark-mode textarea, body.dark-mode button {
-  background:#1e1e1e; color:#f0f0f0; border:1px solid #555;
+/* -------------------- Dark Mode -------------------- */
+body.dark-mode {
+  background: #1a1a1a;
+  color: #f0f0f0;
 }
 
-/* Map container */
-.map-container img { width:100%; height:auto; border-radius:8px; transition:all 0.3s; }
+body.dark-mode form {
+  background: #2a2a2a;
+}
+
+body.dark-mode footer {
+  background: #111;
+}
+
+body.dark-mode footer .footer-links a {
+  color: #f0f0f0;
+}

@@ -25,7 +25,7 @@ body.dark-mode {
 .logo {
   display: block;
   margin: 0 auto 15px auto;
-  max-width: 250px; /* bigger logo */
+  max-width: 350px; /* bigger logo */
   height: auto;
   cursor: pointer;
 }
@@ -108,7 +108,7 @@ body.dark-mode button {
 #darkModeToggle {
   position: fixed;
   bottom: 20px;      /* 20px from bottom of browser window */
-  right: 20px;       /* 20px from right of browser window */
+  right: 0px;       /* 20px from right of browser window */
   margin: 0;
   padding: 8px 12px;
   font-size: 28px;

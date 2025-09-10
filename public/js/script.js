@@ -12,18 +12,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Terminal dropdown
   const terminalLabel = document.createElement('label');
-  terminalLabel.textContent = 'LAX Terminal (If applicable)';
+  terminalLabel.textContent = 'Terminal (if applicable)';
   const terminalSelect = document.createElement('select');
   terminalSelect.id = 'terminalSelect';
   terminalSelect.innerHTML = `<option disabled selected>Loading terminals...</option>`;
+
+  // Make terminal select styled like inputs
+  terminalSelect.style.width = '100%';
+  terminalSelect.style.padding = '8px';
+  terminalSelect.style.boxSizing = 'border-box';
+
   terminalContainer.appendChild(terminalLabel);
   terminalContainer.appendChild(terminalSelect);
 
   // Airline dropdown
   const airlineLabel = document.createElement('label');
-  airlineLabel.textContent = 'Airline (If applicable)';
+  airlineLabel.textContent = 'Airline (if applicable)';
   const airlineSelect = document.createElement('select');
   airlineSelect.id = 'airlineSelect';
+
+  // Style like inputs
+  airlineSelect.style.width = '100%';
+  airlineSelect.style.padding = '8px';
+  airlineSelect.style.boxSizing = 'border-box';
+
   airlineContainer.appendChild(airlineLabel);
   airlineContainer.appendChild(airlineSelect);
 
@@ -82,9 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ------- Fare calculation related logic ---------
-  const fareResult = document.getElementById('fareResult');
-  const calculateFareBtn = document.getElementById('calculateFareBtn');
+  // ------- Flat Rate Calculation ---------
+  const flatRateBox = document.createElement('div');
+  flatRateBox.id = 'flatRateBox';
+  flatRateBox.style.marginTop = '10px';
+  flatRateBox.style.fontWeight = 'bold';
+  form.appendChild(flatRateBox);
 
   async function getZones() {
     const res = await fetch('/api/service-zones');
@@ -97,11 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function extractCity(address) {
+    if (!address) return null;
     const parts = address.split(',');
     if (parts.length >= 2) {
       return parts[parts.length - 2].trim();
     }
-    return null;
+    return address.trim();
   }
 
   function findZone(city, zonesData) {
@@ -114,54 +130,55 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   }
 
-  calculateFareBtn.addEventListener('click', async () => {
+  // Extra mapping for airports
+  const airportZoneMap = {
+    'lax': 'Zone A',
+    'los angeles international airport': 'Zone A',
+    'los angeles': 'Zone A',
+    'sna': 'Zone D',
+    'john wayne airport': 'Zone D',
+    'santa ana': 'Zone D'
+  };
+
+  async function showFlatRate() {
     const pickupAddress = pickupInput.value.trim();
     const dropoffAddress = dropoffInput.value.trim();
 
     if (!pickupAddress || !dropoffAddress) {
-      alert('Please enter both pickup and dropoff addresses.');
+      flatRateBox.textContent = '';
       return;
     }
 
     const zonesData = await getZones();
     const flatRatesData = await getFlatRates();
 
-    const pickupCity = extractCity(pickupAddress);
-    const dropoffCity = extractCity(dropoffAddress);
+    let pickupCity = extractCity(pickupAddress);
+    let dropoffCity = extractCity(dropoffAddress);
 
-    if (!pickupCity || !dropoffCity) {
-      alert('Could not determine city from address. Please include full addresses with city.');
-      return;
-    }
+    let pickupZone = findZone(pickupCity, zonesData);
+    let dropoffZone = findZone(dropoffCity, zonesData);
 
-    const pickupZone = findZone(pickupCity, zonesData);
+    // If not found in zones, check airport map
     if (!pickupZone) {
-      fareResult.textContent = `Sorry, we do not service the pickup city: ${pickupCity}`;
+      pickupZone = airportZoneMap[pickupCity.toLowerCase()] || null;
+    }
+    if (!dropoffZone) {
+      dropoffZone = airportZoneMap[dropoffCity.toLowerCase()] || null;
+    }
+
+    if (!pickupZone || !dropoffZone) {
+      flatRateBox.textContent = '';
       return;
     }
 
-    const airportMap = {
-      'lax': 'LAX',
-      'los angeles': 'LAX',
-      'santa ana': 'John Wayne Airport (SNA)',
-      'john wayne airport': 'John Wayne Airport (SNA)',
-      'sna': 'John Wayne Airport (SNA)'
-    };
-
-    const dropoffKey = dropoffCity.toLowerCase();
-    const dropoffAirport = airportMap[dropoffKey];
-
-    if (!dropoffAirport) {
-      fareResult.textContent = `Sorry, flat rates are only available for LAX or John Wayne Airport. You entered: ${dropoffCity}`;
-      return;
+    const price = flatRatesData[pickupZone]?.[dropoffZone] || flatRatesData[dropoffZone]?.[pickupZone];
+    if (price) {
+      flatRateBox.textContent = `Flat Rate: $${price}`;
+    } else {
+      flatRateBox.textContent = '';
     }
+  }
 
-    const price = flatRatesData[dropoffAirport]?.[pickupZone];
-    if (!price) {
-      fareResult.textContent = `No flat rate found for ${pickupZone} to ${dropoffAirport}. Please contact support.`;
-      return;
-    }
-
-    fareResult.textContent = `Flat rate fare from ${pickupCity} (${pickupZone}) to ${dropoffAirport} is $${price}`;
-  });
+  pickupInput.addEventListener('input', showFlatRate);
+  dropoffInput.addEventListener('input', showFlatRate);
 });

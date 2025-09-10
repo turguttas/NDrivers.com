@@ -25,18 +25,19 @@ body {
 /* -------------------- Dark Mode Toggle -------------------- */
 #darkModeToggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 120px;       /* move it higher above footer */
+  right: 20px;         /* bottom-right corner */
+  width: 40px;         /* only icon size is clickable */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   background: none;
   border: none;
   font-size: 28px;
-  z-index: 10000;
-  width: auto;
-  height: auto;
-  display: inline;
-  padding: 0;
-  transition: color 0.3s;
+  z-index: 1000;       /* enough to float above content but not excessively */
+  padding: 0;          /* prevent extra clickable area */
 }
 
 /* -------------------- Form Styling -------------------- */
@@ -48,12 +49,16 @@ form {
   border-radius: 8px;
 }
 
+/* Make all inputs, selects, buttons same size */
 input,
+select,
+textarea,
 button {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 .date-time-row {
@@ -71,22 +76,19 @@ button {
   padding: 10px;
 }
 
-/* -------------------- Footer (NEW & UPDATED) -------------------- */
+/* -------------------- Footer -------------------- */
 footer {
   background: #000;
   color: #fff;
   padding: 2rem 1rem;
   text-align: center;
   margin-top: auto;
-  
-  /* Stacks the different footer sections vertically */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem; /* Space between the lines */
+  gap: 0.75rem;
 }
 
-/* General styling for all links in the footer */
 footer a {
   color: #fff;
   text-decoration: none;
@@ -96,14 +98,12 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Styling for the smaller, grey links and copyright text */
 .footer-links-secondary,
 .copyright {
   font-size: 0.8em;
   color: #888;
 }
 
-/* Ensures the secondary links themselves are also grey */
 .footer-links-secondary a {
   color: #888;
 }
@@ -122,14 +122,13 @@ body.dark-mode footer {
   background: #111;
 }
 
-/* Updated to work with the new footer structure */
 body.dark-mode footer a {
   color: #f0f0f0;
 }
 
 body.dark-mode .footer-links-secondary,
 body.dark-mode .copyright {
-  color: #aaa; /* A lighter grey for better readability on dark background */
+  color: #aaa;
 }
 
 body.dark-mode .footer-links-secondary a {

@@ -10,33 +10,30 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // CSS, JS, images
+app.use('/data', express.static(path.join(__dirname, 'data'))); // JSON files
 
 // Route for homepage
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-// === API endpoint: LAX terminals ===
-app.get('/api/lax-terminals', (req, res) => {
+// === API endpoint: All airports with terminals and airlines ===
+app.get('/api/airports', (req, res) => {
   const filePath = path.join(__dirname, 'data', 'airport.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading airport.json:', err);
-      return res.status(500).json({ error: 'Failed to load terminals data' });
+      return res.status(500).json({ error: 'Failed to load airport data' });
     }
 
     try {
-      const terminalsObj = JSON.parse(data);
-      const terminalsArray = Object.entries(terminalsObj).map(([name, airlines]) => ({
-        name,
-        airlines,
-      }));
-      res.json(terminalsArray);
+      const airports = JSON.parse(data); // { "LAX": {...}, "SNA": {...}, ... }
+      res.json(airports);
     } catch (parseErr) {
       console.error('Error parsing airport.json:', parseErr);
-      res.status(500).json({ error: 'Invalid JSON format in terminals data' });
+      res.status(500).json({ error: 'Invalid JSON format in airport data' });
     }
   });
 });

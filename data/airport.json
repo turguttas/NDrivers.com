@@ -1,28 +1,52 @@
 {
   "LAX": {
-    "Terminal 1": ["Southwest"],
-    "Terminal 2": ["Delta"],
-    "Terminal 3": ["Delta"],
-    "Terminal 4": ["Delta"],
-    "Terminal 5": ["Delta"],
-    "Terminal 6": ["Delta"],
-    "Terminal 7": ["Delta"],
-    "Terminal 8": ["Delta"],
-    "Tom Bradley International Terminal (Terminal B)": ["Delta"]
-  },
-  "BUR": {
-    "Terminal 1": ["Alaska"],
-    "Terminal 2": ["JetBlue"]
-  },
-  "SAN": {
-    "Terminal 1": ["Spirit"]
+    "aliases": ["Los Angeles International Airport"],
+    "Terminal 1": ["Allegiant", "Breeze Airlines", "Frontier", "Soutwest Airlines", "Sun Country Airlines", "Viva"],
+    "Terminal 2": ["Delta", "Norse Atlantic Airways", "Virgin Atlantic", "WestJet"],
+    "Terminal 3": ["Aeromexico", "Cayman Airways", "Delta"],
+    "Terminal 4": ["American Airlines"],
+    "Terminal 5": ["American Airlines", "JetBlue", "Spirit"],
+    "Terminal 6": ["Air Canada", "Alaska Airlines", "Hawaiian Airlines", "Porter Airlines", "Southern Airways Express", "United"],
+    "Terminal 7": ["SWISS", "United"],
+    "Terminal 8": ["SWISS", "United"],
+    "Tom Bradley International Terminal (Terminal B)": [
+      "Aer Lingus", "Aeromexico", "Air Cjina", "Air France", "Air New Zeland", "Air Premia", "Air Tahiti Nui",
+      "American Airlines", "ANA", "Asiana Airlines", "Austrian Airlines", "Avianca", "British Airways", "Cathay Pacific",
+      "China Airlines", "China Eastern Airlines", "China Southern Airlines", "Condor", "Copa Airlines", "Delta", "EL AL",
+      "Emiratess", "EVA Air", "Fiji Airways", "Finnair", "Flair Airlines", "French bee", "Iberia", "ITA Airways",
+      "Japan Airlines", "KLM", "Korean Air", "LATAM Airlines", "LOT Polish Airlines", "Lufthansa", "Philippine Airlines",
+      "Qantas", "Qatar Airways", "SAS", "SAUDIA", "Sichuan Airlines", "Singapore Airlines", "Southwest Airlines",
+      "STARLUX Airlines", "SWISS", "TAP Air Portugal", "Turkish Airlines", "United", "Volaris", "Volaris Costa Rica",
+      "Volaris El Salvador", "Xiamen Airlines", "ZIPAIR"
+    ]
   },
   "SNA": {
-    "Terminal 1": ["Alaska"],
-    "Terminal 2": ["JetBlue"]
+    "aliases": ["John Wayne Airport", "Santa Ana Airport"],
+    "Terminal A": ["American Airlines", "Air Canada", "Breeze Airways", "Delta", "WestJet"],
+    "Terminal B": ["Alaska Airlines", "United"],
+    "Terminal C": ["Allegiant", "Frontier", "Soutwest Airlines", "Spirit"]
+  },
+  "SAN": {
+    "aliases": ["San Diego International Airport"],
+    "Terminal 1": ["Frontier", "Soutwest Airlines", "Spirit", "Sun Country Airlines"],
+    "Terminal 2": ["Air Canada", "Alaska Airlines", "Allegiant", "American Airlines", "Breeze Airways", "British Airways", "Copa Airlines", "Delta", "Hawaiian Airlines", "Japan Airlines", "JetBlue", "KLM", "Lufthansa", "Porter Airlines", "SWISS", "United", "WestJet"]
   },
   "ONT": {
-    "Terminal 1": ["Alaska"],
-    "Terminal 2": ["JetBlue"]
+    "aliases": ["Ontario International Airport"],
+    "Terminal 2": ["Alaska Airlines", "Avianca", "China Airlines", "Delta", "Frontier", "JetBlue", "United", "Volaris"],
+    "Terminal 4": ["American Airlines", "Southwest Airlines", "STARLUX Airlines"]
+  },
+  "BUR": {
+    "aliases": ["Burbank Bob Hope Airport", "Hollywood Burbank Airport"],
+    "Terminal A": ["American Airlines","Delta", "JetBlue", "Soutwest Airlines", "Spirit"],
+    "Terminal B": ["Alaska Airlines", "Avelo", "Frontier", "United"]
+  },
+  "PSP": {
+    "aliases": ["Palm Springs International Airport"],
+    "Main Terminal": ["Air Canada", "Alaska Airlines", "Allegiant", "American Airlines", "Avelo Airlines", "Delta", "Flair Airlines", "Frontier", "Porter Airlines", "Soutwest Airlines", "Sun Country Airlines", "United", "WestJet"]
+  },
+  "LGB": {
+    "aliases": ["Long Beach Airport"],
+    "Terminal A": ["Alaska Airlines", "American Airlines", "Delta", "Spirit", "United"]
   }
 }

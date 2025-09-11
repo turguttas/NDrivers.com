@@ -6,109 +6,178 @@
   <title>Services - Ndrivers</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    body { font-family: Arial, sans-serif; line-height:1.6; color:#333; background:#f9f9f9; margin:0; padding:0; }
-    main { max-width:900px; margin:0 auto; padding:40px 20px; }
+    body { 
+      font-family: Arial, sans-serif; 
+      line-height: 1.6; 
+      color: #333; 
+      background: #f9f9f9; 
+      margin:0; 
+      padding:0;
+      overflow-x: hidden; /* ✅ Prevent horizontal scroll */
+    }
 
-    /* Logo */
-    .logo-container { text-align:center; margin-bottom:30px; }
-    .logo-container img { max-width:150px; cursor:pointer; }
+    main { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: 40px 20px; 
+    }
 
-    h1 { text-align:center; color:#0077cc; margin-bottom:10px; }
-    p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:40px; }
+    /* -------------------- Logo -------------------- */
+    .logo-container { 
+      text-align:center; 
+      margin-bottom:30px; 
+    }
+    .logo-container img { 
+      max-width: 350px; 
+      width: 100%;   /* ✅ responsive scaling */
+      height: auto; 
+    }
 
-    .service { background:#fff; padding:25px 20px; border-radius:10px; margin-bottom:20px; box-shadow:0 2px 6px rgba(0,0,0,0.05); display:flex; align-items:flex-start; }
-    .service-icon { font-size:40px; margin-right:20px; }
-    .service-content h2 { color:#0077cc; margin-bottom:10px; }
-    .service-content p { font-size:16px; color:#333; margin:0; }
+    h1 { 
+      text-align:center; 
+      color:#0077cc; 
+      margin-bottom:10px; 
+    }
+    p.subtitle { 
+      text-align:center; 
+      font-size:18px; 
+      color:#555; 
+      margin-bottom:40px; 
+    }
 
-    /* Footer */
-    footer { text-align:center; padding:20px; margin-top:40px; background:#f5f5f5; color:#555; }
-    footer nav a { margin:0 10px; text-decoration:none; color:#333; }
-    footer nav a:hover { color:#0077cc; }
-    /* Responsive Fix */
-@media (max-width: 768px) {
-  .service {
-    flex-direction: column;
-    text-align: center;
-  }
-  .service-icon {
-    margin: 0 0 15px 0;
-    font-size: 35px;
-  }
-  .service-content h2 {
-    font-size: 20px;
-  }
-  .service-content p {
-    font-size: 15px;
-  }
-  main {
-    padding: 20px 15px;
-  }
-}
+    /* -------------------- Services -------------------- */
+    .service { 
+      background:#fff; 
+      padding:25px 20px; 
+      border-radius:10px; 
+      margin-bottom:20px; 
+      box-shadow:0 2px 6px rgba(0,0,0,0.05); 
+      display:flex; 
+      align-items:flex-start; 
+    }
+    .service-icon { 
+      font-size:40px; 
+      margin-right:20px; 
+      flex-shrink:0;
+    }
+    .service-content h2 { 
+      color:#0077cc; 
+      margin-bottom:10px; 
+    }
+    .service-content p { 
+      font-size:16px; 
+      color:#333; 
+      margin:0; 
+    }
+
+    /* -------------------- Footer -------------------- */
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 40px;
+      width: 100%;
+    }
+    footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    footer a {
+      color: #fff;
+      margin: 5px 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: #f39c12; }
+
+    /* -------------------- Responsive Fix -------------------- */
+    @media (max-width: 768px) {
+      .service {
+        flex-direction: column;
+        text-align: center;
+      }
+      .service-icon {
+        margin: 0 0 15px 0;
+        font-size: 35px;
+      }
+      .service-content h2 {
+        font-size: 20px;
+      }
+      .service-content p {
+        font-size: 15px;
+      }
+      main {
+        padding: 20px 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<main>
-  <!-- Logo -->
-  <div class="logo-container">
-    <a href="index.html">
-      <img src="img/logo.png" alt="Ndrivers Logo" style="max-width:400px; height:auto;">
-    </a>
-  </div>
-
-  <h1>My Services</h1>
-  <p class="subtitle">Safe, comfortable, and professional rides tailored to your needs.</p>
-
-  <!-- Service 1 -->
-  <div class="service">
-    <div class="service-icon">✈️</div>
-    <div class="service-content">
-      <h2>Airport Transfers</h2>
-      <p>Reliable rides to and from all Southern California airports. I help with luggage and choose the best routes to avoid traffic, making your journey stress-free.</p>
+  <main>
+    <!-- Logo -->
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img/logo.png" alt="Ndrivers Logo">
+      </a>
     </div>
-  </div>
 
-  <!-- Service 2 -->
-  <div class="service">
-    <div class="service-icon">🛣️</div>
-    <div class="service-content">
-      <h2>Long-Distance Trips</h2>
-      <p>Need to travel between cities? I provide comfortable and safe long-distance rides across SoCal, ensuring a smooth and enjoyable trip every time.</p>
+    <h1>My Services</h1>
+    <p class="subtitle">Safe, comfortable, and professional rides tailored to your needs.</p>
+
+    <!-- Service 1 -->
+    <div class="service">
+      <div class="service-icon">✈️</div>
+      <div class="service-content">
+        <h2>Airport Transfers</h2>
+        <p>Reliable rides to and from all Southern California airports. I help with luggage and choose the best routes to avoid traffic, making your journey stress-free.</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Service 3 -->
-  <div class="service">
-    <div class="service-icon">🏘️</div>
-    <div class="service-content">
-      <h2>Neighborhood Assistance</h2>
-      <p>Helping local neighbors get to appointments, errands, or special events safely and conveniently. A friendly and personal service you can trust.</p>
+    <!-- Service 2 -->
+    <div class="service">
+      <div class="service-icon">🛣️</div>
+      <div class="service-content">
+        <h2>Long-Distance Trips</h2>
+        <p>Need to travel between cities? I provide comfortable and safe long-distance rides across SoCal, ensuring a smooth and enjoyable trip every time.</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Service 4 -->
-  <div class="service">
-    <div class="service-icon">📝</div>
-    <div class="service-content">
-      <h2>Custom Requests</h2>
-      <p>If you have a unique transportation need, I’m happy to discuss and provide a solution tailored to you. Just let me know your requirements!</p>
+    <!-- Service 3 -->
+    <div class="service">
+      <div class="service-icon">🏘️</div>
+      <div class="service-content">
+        <h2>Neighborhood Assistance</h2>
+        <p>Helping local neighbors get to appointments, errands, or special events safely and conveniently. A friendly and personal service you can trust.</p>
+      </div>
     </div>
-  </div>
 
-</main>
+    <!-- Service 4 -->
+    <div class="service">
+      <div class="service-icon">📝</div>
+      <div class="service-content">
+        <h2>Custom Requests</h2>
+        <p>If you have a unique transportation need, I’m happy to discuss and provide a solution tailored to you. Just let me know your requirements!</p>
+      </div>
+    </div>
 
-<!-- Footer -->
-<footer>
-  <p>© 2025 Ndrivers. All Rights Reserved.</p>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html" style="font-weight:bold;">Services</a>
-    <a href="testimonials.html">Testimonials</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</footer>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html" style="font-weight:bold;">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p>© 2025 Ndrivers. All Rights Reserved.</p>
+  </footer>
 
 </body>
 </html>

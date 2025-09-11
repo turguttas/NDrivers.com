@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Testimonials - Ndrivers</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; margin:0; padding:0; }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    h1 { text-align: center; margin-bottom: 10px; }
+    p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:40px; }
+
+    section.review { padding:20px; border-radius:10px; margin-bottom:20px; }
+    section.review:nth-child(odd) { background: #f9f9f9; }
+    section.review:nth-child(even) { background: #eef5f9; }
+    section.review p { font-size:16px; font-style:italic; margin:0; }
+    section.review p.author { text-align:right; margin-top:10px; font-weight:bold; font-style:normal; }
+
+    /* Form Styles */
+    section#submit-review { padding:20px; border-radius:10px; background:#fff; margin-top:40px; }
+    section#submit-review h2 { text-align:center; color:#0077cc; margin-bottom:20px; }
+    section#submit-review p { text-align:center; color:#555; margin-bottom:20px; }
+    form { max-width:600px; margin:0 auto; }
+    input, textarea { width:100%; padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; }
+    button { display:block; width:100%; padding:12px; background:#0077cc; color:#fff; border:none; border-radius:6px; font-size:16px; cursor:pointer; }
+
+    /* -------------------- Footer -------------------- */
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: #f39c12; }
+  </style>
+</head>
+<body>
+
+<main>
+  <h1>What My Riders Say</h1>
+  <p class="subtitle">Here are a few words from people who’ve trusted me with their rides.</p>
+
+  <!-- Reviews -->
+  <section class="review">
+    <p>“Tommy is the most reliable driver I’ve had in SoCal. Always on time, super friendly, and the car is spotless. Highly recommend for airport rides!”</p>
+    <p class="author">— Sarah M., Irvine</p>
+  </section>
+
+  <section class="review">
+    <p>“The ride to LAX was smooth and stress-free. Tommy even helped with luggage and knew the best route to avoid traffic.”</p>
+    <p class="author">— David L., Lake Forest</p>
+  </section>
+
+  <section class="review">
+    <p>“I loved that it felt personal, not like a big rideshare company. You know who your driver is, and that makes all the difference.”</p>
+    <p class="author">— Emily R., Newport Beach</p>
+  </section>
+
+  <section class="review">
+    <p>“Always punctual, professional, and friendly. I’ll never call another driver for my airport trips!”</p>
+    <p class="author">— John K., Irvine</p>
+  </section>
+
+  <section class="review">
+    <p>“Tommy knows SoCal roads like the back of his hand. Smooth ride, great conversation, very trustworthy.”</p>
+    <p class="author">— Laura S., Laguna Beach</p>
+  </section>
+
+  <section class="review">
+    <p>“Highly recommend! The car is spotless and rides are very comfortable. Tommy is a true professional.”</p>
+    <p class="author">— Michael P., Costa Mesa</p>
+  </section>
+
+  <section class="review">
+    <p>“I enjoy riding with Tommy because it feels personal and friendly, unlike other services.”</p>
+    <p class="author">— Vanessa T., Huntington Beach</p>
+  </section>
+
+  <section class="review">
+    <p>“Tommy’s driving is safe and reliable. He even gave me local tips on places to eat and visit!”</p>
+    <p class="author">— Robert H., Newport Beach</p>
+  </section>
+
+  <section class="review">
+    <p>“Airport transfers are always on time and smooth. Tommy is very professional and courteous.”</p>
+    <p class="author">— Kelly M., Irvine</p>
+  </section>
+
+  <section class="review">
+    <p>“Tommy is great! I feel safe, the car is clean, and he’s always friendly. Highly recommended!”</p>
+    <p class="author">— Steven B., Laguna Hills</p>
+  </section>
+
+  <section class="review">
+    <p>“Long-distance rides are a breeze with Tommy. He makes the trip relaxing and enjoyable.”</p>
+    <p class="author">— Amanda C., San Diego</p>
+  </section>
+
+  <section class="review">
+    <p>“I love that it’s a personal service. Tommy knows exactly what passengers need and is very courteous.”</p>
+    <p class="author">— Brian F., Santa Ana</p>
+  </section>
+
+  <section class="review">
+    <p>“Excellent driver, very knowledgeable, safe, and punctual. My go-to driver in SoCal.”</p>
+    <p class="author">— Rachel G., Irvine</p>
+  </section>
+
+  <section class="review">
+    <p>“Tommy makes rides stress-free. I always feel comfortable and safe in his car.”</p>
+    <p class="author">— Daniel W., Lake Forest</p>
+  </section>
+
+  <section class="review">
+    <p>“Friendly, professional, and always helpful. Tommy goes above and beyond!”</p>
+    <p class="author">— Sophia N., Newport Beach</p>
+  </section>
+
+  <section class="review">
+    <p>“I’ve had several rides with Tommy and they’re always smooth and enjoyable. Highly recommended.”</p>
+    <p class="author">— Ethan R., Costa Mesa</p>
+  </section>
+
+  <section class="review">
+    <p>“The car is always clean, the service is top-notch, and Tommy is genuinely friendly. Great experience!”</p>
+    <p class="author">— Megan L., Huntington Beach</p>
+  </section>
+
+  <!-- Review Submission Form -->
+  <section id="submit-review">
+    <h2>Submit Your Review</h2>
+    <p>Your feedback helps me improve and share experiences with future riders!</p>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+      <textarea id="review" name="review" rows="5" placeholder="Your Review" required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="testimonials.html" style="font-weight:bold;">Testimonials</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+    <p>© 2025 Ndrivers. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

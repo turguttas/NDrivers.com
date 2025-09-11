@@ -76,61 +76,102 @@ button {
   padding: 10px;
 }
 
-/* -------------------- Footer -------------------- */
+/* -------------------- Footer Modern -------------------- */
 footer {
-  background: #000;
+  background: linear-gradient(135deg, #000, #1a1a1a);
   color: #fff;
-  padding: 2rem 1rem;
-  text-align: center;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  padding: 40px 20px 20px;
+  font-size: 15px;
 }
 
-footer a {
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  gap: 30px;
+}
+
+/* Brand Section */
+.footer-brand {
+  flex: 1 1 200px;
+}
+.footer-brand img {
+  max-width: 180px;
+  margin-bottom: 10px;
+}
+.footer-brand p {
+  font-size: 14px;
+  color: #bbb;
+  margin: 0;
+}
+
+/* Navigation */
+.footer-nav {
+  flex: 2 1 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 25px;
+}
+.footer-nav a {
   color: #fff;
   text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-nav a:hover {
+  color: #f39c12;
 }
 
-footer a:hover {
-  text-decoration: underline;
+/* Social */
+.footer-social {
+  flex: 1 1 150px;
+  display: flex;
+  gap: 15px;
+}
+.footer-social a img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s, filter 0.3s;
+}
+.footer-social a:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.8) invert(1);
 }
 
-.footer-links-secondary,
-.copyright {
-  font-size: 0.8em;
-  color: #888;
+/* Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
 }
-
+.footer-links-secondary {
+  margin-top: 5px;
+}
 .footer-links-secondary a {
-  color: #888;
-}
-
-/* -------------------- Dark Mode -------------------- */
-body.dark-mode {
-  background: #1a1a1a;
-  color: #f0f0f0;
-}
-
-body.dark-mode form {
-  background: #2a2a2a;
-}
-
-body.dark-mode footer {
-  background: #111;
-}
-
-body.dark-mode footer a {
-  color: #f0f0f0;
-}
-
-body.dark-mode .footer-links-secondary,
-body.dark-mode .copyright {
   color: #aaa;
+  text-decoration: none;
+  margin: 0 8px;
+}
+.footer-links-secondary a:hover {
+  color: #f39c12;
 }
 
-body.dark-mode .footer-links-secondary a {
-  color: #aaa;
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-nav {
+    justify-content: center;
+  }
+  .footer-social {
+    justify-content: center;
+  }
 }

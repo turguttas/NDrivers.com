@@ -3,89 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Your Driver</title>
+  <title>About Your Driver | NDrivers</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    body, h1, h2, p, a { margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
 
-    /* Main content */
-    main { max-width: 800px; margin: 30px auto; padding: 0 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    main img { width: 200px; border-radius: 50%; display: block; margin: 20px auto; }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0077cc, #005fa3);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 80px;
+    }
+    .hero img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      margin: 10px 0;
+      font-size: 32px;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 10px auto 0;
+      font-size: 18px;
+      opacity: 0.9;
+    }
 
-    h1, h2 { text-align: center; margin-bottom: 15px; }
-    h2 { color: #0077cc; margin-top: 30px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    h2 img { width: 25px; height: 25px; }
-
-    p { margin-bottom: 20px; }
+    /* Section Cards */
+    .section {
+      max-width: 900px;
+      background: #fff;
+      margin: -50px auto 30px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .section h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #0077cc;
+    }
+    .section h2 img {
+      width: 28px;
+      height: 28px;
+    }
+    .section p {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
 
     /* Footer */
-    footer { background: #222; color: #fff; text-align: center; padding: 20px 10px; margin-top: 30px; font-weight: normal; }
-    footer a { color: #fff; text-decoration: none; }
-    footer a:hover { color: #0077cc; }
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: #f39c12; }
 
-    /* Back link */
-    .back-link { display: inline-block; margin: 20px; text-decoration: none; color: #0077cc; }
-    .back-link:hover { text-decoration: underline; }
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .footer-social img {
+      width: 30px; height: 30px;
+    }
+
+    .footer-links {
+      margin: 20px 0;
+    }
+
+    .footer-bottom {
+      margin-top: 10px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
 
     /* Responsive */
     @media (max-width: 600px) {
-      main { margin: 20px; padding: 15px; }
-      header { flex-direction: column; align-items: flex-start; }
-      header img { margin-bottom: 10px; }
-      h2 { justify-content: flex-start; }
+      .hero h1 { font-size: 26px; }
+      .hero p { font-size: 16px; }
+      .section { margin: -40px 15px 20px; padding: 20px; }
     }
   </style>
 </head>
 <body>
-<main>
+
   <!-- Logo -->
   <div class="logo-container">
     <a href="index.html">
       <img src="img/logo.png" alt="Ndrivers Logo" style="max-width:350px; height:auto;">
     </a>
   </div>
-  <!-- Main content -->
-  <main>
-    <h1>Hi, I'm Tommy</h1>
-    <img src="your-photo.jpg" alt="Tommy's Photo">
 
+  <!-- About Sections -->
+  <div class="section">
     <h2><img src="user-icon.png" alt="User Icon"> Meet Me</h2>
-    <p>
-      I’ve been proud to call Irvine home for over 5 years. I often describe it as clean, green, and safe — a city I truly enjoy living in. Driving isn’t just a job for me — it’s a passion. Over time, I’ve become very familiar with Southern California’s roads, from city streets to coastal highways.
-    </p>
+    <p>I’ve been proud to call Irvine home for over 5 years. I often describe it as clean, green, and safe — a city I truly enjoy living in. Driving isn’t just a job for me — it’s a passion. Over time, I’ve become very familiar with Southern California’s roads, from city streets to coastal highways.</p>
+  </div>
 
+  <div class="section">
     <h2><img src="car-icon.png" alt="Car Icon"> My Driving Philosophy</h2>
-    <p>
-      I provide safe, clean, and professional rides. I keep my car spotless not only for passengers, but because I don’t feel comfortable driving a dirty car myself. Whether it’s an airport trip, a scenic drive, or a longer journey, professionalism, safety, and friendliness are my top priorities.
-    </p>
+    <p>I provide safe, clean, and professional rides. I keep my car spotless not only for passengers, but because I don’t feel comfortable driving a dirty car myself. Whether it’s an airport trip, a scenic drive, or a longer journey, professionalism, safety, and friendliness are my top priorities.</p>
+  </div>
 
+  <div class="section">
     <h2><img src="sunset-icon.png" alt="Sunset Icon"> Life in SoCal</h2>
-    <p>
-      I especially love beach drives, walking along the ocean, and watching the sunset. Meeting new people and helping my community makes every drive a rewarding experience.
-    </p>
+    <p>I especially love beach drives, walking along the ocean, and watching the sunset. Meeting new people and helping my community makes every drive a rewarding experience.</p>
+  </div>
 
+  <div class="section">
     <h2><img src="chef-icon.png" alt="Chef Icon"> Beyond Driving</h2>
-    <p>
-      Outside of driving, I’m passionate about cooking and also work as an IT professional — I even built this website from the ground up. I enjoy sharing local tips about restaurants, events, or hidden spots around town.
-    </p>
+    <p>Outside of driving, I’m passionate about cooking and also work as an IT professional — I even built this website from the ground up. I enjoy sharing local tips about restaurants, events, or hidden spots around town.</p>
+  </div>
 
+  <div class="section">
     <h2><img src="shield-icon.png" alt="Shield Icon"> Why Choose Me</h2>
-    <p>
-      I don’t aim to become a big company — I simply want to remain a neighborhood driver focusing on airport transfers and long-distance trips. My goal is to provide a personal and trustworthy alternative where you know exactly who your driver is.
-    </p>
-  </main>
+    <p>I don’t aim to become a big company — I simply want to remain a neighborhood driver focusing on airport transfers and long-distance trips. My goal is to provide a personal and trustworthy alternative where you know exactly who your driver is.</p>
+  </div>
 
- <!-- Footer -->
+  <!-- Footer -->
   <footer>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About Me</a> |
-    <a href="services.html">Services</a> |
-    <a href="testimonials.html">Testimonials</a> |
-    <a href="faq.html">FAQ</a> |
-    <a href="contact.html">Contact Us</a>
-    
-    <p>© 2025 Ndrivers. All rights reserved.</p>
+    <div class="footer-brand">
+      <a href="index.html">
+        <img src="img/logo-white.png" alt="NDrivers Logo" width="120">
+      </a>
+      <p>Bringing reliable rides and local connections together.<br>Your neighborly driver, making every trip safe, simple, and stress-free.</p>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
+      <a href="https://linkedin.com/in/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn"></a>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 NDrivers.com. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms of Service</a>
+    </div>
   </footer>
 
 </body>

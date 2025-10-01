@@ -410,13 +410,11 @@ body.dark-mode .ride-btn {
   width: 100%;
 }
 /* Section header like My Services */
-/* Customize only the testimonial title */
-.testimonial-title {
-  color: #D4AF37;       /* gold color */
-  font-size: 2rem;      /* bigger than default */
-  font-weight: 700;     /* bold */
-  letter-spacing: 1px;  /* spacing between letters */
-  margin-bottom: 1rem;  /* spacing below title */
+.testimonial-slider .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .testimonial-slider .section-header h2 {

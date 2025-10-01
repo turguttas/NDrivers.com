@@ -238,11 +238,53 @@ p.description { color: var(--color-text-secondary); font-style: normal; }
   box-shadow: var(--shadow-sm);
 }
 
-#aboutPreview, #services {
-  padding-top: 60px;
-  border-top: 1px solid var(--color-border);
-  text-align: center;
+/* -------------------- Read More Buttons -------------------- */
+a.read-more, #aboutPreview a, #services a {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 6px;
+  background: linear-gradient(120deg, #D4AF37, #f1c40f);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.4s ease;
+  background-size: 200% 200%;
+  position: relative;
+  overflow: hidden;
 }
+
+/* ---------- Desktop Hover ---------- */
+@media (hover: hover) and (pointer: fine) {
+  a.read-more:hover, #aboutPreview a:hover, #services a:hover {
+    transform: translateY(-3px);  /* subtle lift */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-position: right center;  /* gradient slide */
+  }
+}
+
+/* ---------- Mobile Tap/Active Feedback ---------- */
+@media (hover: none) and (pointer: coarse) {
+  a.read-more:active, #aboutPreview a:active, #services a:active {
+    transform: scale(0.95);  /* tap feedback */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Optional: subtle infinite gradient pulse */
+  a.read-more, #aboutPreview a, #services a {
+    animation: pulseGradient 3s infinite alternate;
+  }
+
+  @keyframes pulseGradient {
+    0% { background-position: left center; }
+    100% { background-position: right center; }
+  }
+}
+
+/* Optional: text shadow for extra elegance */
+a.read-more, #aboutPreview a, #services a {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
 
 /* --------------------------------------------------- */
 /* 6. Dark Mode Toggle
@@ -346,4 +388,90 @@ body.dark-mode .ride-btn {
   .container { padding: 30px 20px; }
   .ride-request { padding: 40px 20px; }
   .form-row { flex-direction: column; gap: 15px; }
+}
+.ride-title {
+  display: inline-block;
+  color: #D4AF37;
+  text-align: center;
+  position: relative;
+}
+
+.ride-title::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  background: #D4AF37;
+  transition: width 0.5s ease-in-out;
+  margin-top: 4px;
+}
+
+.ride-title:hover::after {
+  width: 100%;
+}
+/* Section header like My Services */
+/* Customize only the testimonial title */
+.testimonial-title {
+  color: #D4AF37;       /* gold color */
+  font-size: 2rem;      /* bigger than default */
+  font-weight: 700;     /* bold */
+  letter-spacing: 1px;  /* spacing between letters */
+  margin-bottom: 1rem;  /* spacing below title */
+}
+
+.testimonial-slider .section-header h2 {
+  font-size: 1.5rem; /* same as My Services */
+  color: #333;       /* match My Services color */
+  margin: 0;
+}
+
+.testimonial-slider .read-more {
+  font-size: 1rem;
+  color: #D4AF37;    /* match My Services link color */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.testimonial-slider .read-more:hover {
+  text-decoration: underline;
+}
+
+/* Slider container same size as My Services */
+.testimonial-slider {
+  max-width: 100%;         /* adjust to section width */
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #f9f9f9;     /* same background as My Services box */
+  border-radius: 12px;
+  text-align: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Slider inner */
+.slider-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.testimonial-slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.testimonial-slide p {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.testimonial-slide span {
+  font-size: 0.85rem;
+  color: #666;
 }

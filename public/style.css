@@ -1,0 +1,349 @@
+/* --------------------------------------------------- */
+/* 1. Design Variables & Setup
+/* --------------------------------------------------- */
+:root {
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-brand: #D4AF37;
+  --color-brand-hover: #c5a030;
+
+  /* Light Mode */
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-border: #dee2e6;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode {
+  --color-bg: #121212;
+  --color-surface: #1e1e1e;
+  --color-text-primary: #e9ecef;
+  --color-text-secondary: #adb5bd;
+  --color-border: #495057;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------- */
+/* 2. Global Styles & Reset
+/* --------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-bottom: 100px; /* Space for dark mode toggle */
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.3;
+}
+h1 { font-size: clamp(1.8rem, 5vw, 2.25rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 1.8rem); color: var(--color-brand); }
+h3 { font-size: clamp(1.1rem, 3vw, 1.25rem); font-weight: 500; color: var(--color-text-secondary); }
+p { text-align: center; max-width: 650px; margin: 0 auto; }
+p.description { color: var(--color-text-secondary); font-style: normal; }
+
+/* --------------------------------------------------- */
+/* 3. Header & Logo
+/* --------------------------------------------------- */
+.hero-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------- */
+/* 4. Ride Request Form
+/* --------------------------------------------------- */
+.ride-request {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 60px 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease;
+}
+
+.ride-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.ride-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.ride-form label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.ride-form label svg {
+  color: #6c757d;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.ride-form input,
+.ride-form select {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.ride-form input:focus,
+.ride-form select:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+  outline: none;
+}
+
+.ride-form input:focus + label svg,
+.ride-form select:focus + label svg {
+  color: var(--color-brand);
+  transform: scale(1.2) rotate(10deg);
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.form-row > .form-group { flex: 1; min-width: 120px; }
+
+/* Terminal & Airline Wrapper */
+#terminalSelectWrapper,
+#airlineWrapper,
+#flightCodeWrapper {
+  transition: all 0.3s ease;
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-top: 12px;
+  border-left: 3px solid var(--color-brand);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Submit Button */
+.ride-btn {
+  background: linear-gradient(135deg, var(--color-brand), var(--color-brand-hover));
+  border: none;
+  border-radius: 12px;
+  padding: 16px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+}
+.ride-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+}
+
+/* Ride Info Text */
+.ride-info-text {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  text-align: center;
+}
+
+.ride-info-text .info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 0 5px;
+}
+.ride-info-text .info-item:not(:last-child)::after {
+  content: "•";
+  position: absolute;
+  right: -8px;
+  color: #ccc;
+  font-size: 14px;
+}
+.ride-info-text .info-icon {
+  font-size: 10px;
+  color: #aaa;
+}
+
+/* --------------------------------------------------- */
+/* 5. Map, About, Services
+/* --------------------------------------------------- */
+.map-container img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+#aboutPreview, #services {
+  padding-top: 60px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+/* --------------------------------------------------- */
+/* 6. Dark Mode Toggle
+/* --------------------------------------------------- */
+#darkModeToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+#darkModeToggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  border-color: var(--color-brand);
+}
+
+/* --------------------------------------------------- */
+/* 7. Footer
+/* --------------------------------------------------- */
+footer {
+  background: #111;
+  color: #fff;
+  padding: 80px 20px 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-links,
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.footer-links a:hover {
+  color: var(--color-brand);
+}
+
+/* --------------------------------------------------- */
+/* 8. Dark Mode Adjustments
+/* --------------------------------------------------- */
+body.dark-mode {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+body.dark-mode .ride-request {
+  background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .ride-form input,
+body.dark-mode .ride-form select {
+  background-color: #2a2a2a;
+  color: #e9ecef;
+  border-color: #495057;
+}
+
+body.dark-mode .ride-form input:focus,
+body.dark-mode .ride-form select:focus {
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-mode .ride-btn {
+  background: linear-gradient(135deg, var(--color-brand), var(--color-brand-hover));
+  color: #000;
+}
+
+/* --------------------------------------------------- */
+/* 9. Responsive Adjustments
+/* --------------------------------------------------- */
+@media (max-width: 768px) {
+  .container { padding: 30px 20px; }
+  .ride-request { padding: 40px 20px; }
+  .form-row { flex-direction: column; gap: 15px; }
+}

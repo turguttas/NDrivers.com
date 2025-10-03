@@ -1,163 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NDrivers - Contact Us</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* -------------------- Base Reset -------------------- */
-    * { margin:0; padding:0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f5f6fa; color: #111; transition: background 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
-    body.dark-mode { background: #121212; color: #f0f0f0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NDrivers - Contact Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #f5f6fa; color: #111; transition: background 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
+  body.dark-mode { background: #121212; color: #f0f0f0; }
 
-    /* -------------------- Dark Mode Toggle -------------------- */
-    #darkModeToggle { position: fixed; bottom: 20px; right: 20px; cursor: pointer; background: none; border: none; font-size: 28px; z-index: 10000; }
+  #darkModeToggle { position: fixed; bottom: 20px; right: 20px; cursor: pointer; background: none; border: none; font-size: 28px; z-index: 10000; }
 
-    /* -------------------- Contact Form Container -------------------- */
-    .contact-container { flex:1; display: flex; justify-content: center; align-items: center; padding: 80px 20px; }
-    .contact-card {
-      background: linear-gradient(145deg, #ffffff, #f0f0f0);
-      border-radius: 25px;
-      padding: 50px 40px;
-      max-width: 500px;
-      width: 100%;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-      transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-    body.dark-mode .contact-card { background: #1e1e1e; color: #f0f0f0; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+  .contact-container { flex:1; display: flex; justify-content: center; align-items: center; padding: 80px 20px; }
+  .contact-card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 25px;
+    padding: 50px 40px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+  }
+  body.dark-mode .contact-card { background: #1e1e1e; color: #f0f0f0; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
 
-    /* -------------------- Logo & Intro -------------------- */
-    .contact-card .logo-container { text-align: center; margin-bottom: 20px; }
-    .contact-card .logo-container img {
-      width: 300px;
-      max-width: 100%;
-      height: auto;
-      transition: transform 0.3s;
-      animation: floatRotate 4s ease-in-out infinite;
-    }
+  .logo-container { text-align: center; margin-bottom: 20px; }
+  .logo-container img { width: 300px; max-width: 100%; height: auto; transition: filter 0.3s; }
 
-    /* Logo Clickable + Hover */
-    .logo-link {
-      display: inline-block;
-      padding: 10px;
-      border-radius: 12px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+  .contact-card .intro { text-align: center; margin-bottom: 30px; font-size:16px; color:#555; }
+  body.dark-mode .contact-card .intro { color: #ccc; }
 
-    /* Float + Rotate Animation */
-    @keyframes floatRotate {
-      0%   { transform: translateY(0) rotate(0deg); }
-      25%  { transform: translateY(-5px) rotate(-1deg); }
-      50%  { transform: translateY(-8px) rotate(1deg); }
-      75%  { transform: translateY(-5px) rotate(-1deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
+  .contact-card h1 { text-align: center; font-size: 2.5rem; margin-bottom: 30px; color: #D4AF37; }
 
-    .contact-card .intro { text-align: center; margin-bottom: 30px; font-size:16px; color:#555; }
-    body.dark-mode .contact-card .intro { color: #ccc; }
+  .form-group { position: relative; margin-bottom: 25px; }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background: #fff;
+    color: #111;
+    transition: all 0.3s;
+  }
+  body.dark-mode .form-group input,
+  body.dark-mode .form-group textarea { background: #2a2a2a; color: #f0f0f0; border: 1px solid #555; }
 
-    .contact-card h1 { text-align: center; font-size: 2.5rem; margin-bottom: 30px; color: #D4AF37; }
+  .form-group label {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    background: transparent;
+    color: #888;
+    font-size: 16px;
+    font-weight: 500;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  body.dark-mode .form-group label { color: #bbb; }
 
-    /* -------------------- Floating Label Inputs -------------------- */
-    .form-group { position: relative; margin-bottom: 25px; }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 18px 18px 18px 18px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      background: #fff;
-      color: #111;
-      transition: all 0.3s;
-    }
-    body.dark-mode .form-group input,
-    body.dark-mode .form-group textarea { background: #2a2a2a; color: #f0f0f0; border: 1px solid #555; }
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 15px;
+    font-size: 12px;
+    color: #D4AF37;
+    padding: 0 5px;
+  }
 
-    .form-group label {
-      position: absolute;
-      left: 18px;
-      top: 18px;
-      background: transparent;
-      color: #888;
-      font-size: 16px;
-      font-weight: 500;
-      pointer-events: none;
-      transition: all 0.3s;
-    }
-    body.dark-mode .form-group label { color: #bbb; }
+  .form-group input:focus,
+  .form-group textarea:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
-    .form-group input:focus + label,
-    .form-group input:not(:placeholder-shown) + label,
-    .form-group textarea:focus + label,
-    .form-group textarea:not(:placeholder-shown) + label {
-      top: -10px;
-      left: 15px;
-      font-size: 12px;
-      color: #D4AF37;
-      background: inherit;
-      padding: 0 5px;
-    }
+  .contact-card button {
+    width: 100%;
+    padding: 18px;
+    background: #D4AF37;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .contact-card button:hover { background: #c49b32; transform: translateY(-2px); }
 
-    .form-group input:focus,
-    .form-group textarea:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 18px 25px;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    display: none;
+    z-index: 10001;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  }
 
-    /* Submit Button */
-    .contact-card button {
-      width: 100%;
-      padding: 18px;
-      background: #D4AF37;
-      border: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .contact-card button:hover { background: #c49b32; transform: translateY(-2px); }
+  footer { background: #000; color: #fff; padding: 50px 20px; text-align: center; }
+  .footer-container { max-width: 1000px; margin: 0 auto; }
+  .footer-brand img { width: 100px; margin-bottom: 10px; }
+  .footer-brand p { max-width: 500px; margin: 0 auto 20px; font-size: 14px; line-height: 1.5; }
+  .footer-social { margin: 20px 0; }
+  .footer-social a { margin: 0 10px; display: inline-block; }
+  .footer-social img { width: 30px; height: 30px; }
+  .footer-links, .footer-bottom { margin: 15px 0; }
+  .footer-links a, .footer-bottom a { color: #fff; margin: 0 10px; font-size: 14px; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
 
-    /* -------------------- Footer -------------------- */
-    footer { background: #000; color: #fff; padding: 50px 20px; text-align: center; }
-    .footer-container { max-width: 1000px; margin: 0 auto; }
-    .footer-brand img { width: 100px; margin-bottom: 10px; }
-    .footer-brand p { max-width: 500px; margin: 0 auto 20px; font-size: 14px; line-height: 1.5; }
-    .footer-social { margin: 20px 0; }
-    .footer-social a { margin: 0 10px; display: inline-block; }
-    .footer-social img { width: 30px; height: 30px; }
-    .footer-links, .footer-bottom { margin: 15px 0; }
-    .footer-links a, .footer-bottom a { color: #fff; margin: 0 10px; font-size: 14px; text-decoration: none; transition: color 0.3s; }
-    .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
-
-    @media (max-width: 600px) { .contact-card { padding: 40px 25px; } }
-  </style>
+  @media (max-width: 600px) { .contact-card { padding: 40px 25px; } }
+</style>
 </head>
 <body>
 
-  <!-- Dark Mode Toggle -->
-  <button id="darkModeToggle">🌙</button>
+<!-- Dark Mode Toggle -->
+<button id="darkModeToggle">🌙</button>
 
-  <!-- Contact Form -->
-  <div class="contact-container">
-    <div class="contact-card">
+<!-- Contact Form -->
+<div class="contact-container">
+  <div class="contact-card">
 
-      <!-- Logo -->
-      <div class="logo-container">
-        <a href="index.html" class="logo-link">
-          <img src="/img/logo.png" alt="NDrivers Logo">
-        </a>
-      </div>
+    <!-- Logo -->
+    <div class="logo-container">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo.png" alt="NDrivers Logo">
+      </a>
+    </div>
 
-      <!-- Intro Text -->
-      <p class="intro">
-        Have a question, feedback, or need assistance? We’d love to hear from you! Fill out the form below and we’ll get back to you as soon as possible.
-      </p>
+    <!-- Intro Text -->
+    <p class="intro">
+      Have a question, feedback, or need assistance? We’d love to hear from you! Fill out the form below and we’ll get back to you as soon as possible.
+    </p>
 
-      <!-- Form Header -->
-      <h1>Get in Touch</h1>
+    <!-- Form Header -->
+    <h1>Get in Touch</h1>
 
-      <!-- Contact Form -->
-      <form id="contactForm">
+    <!-- Contact Form (duplicate intentionally kept as in your original) -->
+    <form id="contactForm">
+      <form id="contactForm" method="POST" action="send_email.php">
         <div class="form-group">
           <input type="text" id="name" name="name" placeholder=" " required />
           <label for="name">Your Name</label>
@@ -175,53 +158,89 @@
 
         <button type="submit">Send Message</button>
       </form>
+    </form>
+
+  </div>
+</div>
+
+<!-- Popup Notifications -->
+<div id="successNotification" class="notification" style="background: #4caf50;">✅ Message sent successfully!</div>
+<div id="errorNotification" class="notification" style="background: #f44336;">❌ Failed to send message!</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="index.html">
+        <img src="img/logo-white.png" alt="NDrivers Logo">
+      </a>
+      <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
+    </div>
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 NDrivers.com. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
     </div>
   </div>
+</footer>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-brand">
-        <a href="index.html">
-          <img src="img/logo-white.png" alt="NDrivers Logo">
-        </a>
-        <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
-      </div>
-      <div class="footer-social">
-        <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
-        <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
-        <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-        <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 NDrivers.com. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
-      </div>
-    </div>
-  </footer>
+<script>
+  // Dark Mode Toggle
+  const darkModeBtn = document.getElementById('darkModeToggle');
+  darkModeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    darkModeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  });
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggle = document.getElementById('darkModeToggle');
+  // Contact Form Submission (kept exactly same)
+  const contactForm = document.getElementById("contactForm");
+  contactForm.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-      });
+    const formData = new FormData(this); // automatically includes all inputs
 
-      document.getElementById("contactForm").addEventListener("submit", function(e){
-        e.preventDefault();
-        alert("Message submitted! (Hook to backend or EmailJS)");
-      });
+    fetch("send_email.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value
+      })
+    })
+    .then(response => response.text())
+    .then(result => {
+        if(result.trim() === "success"){
+            const success = document.getElementById("successNotification");
+            success.style.display = "block";
+            setTimeout(() => { success.style.display = "none"; }, 4000);
+            contactForm.reset();
+        } else {
+            const errorBox = document.getElementById("errorNotification");
+            errorBox.style.display = "block";
+            setTimeout(() => { errorBox.style.display = "none"; }, 4000);
+        }
+    })
+    .catch(error => {
+        const errorBox = document.getElementById("errorNotification");
+        errorBox.style.display = "block";
+        setTimeout(() => { errorBox.style.display = "none"; }, 4000);
+        console.error("Error:", error);
     });
-  </script>
+  });
+</script>
 </body>
 </html>

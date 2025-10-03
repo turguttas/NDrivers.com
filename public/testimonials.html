@@ -1,305 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <meta charset="UTF-8">
-  <title>Testimonials - Ndrivers</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      line-height: 1.6; 
-      color: #333; 
-      background: #f9f9f9; 
-      margin:0; 
-      padding:0; 
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials - NDrivers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Timeline container */
+.testimonial-timeline {
+  position: relative;
+  margin: 50px 0;
+  padding-left: 30px; /* space for line */
+}
 
-    /* -------------------- Logo -------------------- */
-    .logo-container {
-      text-align: center;
-      padding: 20px;
-    }
-    .logo-container img {
-      max-width: 350px;
-      height: auto;
-    }
+.testimonial-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: #D4AF37; /* gold vertical line */
+  border-radius: 2px;
+}
 
-    main { 
-      max-width: 900px; 
-      margin: 0 auto; 
-      padding: 20px; 
-    }
+/* Testimonial cards */
+.testimonial-card {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 15px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    h1 { 
-      text-align: center; 
-      margin-bottom: 10px; 
-    }
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
 
-    p.subtitle { 
-      text-align:center; 
-      font-size:18px; 
-      color:#555; 
-      margin-bottom:40px; 
-    }
+/* Gold dot for each testimonial */
+.timeline-dot {
+  position: absolute;
+  left: -8px;
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  background: #D4AF37;
+  border-radius: 50%;
+  border: 2px solid #fff; /* white border for contrast */
+}
 
-    section.review { 
-      padding:20px; 
-      border-radius:10px; 
-      margin-bottom:20px; 
-    }
-    section.review:nth-child(odd) { background: #f9f9f9; }
-    section.review:nth-child(even) { background: #eef5f9; }
-    section.review p { 
-      font-size:16px; 
-      font-style:italic; 
-      margin:0; 
-    }
-    section.review p.author { 
-      text-align:right; 
-      margin-top:10px; 
-      font-weight:bold; 
-      font-style:normal; 
-    }
+/* Text */
+.testimonial-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 8px;
+}
+.testimonial-author {
+  text-align: right;
+  font-weight: bold;
+  color: #555;
+}
 
-    /* -------------------- Form -------------------- */
-    section#submit-review { 
-      padding:20px; 
-      border-radius:10px; 
-      background:#fff; 
-      margin-top:40px; 
-    }
-    section#submit-review h2 { 
-      text-align:center; 
-      color:#0077cc; 
-      margin-bottom:20px; 
-    }
-    section#submit-review p { 
-      text-align:center; 
-      color:#555; 
-      margin-bottom:20px; 
-    }
-    form { 
-      max-width:600px; 
-      margin:0 auto; 
-    }
-    input, textarea { 
-      width:100%; 
-      padding:10px; 
-      margin-bottom:15px; 
-      border-radius:5px; 
-      border:1px solid #ccc; 
-    }
-    button { 
-      display:block; 
-      width:100%; 
-      padding:12px; 
-      background:#0077cc; 
-      color:#fff; 
-      border:none; 
-      border-radius:6px; 
-      font-size:16px; 
-      cursor:pointer; 
-    }
+/* Dark Mode */
+body.dark-mode .testimonial-card {
+  background: #1e1e1e;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+body.dark-mode .testimonial-text,
+body.dark-mode .testimonial-author {
+  color: #ccc;
+}
+body.dark-mode .testimonial-timeline::before {
+  background: #D4AF37;
+}
+body.dark-mode .timeline-dot {
+  background: #D4AF37;
+  border: 2px solid #1e1e1e;
+}
 
-    /* -------------------- Footer -------------------- */
-    footer {
-      background: #000;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-      margin-top: 60px;
-    }
-    .footer-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .footer-brand img {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-    .footer-brand p {
-      max-width: 500px;
-      margin: 0 auto 20px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .footer-social {
-      margin: 20px 0;
-    }
-    .footer-social a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-    .footer-social img {
-      width: 30px; height: 30px;
-    }
-    .footer-links, .footer-bottom {
-      margin: 15px 0;
-    }
-    .footer-links a,
-    .footer-bottom a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 14px;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover,
-    .footer-bottom a:hover {
-      color: #f39c12;
-    }
-    .footer-bottom p {
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-  </style>
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonial-timeline { padding-left: 20px; }
+  .testimonial-card { padding: 12px 15px; }
+  .timeline-dot { left: -10px; top: 18px; width: 14px; height: 14px; }
+}
+
+/* -------------------- Base -------------------- */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter', sans-serif; background:#f9f9f9; color:#111; transition: background 0.3s, color 0.3s; display:flex; flex-direction:column; min-height:100vh; }
+body.dark-mode { background:#121212; color:#f0f0f0; }
+
+/* -------------------- Dark Mode Toggle -------------------- */
+#darkModeToggle { position:fixed; bottom:20px; right:20px; cursor:pointer; background:none; border:none; font-size:28px; z-index:10000; }
+
+/* -------------------- Logo -------------------- */
+.logo-container { text-align:center; padding:30px 20px; }
+.logo-container img { width:350px; max-width:90%; height:auto; transition: transform 0.3s; }
+.logo-container img:hover { transform: scale(1.05); }
+
+main { max-width:900px; margin:0 auto; padding:20px; flex:1; }
+
+h1 { text-align:center; font-size:2.5rem; margin-bottom:10px; color:#D4AF37; }
+p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:40px; }
+body.dark-mode p.subtitle { color:#ccc; }
+
+/* -------------------- Testimonials Cards -------------------- */
+.testimonial-card {
+  background:#fff;
+  border-radius:20px;
+  padding:25px 30px;
+  margin-bottom:25px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.1);
+  position:relative;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+body.dark-mode .testimonial-card { background:#1e1e1e; color:#f0f0f0; box-shadow:0 15px 30px rgba(0,0,0,0.5); }
+.testimonial-card:hover { transform: translateY(-5px) scale(1.02); }
+
+/* Alternating background colors */
+.testimonial-card:nth-child(even) { background:#f0f4f8; }
+body.dark-mode .testimonial-card:nth-child(even) { background:#2a2a2a; }
+
+/* Text */
+.testimonial-card p { font-size:16px; font-style:italic; line-height:1.6; margin-left:35px; }
+body.dark-mode .testimonial-card p { color:#ccc; }
+.testimonial-author { text-align:right; margin-top:15px; font-weight:bold; font-style:normal; color:#0077cc; }
+body.dark-mode .testimonial-author { color:#D4AF37; }
+
+/* -------------------- Review Form -------------------- */
+#submit-review { background:#fff; border-radius:20px; padding:30px; margin-top:40px; box-shadow:0 15px 30px rgba(0,0,0,0.1); transition: background 0.3s, color 0.3s; }
+body.dark-mode #submit-review { background:#1e1e1e; color:#f0f0f0; box-shadow:0 15px 30px rgba(0,0,0,0.5); }
+
+#submit-review h2 { text-align:center; color:#0077cc; margin-bottom:20px; }
+#submit-review p { text-align:center; color:#555; margin-bottom:20px; }
+body.dark-mode #submit-review p { color:#ccc; }
+
+form { max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:15px; }
+input, textarea { width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; }
+body.dark-mode input, body.dark-mode textarea { background:#2c2c2c; border:1px solid #555; color:#f0f0f0; }
+button { padding:15px; background:#0077cc; color:#fff; border:none; border-radius:8px; font-size:16px; cursor:pointer; transition: background 0.3s; }
+button:hover { background:#005fa3; }
+
+/* -------------------- Footer -------------------- */
+footer { background:#000; color:#fff; padding:50px 20px; text-align:center; }
+.footer-container { max-width:1000px; margin:0 auto; }
+.footer-brand img { width:100px; margin-bottom:10px; }
+.footer-brand p { max-width:500px; margin:0 auto 20px; font-size:14px; line-height:1.5; }
+.footer-social { margin:20px 0; }
+.footer-social a { margin:0 10px; display:inline-block; }
+.footer-social img { width:30px; height:30px; }
+.footer-links, .footer-bottom { margin:15px 0; }
+.footer-links a, .footer-bottom a { color:#fff; margin:0 10px; font-size:14px; text-decoration:none; transition:color 0.3s; }
+.footer-links a:hover, .footer-bottom a:hover { color:#f39c12; }
+.footer-bottom p { font-size:13px; margin-bottom:10px; }
+
+/* -------------------- Responsive -------------------- */
+@media (max-width:768px){
+  h1{ font-size:2rem; }
+  .testimonial-card{ padding:20px; }
+  #submit-review{ padding:20px; }
+  .testimonial-card p{ margin-left:25px; }
+  .testimonial-card::before{ font-size:40px; left:15px; }
+}
+/* Review Form Container */
+#submit-review {
+  background: #fff;
+  padding: 40px 25px;
+  margin-top: 60px;
+  border-radius: 16px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+#submit-review h2 {
+  text-align: center;
+  color: #0077cc;
+  margin-bottom: 15px;
+  font-size: 1.9rem;
+}
+
+#submit-review p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+/* Form Inputs */
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  padding: 14px 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+  border-color: #D4AF37;
+  outline: none;
+  background: #fdf9f2;
+}
+
+/* Submit Button */
+.review-form button {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  background: #D4AF37;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.review-form button:hover {
+  background: #b58f2e;
+  transform: translateY(-2px);
+}
+
+/* Dark Mode */
+body.dark-mode #submit-review {
+  background: #1e1e1e;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+body.dark-mode #submit-review h2 {
+  color: #D4AF37;
+}
+
+body.dark-mode #submit-review p {
+  color: #ccc;
+}
+
+body.dark-mode .review-form input,
+body.dark-mode .review-form textarea {
+  background: #2a2a2a;
+  color: #ccc;
+  border: 1px solid #555;
+}
+
+body.dark-mode .review-form input:focus,
+body.dark-mode .review-form textarea:focus {
+  background: #333;
+  border-color: #D4AF37;
+  color: #fff;
+}
+
+body.dark-mode .review-form button {
+  background: #D4AF37;
+  color: #1e1e1e;
+}
+
+body.dark-mode .review-form button:hover {
+  background: #b58f2e;
+}
+</style>
 </head>
 <body>
 
-  <!-- Logo centered -->
-  <div class="logo-container">
-    <a href="index.html">
-      <img src="img/logo.png" alt="Ndrivers Logo">
-    </a>
-  </div>
+<!-- Dark Mode Toggle -->
+<button id="darkModeToggle">🌙</button>
 
-  <main>
-    <h1>What My Riders Say</h1>
-    <p class="subtitle">Here are a few words from people who’ve trusted me with their rides.</p>
+<!-- Logo -->
+<div class="logo-container">
+  <a href="index.html">
+    <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
+  </a>
+</div>
 
-    <!-- Reviews -->
-    <section class="review">
-      <p>“Tommy is the most reliable driver I’ve had in SoCal. Always on time, super friendly, and the car is spotless. Highly recommend for airport rides!”</p>
-      <p class="author">— Sarah M., Irvine</p>
-    </section>
+<main>
+  <h1>What My Riders Say</h1>
+  <p class="subtitle">Here are a few words from people who’ve trusted me with their rides.</p>
 
-    <section class="review">
-      <p>“The ride to LAX was smooth and stress-free. Tommy even helped with luggage and knew the best route to avoid traffic.”</p>
-      <p class="author">— David L., Lake Forest</p>
-    </section>
+  <div class="testimonial-timeline">
 
-    <section class="review">
-      <p>“I loved that it felt personal, not like a big rideshare company. You know who your driver is, and that makes all the difference.”</p>
-      <p class="author">— Emily R., Newport Beach</p>
-    </section>
-
-    <section class="review">
-      <p>“Always punctual, professional, and friendly. I’ll never call another driver for my airport trips!”</p>
-      <p class="author">— John K., Irvine</p>
-    </section>
-
-    <section class="review">
-      <p>“Tommy knows SoCal roads like the back of his hand. Smooth ride, great conversation, very trustworthy.”</p>
-      <p class="author">— Laura S., Laguna Beach</p>
-    </section>
-
-    <section class="review">
-      <p>“Highly recommend! The car is spotless and rides are very comfortable. Tommy is a true professional.”</p>
-      <p class="author">— Michael P., Costa Mesa</p>
-    </section>
-
-    <section class="review">
-      <p>“I enjoy riding with Tommy because it feels personal and friendly, unlike other services.”</p>
-      <p class="author">— Vanessa T., Huntington Beach</p>
-    </section>
-
-    <section class="review">
-      <p>“Tommy’s driving is safe and reliable. He even gave me local tips on places to eat and visit!”</p>
-      <p class="author">— Robert H., Newport Beach</p>
-    </section>
-
-    <section class="review">
-      <p>“Airport transfers are always on time and smooth. Tommy is very professional and courteous.”</p>
-      <p class="author">— Kelly M., Irvine</p>
-    </section>
-
-    <section class="review">
-      <p>“Tommy is great! I feel safe, the car is clean, and he’s always friendly. Highly recommended!”</p>
-      <p class="author">— Steven B., Laguna Hills</p>
-    </section>
-
-    <section class="review">
-      <p>“Long-distance rides are a breeze with Tommy. He makes the trip relaxing and enjoyable.”</p>
-      <p class="author">— Amanda C., San Diego</p>
-    </section>
-
-    <section class="review">
-      <p>“I love that it’s a personal service. Tommy knows exactly what passengers need and is very courteous.”</p>
-      <p class="author">— Brian F., Santa Ana</p>
-    </section>
-
-    <section class="review">
-      <p>“Excellent driver, very knowledgeable, safe, and punctual. My go-to driver in SoCal.”</p>
-      <p class="author">— Rachel G., Irvine</p>
-    </section>
-
-    <section class="review">
-      <p>“Tommy makes rides stress-free. I always feel comfortable and safe in his car.”</p>
-      <p class="author">— Daniel W., Lake Forest</p>
-    </section>
-
-    <section class="review">
-      <p>“Friendly, professional, and always helpful. Tommy goes above and beyond!”</p>
-      <p class="author">— Sophia N., Newport Beach</p>
-    </section>
-
-    <section class="review">
-      <p>“I’ve had several rides with Tommy and they’re always smooth and enjoyable. Highly recommended.”</p>
-      <p class="author">— Ethan R., Costa Mesa</p>
-    </section>
-
-    <section class="review">
-      <p>“The car is always clean, the service is top-notch, and Tommy is genuinely friendly. Great experience!”</p>
-      <p class="author">— Megan L., Huntington Beach</p>
-    </section>
-
-    <!-- Review Submission Form -->
-    <section id="submit-review">
-      <h2>Submit Your Review</h2>
-      <p>Your feedback helps me improve and share experiences with future riders!</p>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-        <textarea id="review" name="review" rows="5" placeholder="Your Review" required></textarea>
-        <button type="submit">Submit Review</button>
-      </form>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-brand">
-        <a href="index.html">
-          <img src="img/logo-white.png" alt="Ndrivers Logo">
-        </a>
-        <p>
-          Bringing reliable rides and local connections together. 
-          Your neighborly driver, making every trip safe, simple, and stress-free.
-        </p>
-      </div>
-
-      <div class="footer-social">
-        <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
-        <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
-        <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-        <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
-      </div>
-
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
-
-      <div class="footer-bottom">
-      <p>© 2025 NDrivers.com. All rights reserved.</p>
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="terms.html">Terms of Service</a>
-      </div>
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Tommy is the most reliable driver I’ve had in SoCal. Always on time, super friendly, and the car is spotless. Highly recommend for airport rides!</p>
+      <p class="testimonial-author">— Sarah M., Irvine</p>
     </div>
-  </footer>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">The ride to LAX was smooth and stress-free. Tommy even helped with luggage and knew the best route to avoid traffic.</p>
+      <p class="testimonial-author">— David L., Lake Forest</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">I loved that it felt personal, not like a big rideshare company. You know who your driver is, and that makes all the difference.</p>
+      <p class="testimonial-author">— Emily R., Newport Beach</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Always punctual, professional, and friendly. I’ll never call another driver for my airport trips!</p>
+      <p class="testimonial-author">— John K., Irvine</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Tommy knows SoCal roads like the back of his hand. Smooth ride, great conversation, very trustworthy.</p>
+      <p class="testimonial-author">— Laura S., Laguna Beach</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Highly recommend! The car is spotless and rides are very comfortable. Tommy is a true professional.</p>
+      <p class="testimonial-author">— Michael P., Costa Mesa</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">I enjoy riding with Tommy because it feels personal and friendly, unlike other services.</p>
+      <p class="testimonial-author">— Vanessa T., Huntington Beach</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Tommy’s driving is safe and reliable. He even gave me local tips on places to eat and visit!</p>
+      <p class="testimonial-author">— Robert H., Newport Beach</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Airport transfers are always on time and smooth. Tommy is very professional and courteous.</p>
+      <p class="testimonial-author">— Kelly M., Irvine</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="timeline-dot"></div>
+      <p class="testimonial-text">Tommy is great! I feel safe, the car is clean, and he’s always friendly. Highly recommended!</p>
+      <p class="testimonial-author">— Steven B., Laguna Hills</p>
+    </div>
+
+<!-- Add all other reviews here in the same format -->
+  </div>
+</main>
+  <!-- Review Form -->
+  <section id="submit-review">
+  <h2>Submit Your Review</h2>
+  <p>Your feedback helps me improve and share experiences with future riders!</p>
+  
+  <form action="https://formspree.io/f/your-form-id" method="POST" class="review-form">
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+    <textarea id="review" name="review" rows="5" placeholder="Your Review" required></textarea>
+    <button type="submit">Submit Review</button>
+  </form>
+</section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="index.html">
+        <img src="/img/logo-white.png" alt="NDrivers Logo" id="footerLogo">
+      </a>
+      <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px;height:35px;"></a>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 NDrivers.com. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Dark Mode Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const toggle = document.getElementById('darkModeToggle');
+  const logoImg = document.getElementById('logoImg');
+  const footerLogo = document.getElementById('footerLogo');
+
+  toggle.addEventListener('click', ()=>{
+    const isDark = document.body.classList.toggle('dark-mode');
+    toggle.textContent = isDark ? '☀️' : '🌙';
+    logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+    footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
+  });
+});
+</script>
+</body>
+</html>

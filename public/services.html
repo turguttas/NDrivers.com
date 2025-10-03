@@ -1,164 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <meta charset="UTF-8">
-  <title>Services - Ndrivers</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NDrivers - Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      line-height: 1.6; 
-      color: #333; 
-      background: #f9f9f9; 
-      margin:0; 
-      padding:0;
-      overflow-x: hidden; /* ✅ Prevent horizontal scroll */
-    }
+    /* -------------------- Base Reset -------------------- */
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f5f6fa; color: #111; transition: background 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
+    body.dark-mode { background: #121212; color: #f0f0f0; }
 
-    main { 
-      max-width: 900px; 
-      margin: 0 auto; 
-      padding: 40px 20px; 
-    }
+    /* -------------------- Dark Mode Toggle -------------------- */
+    #darkModeToggle { position: fixed; bottom: 20px; right: 20px; cursor: pointer; background: none; border: none; font-size: 28px; z-index: 10000; }
+
+    /* -------------------- Main Container -------------------- */
+    main { flex:1; max-width: 900px; margin: 0 auto; padding: 60px 20px; }
 
     /* -------------------- Logo -------------------- */
-    .logo-container { 
-      text-align:center; 
-      margin-bottom:30px; 
-    }
-    .logo-container img { 
-      max-width: 350px; 
-      width: 100%;   /* ✅ responsive scaling */
-      height: auto; 
-    }
+    .logo-container { text-align:center; margin-bottom:30px; }
+    .logo-container img { width: 350px; max-width: 80%; height:auto; transition: transform 0.3s; }
+    .logo-container img:hover { transform: scale(1.05); }
 
-    h1 { 
-      text-align:center; 
-      color:#0077cc; 
-      margin-bottom:10px; 
-    }
-    p.subtitle { 
-      text-align:center; 
-      font-size:18px; 
-      color:#555; 
-      margin-bottom:40px; 
-    }
+    /* -------------------- Page Header -------------------- */
+    h1 { text-align:center; font-size: 2.5rem; margin-bottom: 10px; color: #D4AF37; }
+    p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:50px; }
+    body.dark-mode p.subtitle { color: #ccc; }
 
-    /* -------------------- Services -------------------- */
-    .service { 
-      background:#fff; 
-      padding:25px 20px; 
-      border-radius:10px; 
-      margin-bottom:20px; 
-      box-shadow:0 2px 6px rgba(0,0,0,0.05); 
-      display:flex; 
-      align-items:flex-start; 
-    }
-    .service-icon { 
-      font-size:40px; 
-      margin-right:20px; 
-      flex-shrink:0;
-    }
-    .service-content h2 { 
-      color:#0077cc; 
-      margin-bottom:10px; 
-    }
-    .service-content p { 
-      font-size:16px; 
-      color:#333; 
-      margin:0; 
-    }
+    /* -------------------- Service Cards -------------------- */
+    .service-card { background: linear-gradient(145deg,#ffffff,#f0f0f0); border-radius: 20px; padding: 30px 25px; margin-bottom:25px; display:flex; align-items:flex-start; box-shadow:0 15px 35px rgba(0,0,0,0.08); transition: all 0.3s; }
+    body.dark-mode .service-card { background: #1e1e1e; box-shadow:0 15px 35px rgba(0,0,0,0.5); }
+    .service-card:hover { transform: translateY(-5px); }
+
+    .service-icon { font-size: 45px; margin-right: 25px; flex-shrink:0; transition: transform 0.3s; }
+    .service-card:hover .service-icon { transform: scale(1.1); }
+
+    .service-content h2 { margin-bottom:10px; font-size:22px; color:#D4AF37; }
+    body.dark-mode .service-content h2 { color:#D4AF37; }
+    .service-content p { font-size:16px; color:#111; }
+    body.dark-mode .service-content p { color:#f0f0f0; }
 
     /* -------------------- Footer -------------------- */
-    footer {
-      background: #000;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-      margin-top: 60px;
-    }
-    .footer-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .footer-brand img {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-    .footer-brand p {
-      max-width: 500px;
-      margin: 0 auto 20px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .footer-social {
-      margin: 20px 0;
-    }
-    .footer-social a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-    .footer-social img {
-      width: 30px; height: 30px;
-    }
-    .footer-links, .footer-bottom {
-      margin: 15px 0;
-    }
-    .footer-links a,
-    .footer-bottom a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 14px;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover,
-    .footer-bottom a:hover {
-      color: #f39c12;
-    }
-    .footer-bottom p {
-      font-size: 13px;
-      margin-bottom: 10px;
+    footer { background: #000; color: #fff; padding: 50px 20px; text-align: center; margin-top: 60px; }
+    .footer-container { max-width: 1000px; margin: 0 auto; }
+    .footer-brand img { width: 100px; margin-bottom: 10px; }
+    .footer-brand p { max-width: 500px; margin: 0 auto 20px; font-size: 14px; line-height: 1.5; }
+    .footer-social { margin: 20px 0; }
+    .footer-social a { margin: 0 10px; display: inline-block; }
+    .footer-social img { width: 30px; height: 30px; }
+    .footer-links, .footer-bottom { margin: 15px 0; }
+    .footer-links a, .footer-bottom a { color: #fff; margin: 0 10px; font-size: 14px; text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
+    .footer-bottom p { font-size: 13px; margin-bottom: 10px; }
+
+    /* -------------------- Responsive -------------------- */
+    @media (max-width: 768px) {
+      .service-card { flex-direction: column; text-align: center; }
+      .service-icon { margin: 0 0 15px 0; font-size: 40px; }
     }
 
-    /* -------------------- Responsive Fix -------------------- */
-    @media (max-width: 768px) {
-      .service {
-        flex-direction: column;
-        text-align: center;
-      }
-      .service-icon {
-        margin: 0 0 15px 0;
-        font-size: 35px;
-      }
-      .service-content h2 {
-        font-size: 20px;
-      }
-      .service-content p {
-        font-size: 15px;
-      }
-      main {
-        padding: 20px 15px;
-      }
-    }
   </style>
 </head>
 <body>
+
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle">🌙</button>
 
   <main>
     <!-- Logo -->
     <div class="logo-container">
       <a href="index.html">
-        <img src="img/logo.png" alt="Ndrivers Logo">
+        <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
       </a>
     </div>
 
     <h1>My Services</h1>
     <p class="subtitle">Safe, comfortable, and professional rides tailored to your needs.</p>
 
-    <!-- Service 1 -->
-    <div class="service">
+    <!-- Services -->
+    <div class="service-card">
       <div class="service-icon">✈️</div>
       <div class="service-content">
         <h2>Airport Transfers</h2>
@@ -166,17 +86,15 @@
       </div>
     </div>
 
-    <!-- Service 2 -->
-    <div class="service">
+    <div class="service-card">
       <div class="service-icon">🛣️</div>
       <div class="service-content">
         <h2>Long-Distance Trips</h2>
-        <p>Need to travel between cities? I provide comfortable and safe long-distance rides across SoCal, ensuring a smooth and enjoyable trip every time.</p>
+        <p>Comfortable and safe long-distance rides across SoCal, ensuring a smooth and enjoyable trip every time.</p>
       </div>
     </div>
 
-    <!-- Service 3 -->
-    <div class="service">
+    <div class="service-card">
       <div class="service-icon">🏘️</div>
       <div class="service-content">
         <h2>Neighborhood Assistance</h2>
@@ -184,8 +102,7 @@
       </div>
     </div>
 
-    <!-- Service 4 -->
-    <div class="service">
+    <div class="service-card">
       <div class="service-icon">📝</div>
       <div class="service-content">
         <h2>Custom Requests</h2>
@@ -200,12 +117,9 @@
     <div class="footer-container">
       <div class="footer-brand">
         <a href="index.html">
-          <img src="img/logo-white.png" alt="Ndrivers Logo">
+          <img src="img/logo-white.png" alt="NDrivers Logo" id="footerLogo">
         </a>
-        <p>
-          Bringing reliable rides and local connections together. 
-          Your neighborly driver, making every trip safe, simple, and stress-free.
-        </p>
+        <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
       </div>
 
       <div class="footer-social">
@@ -226,8 +140,23 @@
 
       <div class="footer-bottom">
         <p>© 2025 NDrivers.com. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const logoImg = document.getElementById('logoImg');
+    const footerLogo = document.getElementById('footerLogo');
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      toggle.textContent = isDark ? '☀️' : '🌙';
+      logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+      footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,136 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ndrivers - Privacy Policy</title>
-  <style>
-    /* Body & Dark Mode */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      color: #000;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark-mode {
-      background-color: #121212;
-      color: #f0f0f0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ndrivers - Privacy Policy</title>
 
-    /* Container */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 30px;
-      line-height: 1.6;
-    }
-    @media (max-width: 600px) {
-      .container { padding: 20px; }
-    }
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    margin: 0;
+    padding: 40px;
+    background: #fff;
+    color: #111;
+    line-height: 1.8;
+    transition: background 0.3s, color 0.3s;
+  }
+  @media (max-width: 768px) { body { padding: 20px; } }
 
-    /* Logo */
-    .logo {
-      display: block;
-      margin: 0 auto 15px auto;
-      max-width: 350px;
-      height: auto;
-      cursor: pointer;
-    }
-    @media (max-width: 400px) {
-      .logo { max-width: 200px; }
-    }
+  h1 { font-size: 28px; text-align: center; margin-bottom: 40px; font-weight: normal; }
+  h2 { font-size: 20px; margin-top: 35px; margin-bottom: 15px; font-weight: bold; text-decoration: underline; }
+  h3 { font-size: 18px; margin-top: 25px; margin-bottom: 12px; font-weight: bold; }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  p { font-size: 16px; margin-bottom: 18px; }
+  ul, ol { margin-left: 30px; margin-bottom: 18px; }
 
-    /* Dark Mode Toggle */
-    #darkModeToggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 28px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 10000;
-    }
+  a { color: #111; text-decoration: underline; }
+  a:hover { text-decoration: none; }
 
-    /* Footer */
-    footer {
-      background-color: #000;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      margin-top: 40px;
-    }
-    footer a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      display: inline-block;
-      transition: color 0.3s;
-    }
-    footer a:hover { color: #f39c12; }
-    @media (max-width: 500px) {
-      footer a {
-        display: block;
-        margin: 5px 0;
-      }
-    }
-  </style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+    font-size: 16px;
+  }
+  table th, table td {
+    border: 1px solid #999;
+    padding: 12px;
+    text-align: left;
+  }
+  table th { background-color: #f0f0f0; }
+
+  footer {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 60px;
+    line-height: 1.5;
+  }
+  footer a { color: #555; text-decoration: underline; margin: 0 5px; }
+  footer a:hover { text-decoration: none; }
+
+  /* Dark Mode */
+  body.dark-mode { background: #121212; color: #f0f0f0; }
+  body.dark-mode table th { background-color: #1e1e1e; }
+  body.dark-mode table, body.dark-mode table td, body.dark-mode table th { border-color: #555; }
+</style>
 </head>
 <body>
 
-  <!-- Dark Mode Toggle -->
-  <button id="darkModeToggle">🌙</button>
+<!-- Dark Mode Toggle -->
+<button id="darkModeToggle" style="position:fixed; bottom:20px; right:20px; font-size:28px; background:none; border:none; cursor:pointer; z-index:10000;">🌙</button>
 
-  <!-- Header -->
-  <div class="container">
-    <a href="/" class="logo-link">
-      <img id="logoImg" src="/img/logo.png" alt="NDrive Logo" class="logo">
-    </a>
-    <h1>Privacy Policy</h1>
+<!-- Top Logo -->
+<a href="/" class="logo-link">
+  <img id="logoImg" src="/img/logo.png" alt="Ndrivers Logo" style="display:block; margin:0 auto 20px; max-width:350px;">
+</a>
 
-    <p>Your privacy is important to us. We collect only the information necessary to provide and improve our services. By using Ndrivers, you agree to this policy.</p>
-    <p><strong>Information Collection:</strong> We may collect your name, email, and ride request details to process your bookings.</p>
-    <p><strong>Use of Information:</strong> Your information is used solely for ride management, communication, and improving our platform.</p>
-    <p><strong>Data Security:</strong> We use industry-standard practices to protect your data. However, no method is 100% secure.</p>
-    <p><strong>Third-Party Sharing:</strong> We do not sell or share your personal information with third parties except as required by law.</p>
-    <p><strong>Policy Updates:</strong> We may update this Privacy Policy periodically. Please review it regularly for changes.</p>
-  </div>
+<h1>Privacy Policy</h1>
 
-  <!-- Footer -->
-  <footer>
-  <div class="footer-links-main">
-    <a href="/index.html">Home</a> |
-    <a href="/faq.html">FAQ</a> |
-    <a href="/contact.html">Contact Us</a>
-  </div>
+<!-- Quick Summary Table -->
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>Summary</th>
+  </tr>
+  <tr>
+    <td>Information Collected</td>
+    <td>Name, email, ride details, location, device info, cookies</td>
+  </tr>
+  <tr>
+    <td>Use of Data</td>
+    <td>Ride processing, communication, service improvements, security</td>
+  </tr>
+  <tr>
+    <td>Data Sharing</td>
+    <td>Only with service providers or as required by law. No selling of data</td>
+  </tr>
+  <tr>
+    <td>Your Rights</td>
+    <td>Access, correction, deletion, objection, data portability (GDPR & CCPA)</td>
+  </tr>
+  <tr>
+    <td>Retention</td>
+    <td>Only as long as necessary; legal obligations may require longer retention</td>
+  </tr>
+  <tr>
+    <td>Cookies</td>
+    <td>Used for analytics, preferences, and improving user experience</td>
+  </tr>
+</table>
 
-  <div class="footer-links-secondary">
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/terms.html">Terms of Service</a>
-  </div>
-  
-  <p class="copyright">&copy; 2025 Ndrivers. All rights reserved.</p>
+<p>This Privacy Policy explains how Ndrivers (“we”, “our”, or “us”) collects, uses, stores, and protects your personal information. It also outlines your privacy rights under applicable laws including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA). By using our Services, you agree to the terms described herein.</p>
+
+<h2>1. Information We Collect</h2>
+<ul>
+  <li><strong>Personal Information:</strong> name, email, phone number, billing info, account credentials.</li>
+  <li><strong>Ride Information:</strong> pickup/drop-off locations, ride times, preferences, notes, and feedback.</li>
+  <li><strong>Technical Information:</strong> IP address, browser type, operating system, device identifiers, log files, usage stats.</li>
+  <li><strong>Location Information:</strong> GPS or approximate location for navigation and ETA.</li>
+  <li><strong>Cookies and Tracking:</strong> cookies, pixels, and similar technologies for analytics and session management.</li>
+</ul>
+
+<h2>2. How We Use Your Information</h2>
+<ul>
+  <li>Process ride requests, manage bookings, and provide customer support.</li>
+  <li>Communicate about rides, account updates, promotions, or new services.</li>
+  <li>Analyze trends, improve functionality, and develop new features.</li>
+  <li>Detect, prevent, and address fraud, security breaches, and technical issues.</li>
+  <li>Comply with laws and enforce our Terms of Service.</li>
+</ul>
+
+<h2>3. Data Retention</h2>
+<p>We retain personal information only as long as necessary for the purposes described, or as required by law. When information is no longer needed, it is securely deleted or anonymized. Some records may be kept longer for accounting, tax, or legal obligations.</p>
+
+<h2>4. Data Security</h2>
+<p>We implement technical, administrative, and physical safeguards to protect personal data, including encryption, firewalls, and restricted access. While we strive for security, no method is 100% secure, and we cannot guarantee absolute protection.</p>
+
+<h2>5. Sharing of Information</h2>
+<ul>
+  <li>Service providers performing tasks on our behalf (e.g., payment processing, IT support).</li>
+  <li>Legal authorities as required by law.</li>
+  <li>Business transfers like mergers, acquisitions, or reorganizations.</li>
+</ul>
+
+<h2>6. Third-Party Services</h2>
+<p>Our Services may include links to third-party websites or services. We are not responsible for their privacy practices. Users should review the privacy policies of any third-party services they interact with.</p>
+
+<h2>7. Your Privacy Rights</h2>
+<h3>GDPR (EU Users)</h3>
+<ul>
+  <li>Access and receive a copy of your personal data.</li>
+  <li>Request correction or deletion of your data.</li>
+  <li>Restrict or object to processing.</li>
+  <li>Data portability for use across services.</li>
+  <li>Lodge complaints with supervisory authorities.</li>
+</ul>
+
+<h3>CCPA (California Users)</h3>
+<ul>
+  <li>Right to know what personal information is collected, used, shared, or sold.</li>
+  <li>Right to request deletion of personal information.</li>
+  <li>Right to opt-out of sale of personal information (we do not sell data).</li>
+  <li>Right to non-discrimination for exercising privacy rights.</li>
+</ul>
+
+<p>To exercise your rights, contact us at <a href="mailto:info@ndrivers.com">info@ndrivers.com</a>. Verification may be required.</p>
+
+<h2>8. Cookies and Tracking</h2>
+<p>We use cookies and similar technologies to enhance your experience, remember preferences, analyze usage, and deliver personalized content. You may manage or disable cookies via your browser settings; some features may be affected.</p>
+
+<h2>9. International Data Transfers</h2>
+<p>Information may be transferred to countries outside your residence. By using our Services, you consent to these transfers, which are protected under applicable privacy laws.</p>
+
+<h2>10. Children’s Privacy</h2>
+<p>Our Services are not intended for children under 13. We do not knowingly collect information from children, and any such data discovered will be deleted.</p>
+
+<h2>11. Legal Compliance</h2>
+<p>We may disclose information to comply with legal obligations, enforce our Terms, protect rights or property, or ensure the safety of users and the public.</p>
+
+<h2>12. Changes to Privacy Policy</h2>
+<p>We may update this Privacy Policy from time to time. Changes will be posted with an updated effective date. Continued use of our Services constitutes acceptance of the updated policy.</p>
+
+<h2>13. Contact Information</h2>
+<p>Email: <a href="mailto:info@ndrivers.com">info@ndrivers.com</a><br>
+
+<footer>
+<p>&copy; 2025 NDrivers.com. All rights reserved.</p>
+<p><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="contact.html">Contact</a></p>
 </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggle = document.getElementById('darkModeToggle');
-      const logoImg = document.getElementById('logoImg');
+<script>
+const toggle = document.getElementById('darkModeToggle');
+const logoImg = document.getElementById('logoImg');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
+});
+</script>
 
-      toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
-      });
-    });
-  </script>
 </body>
 </html>

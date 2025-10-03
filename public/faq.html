@@ -1,183 +1,400 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ndrivers - FAQ</title>
-  <style>
-    /* Body & Dark Mode */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      color: #000;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark-mode {
-      background-color: #121212;
-      color: #f0f0f0;
-    }
-
-    /* Container */
-    .container {
-      display: flex;
-      flex-direction: column;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 30px;
-    }
-    @media (max-width: 600px) {
-      .container { padding: 20px; }
-    }
-
-    /* Logo */
-    .logo {
-      display: block;
-      margin: 0 auto 15px auto;
-      max-width: 350px;
-      height: auto;
-      cursor: pointer;
-    }
-    @media (max-width: 400px) {
-      .logo { max-width: 200px; }
-    }
-
-    h1 { text-align: center; margin-bottom: 30px; }
-    p { line-height: 1.6; margin-bottom: 15px; }
-
-    /* Dark Mode Toggle Button */
-    #darkModeToggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 28px;
-      z-index: 10000;
-    }
-
-    /* -------------------- Footer -------------------- */
-    footer {
-      background: #000;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-      margin-top: 60px;
-    }
-    .footer-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .footer-brand img {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-    .footer-brand p {
-      max-width: 500px;
-      margin: 0 auto 20px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .footer-social {
-      margin: 20px 0;
-    }
-    .footer-social a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-    .footer-social img {
-      width: 30px; height: 30px;
-    }
-    .footer-links, .footer-bottom {
-      margin: 15px 0;
-    }
-    .footer-links a,
-    .footer-bottom a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 14px;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover,
-    .footer-bottom a:hover {
-      color: #f39c12;
-    }
-    .footer-bottom p {
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NDrivers — FAQ</title>
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="faq.css">
+  <script src="faq.js" defer></script>
 </head>
 <body>
+  <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
+  <div class="container" id="faq-root">
 
-  <!-- Dark Mode Toggle -->
-  <button id="darkModeToggle">🌙</button>
+    <header class="site-header">
+            <img src="img/logo.png" alt="NDrivers Logo" class="logo">
+      <div class="site-title">
+        <h1>NDrivers — FAQ</h1>
+        <p>Private chauffeur service — call or text <strong>949-696-6979</strong></p>
+      </div>
+    </header>
+    <main class="grid" aria-live="polite">
+      <!-- left categories -->
+      <nav class="categories" aria-label="FAQ categories">
+        <div class="category-list">
+          <h3>Quick categories</h3>
 
-  <div class="container">
-    <!-- Header Logo -->
-    <a href="/" class="logo-link">
-      <img id="logoImg" src="/img/logo.png" alt="NDrive Logo" class="logo">
-    </a>
-    <h1>FAQ</h1>
-    </div>
+          <a class="category active" data-target="how-it-works" href="#how-it-works" role="button">
+            <div class="dot">01</div>
+            <div>
+              <div style="font-weight:700">How it works</div>
+              <div style="font-size:12px;color:var(--muted)">Private chauffeur overview</div>
+            </div>
+          </a>
 
-    <!-- FAQ Content -->
-    <p><strong>Q1:</strong> How do I request a ride?</p>
-    <p>A: Use our homepage form to submit your pick-up, drop-off, date, and time.</p>
-    <p><strong>Q2:</strong> Is there a cancellation fee?</p>
-    <p>A: No, rides can be canceled at any time before the scheduled pickup.</p>
-    <!-- Add more FAQ questions/answers as needed -->
+          <a class="category" data-target="requesting" href="#requesting" role="button">
+            <div class="dot">02</div>
+            <div>
+              <div style="font-weight:700">Requesting & paying</div>
+              <div style="font-size:12px;color:var(--muted)">Booking, payments & promos</div>
+            </div>
+          </a>
+
+          <a class="category" data-target="pricing" href="#pricing" role="button">
+            <div class="dot">03</div>
+            <div>
+              <div style="font-weight:700">Pricing & policies</div>
+              <div style="font-size:12px;color:var(--muted)">Rates, cancellations, deposits</div>
+            </div>
+          </a>
+
+          <a class="category" data-target="safety" href="#safety" role="button">
+            <div class="dot">04</div>
+            <div>
+              <div style="font-weight:700">Safety</div>
+              <div style="font-size:12px;color:var(--muted)">Licensing & vehicle care</div>
+            </div>
+          </a>
+
+          <a class="category" data-target="airports" href="#airports" role="button">
+            <div class="dot">05</div>
+            <div>
+              <div style="font-weight:700">Flights & airports</div>
+              <div style="font-size:12px;color:var(--muted)">Delays, meeting points</div>
+            </div>
+          </a>
+
+          <a class="category" data-target="city-to-city" href="#city-to-city" role="button">
+            <div class="dot">06</div>
+            <div>
+              <div style="font-weight:700">City-to-city rides</div>
+              <div style="font-size:12px;color:var(--muted)">Long-distance routes</div>
+            </div>
+          </a>
+
+          <a class="category" data-target="partners" href="#partners" role="button">
+            <div class="dot">07</div>
+            <div>
+              <div style="font-weight:700">Partnerships</div>
+              <div style="font-size:12px;color:var(--muted)">Hotels, events, corporate</div>
+            </div>
+          </a>
+
+        </div>
+      </nav>
+
+      <!-- right content -->
+      <section class="content">
+
+        <!-- HOW IT WORKS -->
+        <article id="how-it-works" class="card" tabindex="-1" aria-labelledby="howitTitle">
+          <h2 id="howitTitle">How it Works</h2>
+          <p class="lead">I provide private chauffeur services for airport transfers, local rides, and city-to-city travel. Book directly on my website or call/text <strong>949-696-6979</strong>.</p>
+
+          <div class="accordion" role="list">
+            <div class="qa" role="listitem">
+              <div>
+                <p class="q">What makes your service different?</p>
+                <div class="a">
+                  <p>I offer flat, upfront pricing — no hidden fees or surge pricing. You get one-on-one, personalized service — you’ll always ride with me in a comfortable Tesla Model Y. I provide direct communication, professional and insured driving, and a calm, reliable experience.</p>
+                </div>
+              </div>
+              <div>
+                <button class="toggle-btn" aria-expanded="false" aria-controls="q1a">View</button>
+              </div>
+            </div>
+
+            <div class="qa" role="listitem">
+              <div>
+                <p class="q">How do I book a ride?</p>
+                <div class="a">
+                  <p>Book using the booking form on this website or call/text me directly at <strong>949-696-6979</strong>. Provide pickup location, destination, and time — I’ll confirm and send trip details.</p>
+                </div>
+              </div>
+              <div>
+                <button class="toggle-btn" aria-expanded="false" aria-controls="q2a">View</button>
+              </div>
+            </div>
+
+            <div class="qa" role="listitem">
+              <div>
+                <p class="q">Can I make special requests?</p>
+                <div class="a">
+                  <p>Yes — luggage requirements, child seats, traveling with pets and other notes can be added when you book. If you bring your own child seat, let me know so I can prepare the vehicle.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false" aria-controls="q3a">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- REQUESTING & PAYING -->
+        <article id="requesting" class="card" tabindex="-1" aria-labelledby="reqTitle">
+          <h2 id="reqTitle">Requesting & Paying for Rides</h2>
+          <p class="lead">Simple bookings and a wide range of payment options to suit you.</p>
+
+          <div class="accordion">
+            <div class="qa">
+              <div>
+                <p class="q">How do I request a ride?</p>
+                <div class="a">
+                  <p>Use the booking form on the site or call/text <strong>949-696-6979</strong>. After you book, I’ll confirm your pickup time and share driver/car details.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">What payment methods do you accept?</p>
+                <div class="a">
+                  <p>I accept: <strong>Credit/Debit cards, Apple Pay, Google Pay, Zelle, CashApp, Venmo, and cash.</strong> Digital payment receipts are emailed automatically; ask for a receipt if you pay in cash.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Can I add a tip?</p>
+                <div class="a">
+                  <p>Tips are optional but appreciated. You may add a tip when paying digitally, or provide cash directly to me after your ride.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Do you use promo codes?</p>
+                <div class="a">
+                  <p>Yes — promo codes and occasional discounts are published on the website and social pages. Enter codes on the booking form before confirming.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRICING -->
+        <article id="pricing" class="card" tabindex="-1" aria-labelledby="pricingTitle">
+          <h2 id="pricingTitle">Pricing & Policies</h2>
+          <p class="lead">Transparent, flat-rate pricing with clear cancellation and waiting policies.</p>
+
+          <div class="accordion">
+            <div class="qa">
+              <div>
+                <p class="q">How are prices calculated?</p>
+                <div class="a">
+                  <p>I use <strong>flat-rate pricing</strong> determined by distance and destination. You’ll always see the total price before confirming your booking — no surprise fees or surge pricing.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Do you charge for waiting time?</p>
+                <div class="a">
+                  <p>For airport pickups I include a <strong>free 30-minute waiting period</strong> after your plane lands (I track flights). For other pickups there’s a <strong>10-minute grace period</strong>; after that waiting time may be charged in 15-minute increments.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Do I need to pay a deposit?</p>
+                <div class="a">
+                  <p>Long city-to-city rides (e.g., Las Vegas, San Diego) may require a small deposit to hold the date. Airport transfers and short local rides typically do not require deposits.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">What is your cancellation policy?</p>
+                <div class="a">
+                  <p><strong>Local / airport transfers:</strong> cancel free up to <strong>2 hours before pickup</strong>.<br>
+                  <strong>City-to-city / long-distance:</strong> cancel at least <strong>12 hours</strong> before pickup for a full refund of any deposit. Last-minute cancellations may incur a fee.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Can I book hourly or round-trip service?</p>
+                <div class="a">
+                  <p>Yes. Hourly or round-trip bookings are available — I’ll quote a rate in advance based on time and distance. Contact me at <strong>949-696-6979</strong> to arrange this.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SAFETY -->
+        <article id="safety" class="card" tabindex="-1" aria-labelledby="safetyTitle">
+          <h2 id="safetyTitle">Safety</h2>
+          <p class="lead">Your safety and comfort are taken seriously.</p>
+
+          <div class="accordion">
+            <div class="qa">
+              <div>
+                <p class="q">Are you licensed and insured?</p>
+                <div class="a">
+                  <p>I am a fully licensed and insured professional driver. My vehicle receives regular maintenance and inspections to keep you safe and comfortable.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">What vehicle do you drive?</p>
+                <div class="a">
+                  <p>I drive a Tesla Model Y that provides comfortable seating and generous luggage space. You’ll receive the vehicle details and my contact information after booking.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- AIRPORTS -->
+        <article id="airports" class="card" tabindex="-1" aria-labelledby="airTitle">
+          <h2 id="airTitle">Flight & Airport Questions</h2>
+          <p class="lead">Effortless airport pickups and drop-offs.</p>
+
+          <div class="accordion">
+            <div class="qa">
+              <div>
+                <p class="q">What if my flight is delayed?</p>
+                <div class="a">
+                  <p>I track flights in real time. If your flight is delayed or arrives early, I’ll adjust pickup times accordingly and be there when you land.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Where will I meet you at the airport?</p>
+                <div class="a">
+                  <p>I’ll confirm a pickup point in advance (typically the designated rideshare/pickup zone). I’ll also call or text when I arrive to make meeting easy.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CITY TO CITY -->
+        <article id="city-to-city" class="card" tabindex="-1" aria-labelledby="cityTitle">
+          <h2 id="cityTitle">City-to-City Rides</h2>
+          <p class="lead">Comfortable, private long-distance transfers — door-to-door.</p>
+
+          <div class="accordion">
+            <div class="qa">
+              <div>
+                <p class="q">Do you offer long-distance trips?</p>
+                <div class="a">
+                  <p>Yes — I provide private rides between cities. Popular routes include Orange County ↔ Los Angeles (LAX), Orange County ↔ San Diego, Orange County ↔ Las Vegas, Palm Springs, and Santa Barbara. Contact me to confirm pricing and availability.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">Why choose a private ride for long distance?</p>
+                <div class="a">
+                  <ul style="margin:8px 0 0 18px;color:var(--muted)">
+                    <li>Flat, all-inclusive price — no hidden fees</li>
+                    <li>Door-to-door convenience — no airport hassle</li>
+                    <li>Comfort, privacy, and the ability to stop along the way</li>
+                  </ul>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+
+            <div class="qa">
+              <div>
+                <p class="q">How do I book a city-to-city trip?</p>
+                <div class="a">
+                  <p>Use the booking form or call/text <strong>949-696-6979</strong>. For longer routes, a small deposit may be requested to secure the date.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PARTNERSHIPS -->
+        <article id="partners" class="card" tabindex="-1" aria-labelledby="partnersTitle">
+          <h2 id="partnersTitle">Partnerships</h2>
+          <p class="lead">Hotels, events, corporate travel — I provide tailored transportation solutions.</p>
+
+          <div class="accordion">
+            <div class="qa">
+              <div>
+                <p class="q">Interested in partnering?</p>
+                <div class="a">
+                  <p>I work with hotels, corporate clients, and event planners to provide reliable transportation for guests. Please contact me via the website contact form or email <strong>partners@ndrivers.com</strong> to discuss opportunities.</p>
+                </div>
+              </div>
+              <div><button class="toggle-btn" aria-expanded="false">View</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- FOOTER CARD -->
+        <article class="card" aria-hidden="false">
+          <h2>Still have questions?</h2>
+          <p class="muted">Call or text me at <strong>949-696-6979</strong> or use the contact form on the site. I'll reply as soon as possible and can answer any route, timing, or pricing questions.</p>
+        </article>
+
+      </section>
+    </main>
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggle = document.getElementById('darkModeToggle');
-      const logoImg = document.getElementById('logoImg');
-
-      toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
-      });
-    });
-  </script>
-</body>
-  <!-- Footer -->
   <footer>
-    <div class="footer-container">
-      <div class="footer-brand">
-        <a href="index.html">
-          <img src="img/logo-white.png" alt="Ndrivers Logo">
-        </a>
-        <p>
-          Bringing reliable rides and local connections together. 
-          Your neighborly driver, making every trip safe, simple, and stress-free.
-        </p>
-      </div>
-
-      <div class="footer-social">
-        <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
-        <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
-        <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-        <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
-      </div>
-
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2025 NDrivers.com. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-      </div>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="index.html">
+        <img src="img/logo-white.png" alt="Ndrivers Logo">
+      </a>
+      <p>
+        Bringing reliable rides and local connections together. 
+        Your neighborly driver, making every trip safe, simple, and stress-free.
+      </p>
     </div>
-  </footer>
+
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Ndrivers. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

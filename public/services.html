@@ -2,84 +2,345 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
+  <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NDrivers - Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
+
   <style>
     /* -------------------- Base Reset -------------------- */
-    * { margin:0; padding:0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f5f6fa; color: #111; transition: background 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
-    body.dark-mode { background: #121212; color: #f0f0f0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f6fa;
+      color: #111;
+      transition: background 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    body.dark-mode { background:#121212; color:#f0f0f0; }
+
+    /* -------------------- Navbar -------------------- */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      padding: 10px 25px;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .navbar.visible {
+      opacity: 1;
+      top: 10px;
+      pointer-events: all;
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+      transition: opacity 0.4s ease;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 55px;
+      align-items: center;
+      margin: 0;
+    }
+
+    .nav-links li a {
+      color: #D4AF37;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(210, 168, 17, 0.6);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 12px 12px;
+    }
+
+    /* ---------------- Hamburger ---------------- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #D4AF37;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    /* ---------------- Mobile Navbar ---------------- */
+    @media (max-width:768px) {
+      .nav-links {
+        position: fixed;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        width: 85%;
+        opacity: 0;
+        pointer-events: none;
+        gap: 12px;
+        transition: top 0.5s ease, opacity 0.4s ease;
+      }
+      .nav-links.open {
+        top: 70px;
+        opacity: 1;
+        pointer-events: all;
+      }
+      .hamburger { display: flex; }
+      .nav-links li a {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+        text-align: center;
+        border-radius: 10px;
+        display: block;
+      }
+      .nav-links li a:active {
+        background: rgba(212,175,55,0.2);
+        transform: scale(0.97);
+      }
+    }
 
     /* -------------------- Dark Mode Toggle -------------------- */
-    #darkModeToggle { position: fixed; bottom: 20px; right: 20px; cursor: pointer; background: none; border: none; font-size: 28px; z-index: 10000; }
+    #darkModeToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 28px;
+      z-index: 10000;
+    }
 
     /* -------------------- Main Container -------------------- */
-    main { flex:1; max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+    main { flex:1; max-width:900px; margin:0 auto; padding:100px 20px 60px; }
 
     /* -------------------- Logo -------------------- */
     .logo-container { text-align:center; margin-bottom:30px; }
-    .logo-container img { width: 350px; max-width: 80%; height:auto; transition: transform 0.3s; }
-    .logo-container img:hover { transform: scale(1.05); }
+    .logo-container img { width:350px; max-width:80%; height:auto; transition: transform 0.3s; }
+    .logo-container img:hover { transform:scale(1.05); }
 
     /* -------------------- Page Header -------------------- */
-    h1 { text-align:center; font-size: 2.5rem; margin-bottom: 10px; color: #D4AF37; }
+    h1 { text-align:center; font-size:2.5rem; margin-bottom:10px; color:#D4AF37; }
     p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:50px; }
-    body.dark-mode p.subtitle { color: #ccc; }
+    body.dark-mode p.subtitle { color:#ccc; }
 
     /* -------------------- Service Cards -------------------- */
-    .service-card { background: linear-gradient(145deg,#ffffff,#f0f0f0); border-radius: 20px; padding: 30px 25px; margin-bottom:25px; display:flex; align-items:flex-start; box-shadow:0 15px 35px rgba(0,0,0,0.08); transition: all 0.3s; }
-    body.dark-mode .service-card { background: #1e1e1e; box-shadow:0 15px 35px rgba(0,0,0,0.5); }
-    .service-card:hover { transform: translateY(-5px); }
+    .service-card {
+      background: linear-gradient(145deg,#ffffff,#f0f0f0);
+      border-radius:20px;
+      padding:30px 25px;
+      margin-bottom:25px;
+      display:flex;
+      align-items:flex-start;
+      box-shadow:0 15px 35px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+    body.dark-mode .service-card {
+      background:#1e1e1e;
+      box-shadow:0 15px 35px rgba(0,0,0,0.5);
+    }
+    .service-card:hover { transform:translateY(-5px); }
 
-    .service-icon { font-size: 45px; margin-right: 25px; flex-shrink:0; transition: transform 0.3s; }
-    .service-card:hover .service-icon { transform: scale(1.1); }
-
+    .service-icon { font-size:45px; margin-right:25px; flex-shrink:0; transition:transform 0.3s; }
+    .service-card:hover .service-icon { transform:scale(1.1); }
     .service-content h2 { margin-bottom:10px; font-size:22px; color:#D4AF37; }
-    body.dark-mode .service-content h2 { color:#D4AF37; }
     .service-content p { font-size:16px; color:#111; }
     body.dark-mode .service-content p { color:#f0f0f0; }
 
     /* -------------------- Footer -------------------- */
-    footer { background: #000; color: #fff; padding: 50px 20px; text-align: center; margin-top: 60px; }
-    .footer-container { max-width: 1000px; margin: 0 auto; }
-    .footer-brand img { width: 100px; margin-bottom: 10px; }
-    .footer-brand p { max-width: 500px; margin: 0 auto 20px; font-size: 14px; line-height: 1.5; }
-    .footer-social { margin: 20px 0; }
-    .footer-social a { margin: 0 10px; display: inline-block; }
-    .footer-social img { width: 30px; height: 30px; }
-    .footer-links, .footer-bottom { margin: 15px 0; }
-    .footer-links a, .footer-bottom a { color: #fff; margin: 0 10px; font-size: 14px; text-decoration: none; transition: color 0.3s; }
-    .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
-    .footer-bottom p { font-size: 13px; margin-bottom: 10px; }
+    footer {
+  background: #000;
+  color: #fff;
+  padding: 25px 15px 30px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  margin-top: 40px;
+}
 
-    /* -------------------- Responsive -------------------- */
-    @media (max-width: 768px) {
-      .service-card { flex-direction: column; text-align: center; }
-      .service-icon { margin: 0 0 15px 0; font-size: 40px; }
+.footer-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* Brand / Logo */
+.footer-brand img {
+  width: 80px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer-brand img:hover {
+  opacity: 1;
+}
+
+.footer-brand p {
+  max-width: 480px;
+  margin: 0 auto 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+/* Social Icons */
+.footer-social {
+  margin: 8px 0 10px;
+}
+
+.footer-social a {
+  margin: 0 6px;
+  display: inline-block;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.footer-social a:hover {
+  opacity: 1;
+}
+
+.footer-social img {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+/* Page Links */
+.footer-links {
+  margin: 6px 0;
+}
+
+.footer-links a {
+  color: #ccc;
+  margin: 0 8px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #f5c542;
+}
+
+/* Footer Bottom: Copyright + Legal Links */
+.footer-bottom {
+  padding-top: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: #777;
+  margin: 0;
+  font-weight: 400;
+}
+
+.footer-bottom .footer-legal-links {
+  font-size: 10px !important;  /* forces the size */
+  color: #ccc;
+  font-weight: 500;
+}
+
+.footer-bottom .footer-legal-links a {
+  font-size: 10px !important;  /* also for links */
+  color: #ccc;
+  margin: 0 6px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-bottom .footer-legal-links a:hover {
+  color: #f5c542;
+}
+
+    @media (max-width:768px){
+      .service-card { flex-direction:column; text-align:center; }
+      .service-icon { margin:0 0 15px 0; font-size:40px; }
     }
-
   </style>
 </head>
 <body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="/img/logo.png" alt="NDrivers Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Dark Mode Toggle -->
   <button id="darkModeToggle">🌙</button>
 
   <main>
-    <!-- Logo -->
     <div class="logo-container">
       <a href="index.html">
         <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
@@ -89,12 +350,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>My Services</h1>
     <p class="subtitle">Safe, comfortable, and professional rides tailored to your needs.</p>
 
-    <!-- Services -->
     <div class="service-card">
       <div class="service-icon">✈️</div>
       <div class="service-content">
         <h2>Airport Transfers</h2>
-        <p>Reliable rides to and from all Southern California airports. I help with luggage and choose the best routes to avoid traffic, making your journey stress-free.</p>
+        <p>Reliable rides to and from all Southern California airports...</p>
       </div>
     </div>
 
@@ -102,7 +362,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="service-icon">🛣️</div>
       <div class="service-content">
         <h2>Long-Distance Trips</h2>
-        <p>Comfortable and safe long-distance rides across SoCal, ensuring a smooth and enjoyable trip every time.</p>
+        <p>Comfortable and safe long-distance rides across SoCal...</p>
       </div>
     </div>
 
@@ -110,7 +370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="service-icon">🏘️</div>
       <div class="service-content">
         <h2>Neighborhood Assistance</h2>
-        <p>Helping local neighbors get to appointments, errands, or special events safely and conveniently. A friendly and personal service you can trust.</p>
+        <p>Helping local neighbors get to appointments, errands, or events safely.</p>
       </div>
     </div>
 
@@ -118,57 +378,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="service-icon">📝</div>
       <div class="service-content">
         <h2>Custom Requests</h2>
-        <p>If you have a unique transportation need, I’m happy to discuss and provide a solution tailored to you. Just let me know your requirements!</p>
+        <p>If you have a unique transportation need, I’m happy to help.</p>
       </div>
     </div>
-
   </main>
 
-  <!-- Footer -->
   <footer>
-    <div class="footer-container">
-      <div class="footer-brand">
-        <a href="index.html">
-          <img src="img/logo-white.png" alt="NDrivers Logo" id="footerLogo">
-        </a>
-        <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
-      </div>
+  <div class="footer-container">
+    
+    <!-- Brand / Logo -->
+    <div class="footer-brand">
+      <a href="index.html">
+        <img id="footerLogo" src="img/logo-white.png" alt="NDrivers Logo">
+      </a>
+      <p>Experience private rides with Tommy, your local chauffeur and neighbor. Based in Irvine and serving Orange County and SoCal, I make every journey smooth, safe, and personalized for your comfort.</p>
+    </div>
 
-      <div class="footer-social">
-        <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
-        <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
-        <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-        <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
-      </div>
+    <!-- Social Icons -->
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:28px; height:28px;"></a>
+    </div>
 
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
+    <!-- Page Links -->
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
 
-      <div class="footer-bottom">
-        <p>© 2025 NDrivers.com. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 NDrivers.com. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Service</a>
       </div>
     </div>
-  </footer>
+
+  </div>
+</footer>
 
   <script>
-    const toggle = document.getElementById('darkModeToggle');
-    const logoImg = document.getElementById('logoImg');
-    const footerLogo = document.getElementById('footerLogo');
+    // Navbar scroll visibility
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) navbar.classList.add("visible");
+      else navbar.classList.remove("visible");
+    });
 
-    toggle.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-mode');
-      toggle.textContent = isDark ? '☀️' : '🌙';
-      logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
-      footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
+    // Hamburger toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("open");
+      navLinks.classList.toggle("open");
+    });
+
+    // Dark mode toggle
+    const toggle = document.getElementById("darkModeToggle");
+    const logoImg = document.getElementById("logoImg");
+    const footerLogo = document.getElementById("footerLogo");
+
+    toggle.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark-mode");
+      toggle.textContent = isDark ? "☀️" : "🌙";
+      logoImg.src = isDark ? "/img/logo-white.png" : "/img/logo.png";
+      footerLogo.src = "/img/logo-white.png";
     });
   </script>
-
 </body>
 </html>

@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.toggle('dark-mode', isDark);
     if (toggle) toggle.textContent = isDark ? '☀️' : '🌙';
     if (logoImg) logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
-    if (mapImg) mapImg.src = isDark ? '/img/map-placeholder-dark.jpg' : '/img/map-placeholder.jpg';
   }
 
   const savedDark = localStorage.getItem('darkMode') === 'true';

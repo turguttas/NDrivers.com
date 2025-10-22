@@ -2,397 +2,320 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
-<!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Testimonials - NDrivers</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
-<style>
-/* Timeline container */
-.testimonial-timeline {
-  position: relative;
-  margin: 50px 0;
-  padding-left: 30px; /* space for line */
-}
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
+  <!-- End Google Tag Manager -->
 
-.testimonial-timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background: #D4AF37; /* gold vertical line */
-  border-radius: 2px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials - NDrivers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
 
-/* Testimonial cards */
-.testimonial-card {
-  position: relative;
-  margin-bottom: 40px;
-  padding: 15px 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+  <style>
+    /* -------------------- Base Reset & Page Base -------------------- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', sans-serif; background:#f9f9f9; color:#111; transition: background 0.3s, color 0.3s; display:flex; flex-direction:column; min-height:100vh; }
+    body.dark-mode { background:#121212; color:#f0f0f0; }
 
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
+    /* -------------------- Navbar (shared) -------------------- */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      padding: 10px 25px;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .navbar.visible { opacity: 1; top: 10px; pointer-events: all; }
+    .nav-inner { width:100%; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo img { height:45px; width:auto; object-fit:contain; transition:opacity 0.4s ease; }
 
-/* Gold dot for each testimonial */
-.timeline-dot {
-  position: absolute;
-  left: -8px;
-  top: 20px;
-  width: 16px;
-  height: 16px;
-  background: #D4AF37;
-  border-radius: 50%;
-  border: 2px solid #fff; /* white border for contrast */
-}
+    .nav-links { list-style:none; display:flex; gap:35px; align-items:center; margin:0; }
+    .nav-links li a {
+      color: #D4AF37;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color:#fff;
+      text-shadow: 0 0 12px rgba(212,175,55,0.7);
+      background: rgba(212,175,55,0.1);
+    }
 
-/* Text */
-.testimonial-text {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 8px;
-}
-.testimonial-author {
-  text-align: right;
-  font-weight: bold;
-  color: #555;
-}
+    /* Hamburger (desktop hidden) */
+    .hamburger { display:none; flex-direction:column; justify-content:space-between; width:25px; height:20px; cursor:pointer; z-index:10000; }
+    .hamburger span { display:block; height:3px; width:100%; background:#D4AF37; border-radius:2px; transition:all 0.4s ease; transform-origin:center; }
+    .hamburger.open span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2){ opacity:0; }
+    .hamburger.open span:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
 
-/* Dark Mode */
-body.dark-mode .testimonial-card {
-  background: #1e1e1e;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-body.dark-mode .testimonial-text,
-body.dark-mode .testimonial-author {
-  color: #ccc;
-}
-body.dark-mode .testimonial-timeline::before {
-  background: #D4AF37;
-}
-body.dark-mode .timeline-dot {
-  background: #D4AF37;
-  border: 2px solid #1e1e1e;
-}
+    @media (max-width:768px){
+      .hamburger { display:flex; }
+      .nav-links {
+        position: fixed;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        width: 85%;
+        opacity: 0;
+        pointer-events: none;
+        gap: 12px;
+        transition: top 0.5s ease, opacity 0.4s ease;
+      }
+      .nav-links.open { top: 70px; opacity: 1; pointer-events: all; }
+      .nav-links li a { font-size:1.2rem; padding:12px 20px; text-align:center; display:block; }
+      .nav-links li a:active { background: rgba(212,175,55,0.2); transform: scale(0.97); }
+    }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .testimonial-timeline { padding-left: 20px; }
-  .testimonial-card { padding: 12px 15px; }
-  .timeline-dot { left: -10px; top: 18px; width: 14px; height: 14px; }
-}
+    /* -------------------- Dark Mode Toggle -------------------- */
+    #darkModeToggle { position:fixed; bottom:20px; right:20px; cursor:pointer; background:none; border:none; font-size:28px; z-index:10000; }
 
-/* -------------------- Base -------------------- */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter', sans-serif; background:#f9f9f9; color:#111; transition: background 0.3s, color 0.3s; display:flex; flex-direction:column; min-height:100vh; }
-body.dark-mode { background:#121212; color:#f0f0f0; }
+    /* -------------------- Logo Container & Main -------------------- */
+    .logo-container { text-align:center; padding:30px 20px; }
+    .logo-container img { width:350px; max-width:90%; height:auto; transition: transform 0.3s; }
+    .logo-container img:hover { transform: scale(1.05); }
 
-/* -------------------- Dark Mode Toggle -------------------- */
-#darkModeToggle { position:fixed; bottom:20px; right:20px; cursor:pointer; background:none; border:none; font-size:28px; z-index:10000; }
+    main { max-width:900px; margin:0 auto; padding:20px; flex:1; }
 
-/* -------------------- Logo -------------------- */
-.logo-container { text-align:center; padding:30px 20px; }
-.logo-container img { width:350px; max-width:90%; height:auto; transition: transform 0.3s; }
-.logo-container img:hover { transform: scale(1.05); }
+    h1 { text-align:center; font-size:2.5rem; margin-bottom:10px; color:#D4AF37; }
+    p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:40px; }
+    body.dark-mode p.subtitle { color:#ccc; }
 
-main { max-width:900px; margin:0 auto; padding:20px; flex:1; }
+    /* -------------------- Timeline & Testimonials (kept as-is) -------------------- */
+    .testimonial-timeline { position: relative; margin: 50px 0; padding-left: 30px; }
+    .testimonial-timeline::before { content:''; position:absolute; left:20px; top:0; width:4px; height:100%; background:#D4AF37; border-radius:2px; }
 
-h1 { text-align:center; font-size:2.5rem; margin-bottom:10px; color:#D4AF37; }
-p.subtitle { text-align:center; font-size:18px; color:#555; margin-bottom:40px; }
-body.dark-mode p.subtitle { color:#ccc; }
+    .testimonial-card {
+      background:#fff;
+      border-radius:20px;
+      padding:25px 30px;
+      margin-bottom:25px;
+      box-shadow:0 15px 30px rgba(0,0,0,0.1);
+      position:relative;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .testimonial-card:hover { transform: translateY(-5px) scale(1.02); }
+    body.dark-mode .testimonial-card { background:#1e1e1e; color:#f0f0f0; box-shadow:0 15px 30px rgba(0,0,0,0.5); }
 
-/* -------------------- Testimonials Cards -------------------- */
-.testimonial-card {
-  background:#fff;
-  border-radius:20px;
-  padding:25px 30px;
-  margin-bottom:25px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.1);
-  position:relative;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
-}
-body.dark-mode .testimonial-card { background:#1e1e1e; color:#f0f0f0; box-shadow:0 15px 30px rgba(0,0,0,0.5); }
-.testimonial-card:hover { transform: translateY(-5px) scale(1.02); }
+    .timeline-dot { position:absolute; left:-8px; top:20px; width:16px; height:16px; background:#D4AF37; border-radius:50%; border:2px solid #fff; }
+    .testimonial-text { font-size:16px; line-height:1.6; color:#333; margin-bottom:8px; margin-left:35px; }
+    .testimonial-author { text-align:right; margin-top:15px; font-weight:bold; font-style:normal; color:#0077cc; }
 
-/* Alternating background colors */
-.testimonial-card:nth-child(even) { background:#f0f4f8; }
-body.dark-mode .testimonial-card:nth-child(even) { background:#2a2a2a; }
+    body.dark-mode .testimonial-text, body.dark-mode .testimonial-author { color:#ccc; }
+    body.dark-mode .testimonial-author { color:#D4AF37; }
+    body.dark-mode .testimonial-timeline::before { background: #D4AF37; }
+    body.dark-mode .timeline-dot { background:#D4AF37; border:2px solid #1e1e1e; }
 
-/* Text */
-.testimonial-card p { font-size:16px; font-style:italic; line-height:1.6; margin-left:35px; }
-body.dark-mode .testimonial-card p { color:#ccc; }
-.testimonial-author { text-align:right; margin-top:15px; font-weight:bold; font-style:normal; color:#0077cc; }
-body.dark-mode .testimonial-author { color:#D4AF37; }
+    /* Alternating background colors */
+    .testimonial-card:nth-child(even) { background:#f0f4f8; }
+    body.dark-mode .testimonial-card:nth-child(even) { background:#2a2a2a; }
 
-/* -------------------- Review Form -------------------- */
-#submit-review { background:#fff; border-radius:20px; padding:30px; margin-top:40px; box-shadow:0 15px 30px rgba(0,0,0,0.1); transition: background 0.3s, color 0.3s; }
-body.dark-mode #submit-review { background:#1e1e1e; color:#f0f0f0; box-shadow:0 15px 30px rgba(0,0,0,0.5); }
+    /* Review form styling (kept) */
+    #submit-review { background:#fff; padding:40px 25px; margin-top:60px; border-radius:16px; max-width:700px; margin-left:auto; margin-right:auto; box-shadow:0 10px 30px rgba(0,0,0,0.08); transition: background 0.3s, box-shadow 0.3s; }
+    #submit-review h2 { text-align:center; color:#0077cc; margin-bottom:15px; font-size:1.9rem; }
+    #submit-review p { text-align:center; color:#555; margin-bottom:25px; font-size:16px; }
+    .review-form input, .review-form textarea { width:100%; padding:14px 15px; margin-bottom:20px; border-radius:10px; border:1px solid #ccc; font-size:15px; transition: border-color 0.3s, background 0.3s; }
+    .review-form input:focus, .review-form textarea:focus { border-color: #D4AF37; outline:none; background:#fdf9f2; }
+    .review-form button { width:100%; padding:15px; font-size:16px; font-weight:600; border-radius:12px; border:none; background:#D4AF37; color:#fff; cursor:pointer; transition: background 0.3s, transform 0.2s; }
+    .review-form button:hover { background:#b58f2e; transform: translateY(-2px); }
+    body.dark-mode #submit-review { background:#1e1e1e; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+    body.dark-mode #submit-review h2 { color:#D4AF37; }
+    body.dark-mode #submit-review p { color:#ccc; }
+    body.dark-mode .review-form input, body.dark-mode .review-form textarea { background:#2a2a2a; color:#ccc; border:1px solid #555; }
+    body.dark-mode .review-form input:focus, body.dark-mode .review-form textarea:focus { background:#333; border-color:#D4AF37; color:#fff; }
+    body.dark-mode .review-form button { background:#D4AF37; color:#1e1e1e; }
+    body.dark-mode .review-form button:hover { background:#b58f2e; }
 
-#submit-review h2 { text-align:center; color:#0077cc; margin-bottom:20px; }
-#submit-review p { text-align:center; color:#555; margin-bottom:20px; }
-body.dark-mode #submit-review p { color:#ccc; }
+    /* Footer (kept) */
+    footer { background:#000; color:#fff; padding:50px 20px; text-align:center; }
+    .footer-container { max-width:1000px; margin:0 auto; }
+    .footer-brand img { width:100px; margin-bottom:10px; }
+    .footer-brand p { max-width:500px; margin:0 auto 20px; font-size:14px; line-height:1.5; }
+    .footer-social { margin:20px 0; }
+    .footer-social a { margin:0 10px; display:inline-block; }
+    .footer-social img { width:30px; height:30px; }
+    .footer-links, .footer-bottom { margin:15px 0; }
+    .footer-links a, .footer-bottom a { color:#fff; margin:0 10px; font-size:14px; text-decoration:none; transition:color 0.3s; }
+    .footer-links a:hover, .footer-bottom a:hover { color:#f39c12; }
+    .footer-bottom p { font-size:13px; margin-bottom:10px; }
 
-form { max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:15px; }
-input, textarea { width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; }
-body.dark-mode input, body.dark-mode textarea { background:#2c2c2c; border:1px solid #555; color:#f0f0f0; }
-button { padding:15px; background:#0077cc; color:#fff; border:none; border-radius:8px; font-size:16px; cursor:pointer; transition: background 0.3s; }
-button:hover { background:#005fa3; }
-
-/* -------------------- Footer -------------------- */
-footer { background:#000; color:#fff; padding:50px 20px; text-align:center; }
-.footer-container { max-width:1000px; margin:0 auto; }
-.footer-brand img { width:100px; margin-bottom:10px; }
-.footer-brand p { max-width:500px; margin:0 auto 20px; font-size:14px; line-height:1.5; }
-.footer-social { margin:20px 0; }
-.footer-social a { margin:0 10px; display:inline-block; }
-.footer-social img { width:30px; height:30px; }
-.footer-links, .footer-bottom { margin:15px 0; }
-.footer-links a, .footer-bottom a { color:#fff; margin:0 10px; font-size:14px; text-decoration:none; transition:color 0.3s; }
-.footer-links a:hover, .footer-bottom a:hover { color:#f39c12; }
-.footer-bottom p { font-size:13px; margin-bottom:10px; }
-
-/* -------------------- Responsive -------------------- */
-@media (max-width:768px){
-  h1{ font-size:2rem; }
-  .testimonial-card{ padding:20px; }
-  #submit-review{ padding:20px; }
-  .testimonial-card p{ margin-left:25px; }
-  .testimonial-card::before{ font-size:40px; left:15px; }
-}
-/* Review Form Container */
-#submit-review {
-  background: #fff;
-  padding: 40px 25px;
-  margin-top: 60px;
-  border-radius: 16px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  transition: background 0.3s, box-shadow 0.3s;
-}
-
-#submit-review h2 {
-  text-align: center;
-  color: #0077cc;
-  margin-bottom: 15px;
-  font-size: 1.9rem;
-}
-
-#submit-review p {
-  text-align: center;
-  color: #555;
-  margin-bottom: 25px;
-  font-size: 16px;
-}
-
-/* Form Inputs */
-.review-form input,
-.review-form textarea {
-  width: 100%;
-  padding: 14px 15px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  transition: border-color 0.3s, background 0.3s;
-}
-
-.review-form input:focus,
-.review-form textarea:focus {
-  border-color: #D4AF37;
-  outline: none;
-  background: #fdf9f2;
-}
-
-/* Submit Button */
-.review-form button {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 12px;
-  border: none;
-  background: #D4AF37;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.review-form button:hover {
-  background: #b58f2e;
-  transform: translateY(-2px);
-}
-
-/* Dark Mode */
-body.dark-mode #submit-review {
-  background: #1e1e1e;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-body.dark-mode #submit-review h2 {
-  color: #D4AF37;
-}
-
-body.dark-mode #submit-review p {
-  color: #ccc;
-}
-
-body.dark-mode .review-form input,
-body.dark-mode .review-form textarea {
-  background: #2a2a2a;
-  color: #ccc;
-  border: 1px solid #555;
-}
-
-body.dark-mode .review-form input:focus,
-body.dark-mode .review-form textarea:focus {
-  background: #333;
-  border-color: #D4AF37;
-  color: #fff;
-}
-
-body.dark-mode .review-form button {
-  background: #D4AF37;
-  color: #1e1e1e;
-}
-
-body.dark-mode .review-form button:hover {
-  background: #b58f2e;
-}
-</style>
+    /* Responsive tweaks */
+    @media (max-width:768px){
+      h1{ font-size:2rem; }
+      .testimonial-card{ padding:20px; }
+      #submit-review{ padding:20px; }
+      .testimonial-card p{ margin-left:25px; }
+      .timeline-dot { left:-10px; top:18px; width:14px; height:14px; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav id="mainNavbar" class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img id="navbarLogo" src="/img/logo.png" alt="NDrivers Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- Dark Mode Toggle -->
-<button id="darkModeToggle">🌙</button>
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle">🌙</button>
 
-<!-- Logo -->
-<div class="logo-container">
-  <a href="index.html">
-    <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
-  </a>
-</div>
-
-<main>
-  <h1>What My Riders Say</h1>
-  <p class="subtitle">Here are a few words from people who’ve trusted me with their rides.</p>
-
-  <div class="testimonial-timeline">
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Tommy is the most reliable driver I’ve had in SoCal. Always on time, super friendly, and the car is spotless. Highly recommend for airport rides!</p>
-      <p class="testimonial-author">— Sarah M., Irvine</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">The ride to LAX was smooth and stress-free. Tommy even helped with luggage and knew the best route to avoid traffic.</p>
-      <p class="testimonial-author">— David L., Lake Forest</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">I loved that it felt personal, not like a big rideshare company. You know who your driver is, and that makes all the difference.</p>
-      <p class="testimonial-author">— Emily R., Newport Beach</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Always punctual, professional, and friendly. I’ll never call another driver for my airport trips!</p>
-      <p class="testimonial-author">— John K., Irvine</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Tommy knows SoCal roads like the back of his hand. Smooth ride, great conversation, very trustworthy.</p>
-      <p class="testimonial-author">— Laura S., Laguna Beach</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Highly recommend! The car is spotless and rides are very comfortable. Tommy is a true professional.</p>
-      <p class="testimonial-author">— Michael P., Costa Mesa</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">I enjoy riding with Tommy because it feels personal and friendly, unlike other services.</p>
-      <p class="testimonial-author">— Vanessa T., Huntington Beach</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Tommy’s driving is safe and reliable. He even gave me local tips on places to eat and visit!</p>
-      <p class="testimonial-author">— Robert H., Newport Beach</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Airport transfers are always on time and smooth. Tommy is very professional and courteous.</p>
-      <p class="testimonial-author">— Kelly M., Irvine</p>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="timeline-dot"></div>
-      <p class="testimonial-text">Tommy is great! I feel safe, the car is clean, and he’s always friendly. Highly recommended!</p>
-      <p class="testimonial-author">— Steven B., Laguna Hills</p>
-    </div>
-
-<!-- Add all other reviews here in the same format -->
+  <!-- Logo -->
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
+    </a>
   </div>
-</main>
-  <!-- Review Form -->
-  <section id="submit-review">
-  <h2>Submit Your Review</h2>
-  <p>Your feedback helps me improve and share experiences with future riders!</p>
-  
-  <form action="https://formspree.io/f/your-form-id" method="POST" class="review-form">
-    <input type="text" id="name" name="name" placeholder="Your Name" required>
-    <input type="email" id="email" name="email" placeholder="Your Email" required>
-    <textarea id="review" name="review" rows="5" placeholder="Your Review" required></textarea>
-    <button type="submit">Submit Review</button>
-  </form>
-</section>
-</main>
 
-<!-- Footer -->
+  <!-- Main content (testimonials + review form) -->
+  <main>
+    <h1>What My Riders Say</h1>
+    <p class="subtitle">Here are a few words from people who’ve trusted me with their rides.</p>
+
+    <div class="testimonial-timeline">
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Tommy is the most reliable driver I’ve had in SoCal. Always on time, super friendly, and the car is spotless. Highly recommend for airport rides!</p>
+        <p class="testimonial-author">— Sarah M., Irvine</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">The ride to LAX was smooth and stress-free. Tommy even helped with luggage and knew the best route to avoid traffic.</p>
+        <p class="testimonial-author">— David L., Lake Forest</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">I loved that it felt personal, not like a big rideshare company. You know who your driver is, and that makes all the difference.</p>
+        <p class="testimonial-author">— Emily R., Newport Beach</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Always punctual, professional, and friendly. I’ll never call another driver for my airport trips!</p>
+        <p class="testimonial-author">— John K., Irvine</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Tommy knows SoCal roads like the back of his hand. Smooth ride, great conversation, very trustworthy.</p>
+        <p class="testimonial-author">— Laura S., Laguna Beach</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Highly recommend! The car is spotless and rides are very comfortable. Tommy is a true professional.</p>
+        <p class="testimonial-author">— Michael P., Costa Mesa</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">I enjoy riding with Tommy because it feels personal and friendly, unlike other services.</p>
+        <p class="testimonial-author">— Vanessa T., Huntington Beach</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Tommy’s driving is safe and reliable. He even gave me local tips on places to eat and visit!</p>
+        <p class="testimonial-author">— Robert H., Newport Beach</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Airport transfers are always on time and smooth. Tommy is very professional and courteous.</p>
+        <p class="testimonial-author">— Kelly M., Irvine</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="timeline-dot"></div>
+        <p class="testimonial-text">Tommy is great! I feel safe, the car is clean, and he’s always friendly. Highly recommended!</p>
+        <p class="testimonial-author">— Steven B., Laguna Hills</p>
+      </div>
+
+    </div>
+
+    <!-- Review Form -->
+    <section id="submit-review">
+      <h2>Submit Your Review</h2>
+      <p>Your feedback helps me improve and share experiences with future riders!</p>
+
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="review-form">
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+        <textarea id="review" name="review" rows="5" placeholder="Your Review" required></textarea>
+        <button type="submit">Submit Review</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
 <footer>
   <div class="footer-container">
+    
+    <!-- Brand / Logo -->
     <div class="footer-brand">
       <a href="index.html">
-        <img src="/img/logo-white.png" alt="NDrivers Logo" id="footerLogo">
-      </a>
-      <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
+        <img id="footerLogo" src="img/logo-white.png" alt="NDrivers Logo">
+      </a>Experience private rides with Tommy, your local chauffeur and neighbor. Based in Irvine and serving Orange County and SoCal, I make every journey smooth, safe, and personalized for your comfort.</p>
     </div>
 
+    <!-- Social Icons -->
     <div class="footer-social">
       <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
       <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
       <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px;height:35px;"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:28px; height:28px;"></a>
     </div>
 
+    <!-- Page Links -->
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -402,27 +325,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="contact.html">Contact</a>
     </div>
 
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
       <p>© 2025 NDrivers.com. All rights reserved.</p>
-      <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+      <div class="footer-legal-links">
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Service</a>
+      </div>
     </div>
+
   </div>
 </footer>
 
-<!-- Dark Mode Script -->
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  const toggle = document.getElementById('darkModeToggle');
-  const logoImg = document.getElementById('logoImg');
-  const footerLogo = document.getElementById('footerLogo');
+  <!-- Scripts: navbar scroll visibility, hamburger toggle, dark mode -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Navbar scroll visibility
+      window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".navbar");
+        if (!navbar) return;
+        if (window.scrollY > 50) navbar.classList.add("visible");
+        else navbar.classList.remove("visible");
+      });
 
-  toggle.addEventListener('click', ()=>{
-    const isDark = document.body.classList.toggle('dark-mode');
-    toggle.textContent = isDark ? '☀️' : '🌙';
-    logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
-    footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
-  });
-});
-</script>
+      // Hamburger toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('open');
+          navLinks.classList.toggle('open');
+        });
+      }
+
+      // Dark mode toggle + swap logos
+      const toggle = document.getElementById('darkModeToggle');
+      const logoImg = document.getElementById('logoImg');
+      const navbarLogo = document.getElementById('navbarLogo');
+      const footerLogo = document.getElementById('footerLogo');
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isDark = document.body.classList.toggle('dark-mode');
+          toggle.textContent = isDark ? '☀️' : '🌙';
+          if (logoImg) logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+          if (navbarLogo) navbarLogo.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+          if (footerLogo) footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
+        });
+      }
+
+      // Highlight active nav link
+      const currentPage = window.location.pathname.split("/").pop();
+      const links = document.querySelectorAll('.nav-links a');
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>

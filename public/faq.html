@@ -2,35 +2,145 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
+  <!-- End Google Tag Manager -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>NDrivers — FAQ</title>
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- keep your CSS and JS files -->
   <link rel="stylesheet" href="faq.css">
   <script src="faq.js" defer></script>
+
+  <!-- small navbar CSS so behavior & look match your other pages -->
+  <style>
+    /* Navbar (shared) */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      padding: 10px 25px;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .navbar.visible { opacity: 1; top: 10px; pointer-events: all; }
+    .nav-inner { width:100%; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo img { height:45px; width:auto; object-fit:contain; transition:opacity 0.4s ease; }
+
+    .nav-links { list-style:none; display:flex; gap:35px; align-items:center; margin:0; }
+    .nav-links li a {
+      color: #D4AF37;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color:#fff;
+      text-shadow: 0 0 12px rgba(212,175,55,0.7);
+      background: rgba(212,175,55,0.1);
+    }
+
+    /* Hamburger */
+    .hamburger { display:none; flex-direction:column; justify-content:space-between; width:25px; height:20px; cursor:pointer; z-index:10000; }
+    .hamburger span { display:block; height:3px; width:100%; background:#D4AF37; border-radius:2px; transition:all 0.4s ease; transform-origin:center; }
+    .hamburger.open span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2){ opacity:0; }
+    .hamburger.open span:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+
+    @media (max-width:768px){
+      .hamburger { display:flex; }
+      .nav-links {
+        position: fixed;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        width: 85%;
+        opacity: 0;
+        pointer-events: none;
+        gap: 12px;
+        transition: top 0.5s ease, opacity 0.4s ease;
+      }
+      .nav-links.open { top: 70px; opacity: 1; pointer-events: all; }
+      .nav-links li a { font-size:1.2rem; padding:12px 20px; text-align:center; display:block; }
+      .nav-links li a:active { background: rgba(212,175,55,0.2); transform: scale(0.97); }
+    }
+  </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav id="mainNavbar" class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img id="navbarLogo" src="/img/logo.png" alt="NDrivers Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Dark Mode Toggle (kept) -->
   <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
+
   <div class="container" id="faq-root">
 
     <header class="site-header">
-            <img src="img/logo.png" alt="NDrivers Logo" class="logo">
+      <!-- clickable, targetable logo (id=logoImg) -->
+      <a href="index.html" class="logo-link">
+        <img id="logoImg" src="img/logo.png" alt="NDrivers Logo" class="logo">
+      </a>
       <div class="site-title">
         <h1>NDrivers — FAQ</h1>
         <p>Private chauffeur service — call or text <strong>949-696-6979</strong></p>
       </div>
     </header>
+
     <main class="grid" aria-live="polite">
       <!-- left categories -->
       <nav class="categories" aria-label="FAQ categories">
@@ -373,25 +483,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </section>
     </main>
   </div>
+
   <footer>
   <div class="footer-container">
+    
+    <!-- Brand / Logo -->
     <div class="footer-brand">
       <a href="index.html">
-        <img src="img/logo-white.png" alt="Ndrivers Logo">
+        <img id="footerLogo" src="img/logo-white.png" alt="NDrivers Logo">
       </a>
-      <p>
-        Bringing reliable rides and local connections together. 
-        Your neighborly driver, making every trip safe, simple, and stress-free.
-      </p>
+      <p>Experience private rides with Tommy, your local chauffeur and neighbor. Based in Irvine and serving Orange County and SoCal, I make every journey smooth, safe, and personalized for your comfort.p>
     </div>
 
+    <!-- Social Icons -->
     <div class="footer-social">
       <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
       <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
       <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:28px; height:28px;"></a>
     </div>
 
+    <!-- Page Links -->
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -401,11 +513,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="contact.html">Contact</a>
     </div>
 
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <p>© 2025 Ndrivers. All rights reserved.</p>
-      <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+      <p>© 2025 NDrivers.com. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Service</a>
+      </div>
     </div>
+
   </div>
 </footer>
+
+  <!-- Scripts: navbar scroll visibility, hamburger, active link, sync dark-mode logos -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Navbar scroll visibility
+      const navbar = document.querySelector('.navbar');
+      function updateNavbarOnScroll() {
+        if (!navbar) return;
+        if (window.scrollY > 50) navbar.classList.add('visible');
+        else navbar.classList.remove('visible');
+      }
+      window.addEventListener('scroll', updateNavbarOnScroll);
+      updateNavbarOnScroll(); // run once on load
+
+      // Hamburger toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('open');
+          navLinks.classList.toggle('open');
+        });
+      }
+
+      // Highlight active nav link
+      const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      });
+
+      // Sync navbar/footer logos with faq.js dark-mode state (faq.js sets body.dark-mode and localStorage)
+      const navbarLogo = document.getElementById('navbarLogo');
+      const footerLogo = document.getElementById('footerLogo');
+      const logoImg = document.getElementById('logoImg');
+
+      function syncLogosFromLocalStorage() {
+        const savedDark = localStorage.getItem('darkMode') === 'true';
+        if (logoImg) logoImg.src = savedDark ? '/img/logo-white.png' : '/img/logo.png';
+        if (navbarLogo) navbarLogo.src = savedDark ? '/img/logo-white.png' : '/img/logo.png';
+        if (footerLogo) footerLogo.src = savedDark ? '/img/logo-white.png' : '/img/logo-white.png';
+      }
+
+      // initial sync
+      syncLogosFromLocalStorage();
+
+      // update logos after the toggle (faq.js already toggles dark-mode); run after other listeners
+      const toggle = document.getElementById('darkModeToggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          // allow faq.js to update body.class first, then sync
+          setTimeout(syncLogosFromLocalStorage, 0);
+        });
+      }
+    });
+  </script>
 </body>
 </html>

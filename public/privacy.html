@@ -1,204 +1,572 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
-<!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ndrivers - Privacy Policy</title>
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
-<style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    margin: 0;
-    padding: 40px;
-    background: #fff;
-    color: #111;
-    line-height: 1.8;
-    transition: background 0.3s, color 0.3s;
-  }
-  @media (max-width: 768px) { body { padding: 20px; } }
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
+  <!-- End Google Tag Manager -->
 
-  h1 { font-size: 28px; text-align: center; margin-bottom: 40px; font-weight: normal; }
-  h2 { font-size: 20px; margin-top: 35px; margin-bottom: 15px; font-weight: bold; text-decoration: underline; }
-  h3 { font-size: 18px; margin-top: 25px; margin-bottom: 12px; font-weight: bold; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NDrivers — Privacy Policy</title>
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+  /* -------------------- Navbar -------------------- */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      padding: 10px 25px;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .navbar.visible {
+      opacity: 1;
+      top: 10px;
+      pointer-events: all;
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+      transition: opacity 0.4s ease;
+    }
 
-  p { font-size: 16px; margin-bottom: 18px; }
-  ul, ol { margin-left: 30px; margin-bottom: 18px; }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+      align-items: center;
+      margin: 0;
+    }
 
-  a { color: #111; text-decoration: underline; }
-  a:hover { text-decoration: none; }
+    .nav-links li a {
+      color: #D4AF37;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+    }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 35px;
-    font-size: 16px;
-  }
-  table th, table td {
-    border: 1px solid #999;
-    padding: 12px;
-    text-align: left;
-  }
-  table th { background-color: #f0f0f0; }
+    .nav-links li a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(212,175,55,0.6);
+      background: rgba(212,175,55,0.1);
+      border-radius: 10px;
+      padding: 6px 12px;
+    }
 
-  footer {
-    font-size: 14px;
-    color: #555;
-    text-align: center;
-    margin-top: 60px;
-    line-height: 1.5;
-  }
-  footer a { color: #555; text-decoration: underline; margin: 0 5px; }
-  footer a:hover { text-decoration: none; }
+    /* ---------------- Hamburger ---------------- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #D4AF37;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-  /* Dark Mode */
-  body.dark-mode { background: #121212; color: #f0f0f0; }
-  body.dark-mode table th { background-color: #1e1e1e; }
-  body.dark-mode table, body.dark-mode table td, body.dark-mode table th { border-color: #555; }
-</style>
+    /* ---------------- Mobile Navbar ---------------- */
+    @media (max-width:768px) {
+      .nav-links {
+        position: fixed;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        width: 85%;
+        opacity: 0;
+        pointer-events: none;
+        gap: 12px;
+        transition: top 0.5s ease, opacity 0.4s ease;
+      }
+      .nav-links.open {
+        top: 70px;
+        opacity: 1;
+        pointer-events: all;
+      }
+      .hamburger { display: flex; }
+      .nav-links li a {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+        text-align: center;
+        border-radius: 10px;
+        display: block;
+      }
+      .nav-links li a:active {
+        background: rgba(212,175,55,0.2);
+        transform: scale(0.97);
+      }
+    }
+
+    /* ---------------- Page (book style) ---------------- */
+    :root {
+      --page-max: 820px;
+      --gutter: 40px;
+    }
+    html, body { height:100%; margin:0; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #111;
+      background: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.85;
+      padding: 110px var(--gutter) 80px; /* top accommodates fixed navbar */
+    }
+
+    /* narrow column, justified, book-like */
+    .policy-wrap {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      background: transparent;
+      padding: 0;
+      color: #111;
+    }
+    .policy-header { text-align:center; margin-bottom: 36px; }
+    .policy-header h1 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-size: 28px;
+      margin: 0 0 8px;
+    }
+    .policy-meta {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+    /* Legal headings */
+    .section {
+      margin-bottom: 26px;
+      page-break-inside: avoid;
+    }
+    .section h2 {
+      font-family: Georgia, serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin: 20px 0 12px;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1px;
+    }
+    .section h3 {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      margin: 14px 0 8px;
+      font-weight: 700;
+    }
+    .policy-body {
+      text-align: justify;
+      font-size: 16px;
+      color: #111;
+    }
+    .policy-body p { margin: 0 0 14px; }
+    .policy-body ol, .policy-body ul { margin: 0 0 14px 30px; }
+
+    /* compact table */
+    .summary-table {
+      width:100%;
+      border-collapse: collapse;
+      margin: 18px 0 28px;
+      font-family: Georgia, serif;
+      font-size: 15px;
+    }
+    .summary-table th, .summary-table td {
+      border: 1px solid #999;
+      padding: 10px 12px;
+      vertical-align: top;
+    }
+    .summary-table th { background:#f0f0f0; font-weight:600; text-align:left; }
+
+    /* footer (basic) */
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid #e6e6e6;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 13px;
+      color: #444;
+      text-align: center;
+    }
+    footer a { color: #444; text-decoration: underline; }
+
+    /* ---------------- Dark Mode ---------------- */
+    body.dark-mode {
+      background: #0f1112;
+      color: #e8e8e8;
+    }
+    body.dark-mode .nav-links li a { color: #e6c86e; }
+    body.dark-mode .nav-links li a:hover, body.dark-mode .nav-links li a.active { color: #fff; background: rgba(230,200,110,0.08); }
+    body.dark-mode .policy-body { color: #e8e8e8; }
+    body.dark-mode .summary-table th { background: #1e1e1e; color: #f0f0f0; }
+    body.dark-mode .summary-table th, body.dark-mode .summary-table td { border-color: #444; }
+
+    /* small screens */
+    @media (max-width: 820px) {
+      body { padding: 140px 18px 60px; }
+      .policy-body { font-size: 15px; }
+    }
+    @media (max-width: 480px) {
+      .policy-header h1 { font-size: 22px; }
+      body { padding-top: 120px; }
+    }
+
+    /* small util */
+    .muted { color: #666; font-family: Inter, system-ui, sans-serif; font-size: 0.95rem; }
+    .legal-note { font-size: 0.92rem; color: #555; font-family: Inter, system-ui, sans-serif; margin-top: 8px; }
+    /* ---------------- Dark Mode Fixes ---------------- */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+  color: #f5f5f5; /* make all headings light */
+}
+
+/* “Privacy Policy of NDrivers” headline */
+.dark-mode .policy-title,
+.dark-mode h1.policy-title {
+  color: #f5f5f5;
+}
+
+/* Topic and summary boxes */
+.dark-mode .topic-box,
+.dark-mode .summary-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Paragraphs and text in dark mode */
+.dark-mode p,
+.dark-mode li,
+.dark-mode span {
+  color: #ccc;
+}
+/* ---------------- Dark Mode: Table Fixes ---------------- */
+.dark-mode table {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #f0f0f0;
+}
+
+.dark-mode th {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f8f8f8;
+}
+
+.dark-mode td {
+  background-color: rgba(255, 255, 255, 0.02);
+  color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Optional: add light borders between rows */
+.dark-mode tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+  </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav id="mainNavbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" title="NDrivers Home">
+        <img id="navbarLogo" src="/img/logo.png" alt="NDrivers Logo">
+      </a>
+
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+        <li role="none"><a role="menuitem" href="about.html">About</a></li>
+        <li role="none"><a role="menuitem" href="services.html">Services</a></li>
+        <li role="none"><a role="menuitem" href="testimonials.html">Testimonials</a></li>
+        <li role="none"><a role="menuitem" href="faq.html">FAQ</a></li>
+        <li role="none"><a role="menuitem" href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="hamburger" aria-label="Toggle menu" role="button" aria-expanded="false" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- Dark Mode Toggle -->
-<button id="darkModeToggle" style="position:fixed; bottom:20px; right:20px; font-size:28px; background:none; border:none; cursor:pointer; z-index:10000;">🌙</button>
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle" aria-label="Toggle dark mode" style="position:fixed; bottom:20px; right:20px; z-index:10001; background:none; border:0; font-size:22px; cursor:pointer;">🌙</button>
 
-<!-- Top Logo -->
-<a href="/" class="logo-link">
-  <img id="logoImg" src="/img/logo.png" alt="Ndrivers Logo" style="display:block; margin:0 auto 20px; max-width:350px;">
-</a>
+  <!-- Header logo (targetable by JS) -->
+  <div style="text-align:center; margin: 18px 0;">
+    <a href="index.html" class="logo-link" title="NDrivers Home">
+      <img id="logoImg" src="/img/logo.png" alt="NDrivers Logo" style="max-width:320px; height:auto; display:inline-block;">
+    </a>
+  </div>
 
-<h1>Privacy Policy</h1>
+  <!-- Policy content -->
+  <div class="policy-wrap" role="main" aria-labelledby="policyTitle">
+    <header class="policy-header">
+      <h1 id="policyTitle">Privacy Policy of NDrivers</h1>
+      <div class="policy-meta muted">Effective date: January 1, 2025 — Last updated: January 1, 2025</div>
+    </header>
 
-<!-- Quick Summary Table -->
-<table>
-  <tr>
-    <th>Topic</th>
-    <th>Summary</th>
-  </tr>
-  <tr>
-    <td>Information Collected</td>
-    <td>Name, email, ride details, location, device info, cookies</td>
-  </tr>
-  <tr>
-    <td>Use of Data</td>
-    <td>Ride processing, communication, service improvements, security</td>
-  </tr>
-  <tr>
-    <td>Data Sharing</td>
-    <td>Only with service providers or as required by law. No selling of data</td>
-  </tr>
-  <tr>
-    <td>Your Rights</td>
-    <td>Access, correction, deletion, objection, data portability (GDPR & CCPA)</td>
-  </tr>
-  <tr>
-    <td>Retention</td>
-    <td>Only as long as necessary; legal obligations may require longer retention</td>
-  </tr>
-  <tr>
-    <td>Cookies</td>
-    <td>Used for analytics, preferences, and improving user experience</td>
-  </tr>
-</table>
+    <!-- Quick summary table -->
+    <table class="summary-table" aria-hidden="false">
+      <thead>
+        <tr><th>Topic</th><th>Summary</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Information Collected</td><td>Identifiers, contact details, ride details, payment metadata, device & network data, cookies and analytics.</td></tr>
+        <tr><td>Primary Uses</td><td>Provide and operate services, payment processing, customer communication, safety and fraud prevention, legal compliance.</td></tr>
+        <tr><td>Sharing</td><td>Service providers, legal requests, business transfers. No commercial sale of personal data.</td></tr>
+        <tr><td>Retention</td><td>Retained only as necessary for operational, tax, audit and legal obligations; anonymization or deletion thereafter.</td></tr>
+        <tr><td>Your Rights</td><td>Access, correction, deletion, portability, objection, and other rights under applicable law (GDPR, CCPA).</td></tr>
+      </tbody>
+    </table>
 
-<p>This Privacy Policy explains how Ndrivers (“we”, “our”, or “us”) collects, uses, stores, and protects your personal information. It also outlines your privacy rights under applicable laws including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA). By using our Services, you agree to the terms described herein.</p>
+    <section class="section policy-body" id="overview">
+      <h2>1. Overview and Scope</h2>
+      <p>This Privacy Policy (the “Policy”) describes the manner in which NDrivers (the “Company”, “we”, “us” or “our”) collects, stores, uses, discloses and otherwise processes personal information in connection with our website, mobile applications and related services (collectively, the “Services”). This Policy applies to individuals who interact with our Services, including riders, prospective riders, business contacts, and visitors to our websites (collectively, “you” or “Users”).</p>
 
-<h2>1. Information We Collect</h2>
-<ul>
-  <li><strong>Personal Information:</strong> name, email, phone number, billing info, account credentials.</li>
-  <li><strong>Ride Information:</strong> pickup/drop-off locations, ride times, preferences, notes, and feedback.</li>
-  <li><strong>Technical Information:</strong> IP address, browser type, operating system, device identifiers, log files, usage stats.</li>
-  <li><strong>Location Information:</strong> GPS or approximate location for navigation and ETA.</li>
-  <li><strong>Cookies and Tracking:</strong> cookies, pixels, and similar technologies for analytics and session management.</li>
-</ul>
+      <h3>1.1 Legal Notice</h3>
+      <p>The Policy is intended to describe our practices and rights in plain legal terms, but it does not create any contractual rights nor modify any pre-existing agreements you may have with the Company. For specific contractual terms governing the provision of services, please consult our Terms of Service and any booking confirmation or invoice issued to you.</p>
+    </section>
 
-<h2>2. How We Use Your Information</h2>
-<ul>
-  <li>Process ride requests, manage bookings, and provide customer support.</li>
-  <li>Communicate about rides, account updates, promotions, or new services.</li>
-  <li>Analyze trends, improve functionality, and develop new features.</li>
-  <li>Detect, prevent, and address fraud, security breaches, and technical issues.</li>
-  <li>Comply with laws and enforce our Terms of Service.</li>
-</ul>
+    <section class="section policy-body" id="definitions">
+      <h2>2. Definitions</h2>
+      <ol>
+        <li><strong>Personal Information:</strong> any information that identifies, or can reasonably be used to identify, an individual, including but not limited to name, email address, telephone number, postal address, payment information and location data.</li>
+        <li><strong>Processing:</strong> any operation performed on Personal Information including collection, organization, storage, use, disclosure, erasure and other handling.</li>
+        <li><strong>Service Providers:</strong> third-party vendors and contractors engaged to provide operational or technical services on our behalf.</li>
+      </ol>
+    </section>
 
-<h2>3. Data Retention</h2>
-<p>We retain personal information only as long as necessary for the purposes described, or as required by law. When information is no longer needed, it is securely deleted or anonymized. Some records may be kept longer for accounting, tax, or legal obligations.</p>
+    <section class="section policy-body" id="collection">
+      <h2>3. Categories of Information Collected</h2>
+      <p>We collect the following categories of information from users, as described below. Collection may occur when you provide information directly, when you use the Services, or when information is automatically collected through the use of cookies and similar technologies.</p>
+      <h3>3.1 Identifiers and Contact Information</h3>
+      <p>Name, postal address, email address, telephone number, billing address, and payment instrument metadata (e.g., last four digits) necessary to process payments. We do not retain full card numbers on our servers — tokenized or third-party processors are used where applicable.</p>
 
-<h2>4. Data Security</h2>
-<p>We implement technical, administrative, and physical safeguards to protect personal data, including encryption, firewalls, and restricted access. While we strive for security, no method is 100% secure, and we cannot guarantee absolute protection.</p>
+      <h3>3.2 Ride-related Information</h3>
+      <p>Pickup and drop-off locations, scheduling details, trip distance and duration, rider preferences, communications and notes associated with a booking, and feedback submitted by riders.</p>
 
-<h2>5. Sharing of Information</h2>
-<ul>
-  <li>Service providers performing tasks on our behalf (e.g., payment processing, IT support).</li>
-  <li>Legal authorities as required by law.</li>
-  <li>Business transfers like mergers, acquisitions, or reorganizations.</li>
-</ul>
+      <h3>3.3 Technical & Device Data</h3>
+      <p>IP address, browser type and version, operating system, device identifiers, mobile carrier, language, referral URL and other log data necessary for diagnostics, analytics and security.</p>
 
-<h2>6. Third-Party Services</h2>
-<p>Our Services may include links to third-party websites or services. We are not responsible for their privacy practices. Users should review the privacy policies of any third-party services they interact with.</p>
+      <h3>3.4 Location Data</h3>
+      <p>Precise or approximate geolocation information where you have enabled location services, collected to enable routing, provide ETAs and to facilitate pickup and drop-off operations.</p>
 
-<h2>7. Your Privacy Rights</h2>
-<h3>GDPR (EU Users)</h3>
-<ul>
-  <li>Access and receive a copy of your personal data.</li>
-  <li>Request correction or deletion of your data.</li>
-  <li>Restrict or object to processing.</li>
-  <li>Data portability for use across services.</li>
-  <li>Lodge complaints with supervisory authorities.</li>
-</ul>
+      <h3>3.5 Cookies and Tracking</h3>
+      <p>Cookies, web beacons, pixels and similar tracking technologies for analytics, session management, fraud prevention and to remember preferences.</p>
+    </section>
 
-<h3>CCPA (California Users)</h3>
-<ul>
-  <li>Right to know what personal information is collected, used, shared, or sold.</li>
-  <li>Right to request deletion of personal information.</li>
-  <li>Right to opt-out of sale of personal information (we do not sell data).</li>
-  <li>Right to non-discrimination for exercising privacy rights.</li>
-</ul>
+    <section class="section policy-body" id="use">
+      <h2>4. Purposes and Legal Bases for Processing</h2>
+      <p>We process Personal Information for the following purposes, and where required by law, we rely on appropriate legal bases:</p>
+      <ol>
+        <li><strong>Performance of Contract:</strong> processing necessary to provide the Services you request, to manage bookings, coordinate drivers and complete transactions.</li>
+        <li><strong>Legitimate Interests:</strong> improving and securing the Services, detecting fraud and abuse, network and information security, and business analytics. Where we rely on legitimate interests, we conduct balancing tests to ensure rights of individuals are respected.</li>
+        <li><strong>Legal Compliance:</strong> responding to lawful requests by public authorities and complying with legal obligations.</li>
+        <li><strong>Consent:</strong> where applicable, for optional marketing communications and certain cookies; you may withdraw consent where applicable.</li>
+      </ol>
+    </section>
 
-<p>To exercise your rights, contact us at <a href="mailto:info@ndrivers.com">info@ndrivers.com</a>. Verification may be required.</p>
+    <section class="section policy-body" id="sharing">
+      <h2>5. Disclosure and Sharing</h2>
+      <p>We do not sell personal information. We may disclose Personal Information in the following circumstances:</p>
+      <ol>
+        <li><strong>Service Providers:</strong> authorized third parties who provide payment processing, email delivery, hosting, analytics, mapping, and other infrastructure services.</li>
+        <li><strong>Legal and Safety Reasons:</strong> to respond to lawful requests by public authorities, to defend or exercise legal rights, and to protect the safety of Users or the public.</li>
+        <li><strong>Business Transfers:</strong> in connection with a reorganization, merger, sale, financing or acquisition of all or a portion of our assets.</li>
+      </ol>
+      <p>When we engage third parties, we use contractual safeguards to limit their use of data and require reasonable security protections.</p>
+    </section>
 
-<h2>8. Cookies and Tracking</h2>
-<p>We use cookies and similar technologies to enhance your experience, remember preferences, analyze usage, and deliver personalized content. You may manage or disable cookies via your browser settings; some features may be affected.</p>
+    <section class="section policy-body" id="retention">
+      <h2>6. Data Retention and Deletion</h2>
+      <p>We retain Personal Information only for as long as is necessary to fulfill the purposes for which it was collected, subject to legal, tax and accounting requirements. Retention periods may vary by data category; for example:</p>
+      <ul>
+        <li>Trip records, receipts and billing information — typically retained for a period required by tax and accounting rules (commonly 3–7 years).</li>
+        <li>Support communications and complaint records — retained as needed for dispute resolution and quality control (commonly 2–5 years).</li>
+        <li>Backups and archived logs — retained in anonymized or limited form for operational continuity and security monitoring.</li>
+      </ul>
+      <p>Upon request and subject to verification, we will delete Personal Information in accordance with applicable law and our internal procedures, unless retention is required by law or a legitimate business purpose.</p>
+    </section>
 
-<h2>9. International Data Transfers</h2>
-<p>Information may be transferred to countries outside your residence. By using our Services, you consent to these transfers, which are protected under applicable privacy laws.</p>
+    <section class="section policy-body" id="security">
+      <h2>7. Security Measures</h2>
+      <p>We implement administrative, technical and physical safeguards commensurate with the sensitivity of the data, including encryption in transit, access controls, monitoring, vulnerability management and employee training. However, no system is completely immune to breach. If a security incident affects Personal Information we control, we will comply with applicable breach notification laws and notify affected individuals and authorities as required.</p>
+    </section>
 
-<h2>10. Children’s Privacy</h2>
-<p>Our Services are not intended for children under 13. We do not knowingly collect information from children, and any such data discovered will be deleted.</p>
+    <section class="section policy-body" id="international">
+      <h2>8. International Transfers</h2>
+      <p>Personal Information may be processed and stored in jurisdictions other than your country of residence. Where required by law, we use safeguards such as standard contractual clauses, appropriate local legal mechanisms, or ensure processing occurs in jurisdictions with adequate protections.</p>
+    </section>
 
-<h2>11. Legal Compliance</h2>
-<p>We may disclose information to comply with legal obligations, enforce our Terms, protect rights or property, or ensure the safety of users and the public.</p>
+    <section class="section policy-body" id="thirdparty">
+      <h2>9. Third-Party Services and Links</h2>
+      <p>Our Services may interoperate with third-party services (e.g., mapping, payment processors, analytics providers). Those services have independent privacy policies and practices. We are not responsible for the processing activities of such third parties. You should review their policies before providing personal information.</p>
+    </section>
 
-<h2>12. Changes to Privacy Policy</h2>
-<p>We may update this Privacy Policy from time to time. Changes will be posted with an updated effective date. Continued use of our Services constitutes acceptance of the updated policy.</p>
+    <section class="section policy-body" id="rights">
+      <h2>10. Your Rights; How to Exercise Them</h2>
+      <p>Subject to applicable law, you may have the right to:</p>
+      <ul>
+        <li>Request access to Personal Information we hold about you.</li>
+        <li>Request correction or updating of inaccurate or incomplete Personal Information.</li>
+        <li>Request deletion of Personal Information (subject to legal exceptions).</li>
+        <li>Object to or restrict certain processing activities.</li>
+        <li>Request portability of Personal Information in a commonly used machine-readable format.</li>
+      </ul>
+      <p>To exercise your rights, contact us at the address below. We will require reasonable verification of identity before fulfilling requests. Some requests may be denied where lawfully permitted (for example, to preserve records for legal compliance or to prevent fraud).</p>
+    </section>
 
-<h2>13. Contact Information</h2>
-<p>Email: <a href="mailto:info@ndrivers.com">info@ndrivers.com</a><br>
+    <section class="section policy-body" id="california">
+      <h2>11. California Privacy Rights (CCPA/CPRA)</h2>
+      <p>If you are a California resident, you may have additional rights under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA), including the right to know, delete, and opt-out of sale or sharing of personal information. We do not sell your personal information. To submit a request under California law, please contact us as described below.</p>
+    </section>
 
-<footer>
-<p>&copy; 2025 NDrivers.com. All rights reserved.</p>
-<p><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="contact.html">Contact</a></p>
-</footer>
+    <section class="section policy-body" id="gdpr">
+      <h2>12. European Residents (GDPR)</h2>
+      <p>Where the GDPR applies, you may request access, rectification, erasure, restriction of processing or portability. Where processing is based on consent, you may withdraw consent at any time. For legal bases relying on legitimate interests, we will balance those interests against your rights. You may lodge a complaint with a supervisory authority in your EU member state.</p>
+    </section>
 
-<script>
-const toggle = document.getElementById('darkModeToggle');
-const logoImg = document.getElementById('logoImg');
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-  logoImg.src = document.body.classList.contains('dark-mode') ? '/img/logo-white.png' : '/img/logo.png';
-});
-</script>
+    <section class="section policy-body" id="automated">
+      <h2>13. Automated Decision-Making and Profiling</h2>
+      <p>We generally do not perform automated decision-making that produces legal or similarly significant effects. We may use automated systems to calculate estimated fares, recommended routes or arrival times; such processing is limited and intended to improve operational efficiency. If automated decisions materially affect you, we will provide information about the logic involved and your rights where required by law.</p>
+    </section>
 
+    <section class="section policy-body" id="children">
+      <h2>14. Children’s Privacy</h2>
+      <p>The Services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we discover that we have inadvertently collected personal information from a child under 13, we will take steps to delete such information as soon as practicable.</p>
+    </section>
+
+    <section class="section policy-body" id="changes">
+      <h2>15. Changes to this Policy</h2>
+      <p>We may update this Policy from time to time to reflect changes to our practices, legal requirements, or service features. We will post a revised Policy with an updated effective date. Continued use of the Services after posting constitutes acceptance of the revised Policy.</p>
+    </section>
+
+    <section class="section policy-body" id="contact">
+      <h2>16. Contact</h2>
+      <p>For privacy inquiries, requests to exercise your rights, or other questions regarding this Policy, contact:</p>
+      <p><strong>NDrivers</strong><br>
+      Email: <a href="mailto:info@ndrivers.com">info@ndrivers.com</a><br>
+      Telephone: 949-696-6979<br>
+      Address: NDrivers (mail correspondence),  — (address on file)</p>
+
+      <p class="legal-note">This Policy is provided for informational purposes and does not constitute legal advice. For privacy law compliance tailored to your jurisdiction or specific business operations, consult qualified counsel.</p>
+    </section>
+  </div>
+
+  <!-- Basic footer -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 NDrivers. All rights reserved.</p>
+    <p><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+  </footer>
+
+  <!-- Scripts: navbar, hamburger, active link, dark-mode with persistence + logo sync -->
+  <script>
+    (function () {
+      // Navbar scroll visibility
+      const navbar = document.querySelector('.navbar');
+      function updateNavbarOnScroll() {
+        if (!navbar) return;
+        if (window.scrollY > 50) navbar.classList.add('visible');
+        else navbar.classList.remove('visible');
+      }
+      window.addEventListener('scroll', updateNavbarOnScroll);
+      updateNavbarOnScroll();
+
+      // Hamburger toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      if (hamburger && navLinks) {
+        const toggleMenu = () => {
+          const open = hamburger.classList.toggle('open');
+          navLinks.classList.toggle('open', open);
+          hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        hamburger.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }});
+      }
+
+      // Highlight active nav link
+      const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      });
+
+      // Dark mode: persistent, sync logos
+      const toggle = document.getElementById('darkModeToggle');
+      const logoImg = document.getElementById('logoImg');
+      const navbarLogo = document.getElementById('navbarLogo');
+
+      function applyDarkMode(isDark) {
+        document.body.classList.toggle('dark-mode', isDark);
+        if (toggle) toggle.textContent = isDark ? '☀️' : '🌙';
+        if (logoImg) logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+        if (navbarLogo) navbarLogo.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+        // footer logo (if you later add id=footerLogo)
+        const footerLogo = document.getElementById('footerLogo');
+        if (footerLogo) footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
+      }
+
+      // Initialize
+      const savedDark = localStorage.getItem('darkMode') === 'true';
+      applyDarkMode(savedDark);
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isDark = !document.body.classList.contains('dark-mode');
+          applyDarkMode(isDark);
+          localStorage.setItem('darkMode', isDark);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

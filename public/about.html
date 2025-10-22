@@ -1,38 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
-<!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NDrivers - About Me</title>
+
+  <!-- Fonts & Favicon -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" />
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5FKRPNKK');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <style>
-    /* -------------------- Base Reset -------------------- */
-    * { margin:0; padding:0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f5f6fa; color: #111; transition: background 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
+    /* -------------------- Base Reset & Dark Mode -------------------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f6fa;
+      color: #111;
+      transition: background 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
     body.dark-mode { background: #121212; color: #f0f0f0; }
 
+    /* Navbar container */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 10px 25px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar.visible {
+  opacity: 1;
+  top: 10px;
+  pointer-events: all;
+}
+
+.nav-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.nav-logo img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.4s ease; /* Smooth fade */
+}
+
+/* Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  margin: 0;
+}
+
+.nav-links li a {
+  color: #D4AF37;;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #D4AF37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+/* ---------------- Hamburger Animation ---------------- */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 10000; /* above nav-links */
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #D4AF37;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+/* Open state */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0; /* hide middle line */
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* ---------------- Mobile Navbar Improvements ---------------- */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: -100%; /* start hidden above the viewport */
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    width: 85%;
+    max-height: none; /* remove height restriction */
+    opacity: 0;
+    pointer-events: none;
+    gap: 12px;
+    transition: top 0.5s ease, opacity 0.4s ease;
+  }
+
+  .nav-links.open {
+    top: 70px;  /* slide down to below navbar */
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+  /* Individual link styling */
+  .nav-links li a {
+    font-size: 1.2rem;      /* bigger for fingers */
+    padding: 12px 20px;     /* larger hit area */
+    text-align: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: block;
+    color: #D4AF37;
+  }
+
+  /* Tap/active feedback */
+  .nav-links li a:active {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(0.97); /* subtle shrink on tap */
+  }
+
+  /* Hover effect fallback for devices that support hover */
+  .nav-links li a:hover {
+    color: #fff;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+    background: rgba(212, 175, 55, 0.1);
+  }
+
+  /* Hamburger icon */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0; /* already using gap, no extra margin needed */
+  }/* ---------------- Navbar Container ---------------- */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 10px 25px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar.visible {
+  opacity: 1;
+  top: 10px;
+  pointer-events: all;
+}
+
+.nav-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------------- Logo ---------------- */
+.nav-logo img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.4s ease;
+}
+
+/* ---------------- Links ---------------- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  margin: 0;
+}
+
+.nav-links li a {
+  color: #D4AF37;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #D4AF37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+/* ---------------- Hamburger (Desktop Hidden by Default) ---------------- */
+.hamburger {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 10000; /* above nav-links */
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #D4AF37;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+/* Open state (X animation) */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ---------------- Mobile Styles ---------------- */
+@media (max-width: 768px) {
+
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Mobile nav-links */
+  .nav-links {
+    position: fixed;
+    top: -100%; /* hidden above viewport initially */
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    width: 85%;
+    opacity: 0;
+    pointer-events: none;
+    gap: 12px;
+    transition: top 0.5s ease, opacity 0.4s ease;
+  }
+
+  .nav-links.open {
+    top: 70px; /* slide down below navbar */
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Individual link adjustments for touch */
+  .nav-links li a {
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    text-align: center;
+    border-radius: 10px;
+    display: block;
+    transition: all 0.3s ease;
+    color: #D4AF37;
+  }
+
+  .nav-links li a:active {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(0.97);
+  }
+
+  .nav-links li a:hover {
+    color: #fff;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+    background: rgba(212, 175, 55, 0.1);
+  }
+
+}
     /* -------------------- Dark Mode Toggle -------------------- */
-    #darkModeToggle { position: fixed; bottom: 20px; right: 20px; cursor: pointer; background: none; border: none; font-size: 28px; z-index: 10000; }
+    #darkModeToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 28px;
+      z-index: 10000;
+    }
 
     /* -------------------- Header Logo -------------------- */
-    .logo-container { text-align: center; margin: 50px 0 20px; }
-    .logo-container img { width: 250px; max-width: 90%; height: auto; transition: transform 0.3s; }
+    .logo-container {
+      text-align: center;
+      margin: 50px 0 20px;
+    }
+    .logo-container img {
+      width: 250px;
+      max-width: 90%;
+      height: auto;
+      transition: transform 0.3s;
+    }
     .logo-container img:hover { transform: scale(1.05); }
 
     /* -------------------- Page Intro -------------------- */
-    .intro-text { text-align: center; font-size: 18px; max-width: 700px; margin: 0 auto 50px; color:#555; }
-    body.dark-mode .intro-text { color:#ccc; }
+    .intro-text {
+      text-align: center;
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      color: #555;
+    }
+    body.dark-mode .intro-text { color: #ccc; }
 
     /* -------------------- About Cards -------------------- */
-    .about-section { display: flex; flex-direction: column; gap: 30px; max-width: 900px; margin: 0 auto 80px; padding: 0 20px; }
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
     .about-card {
       display: flex;
       flex-direction: row;
@@ -44,59 +405,204 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       box-shadow: 0 15px 40px rgba(0,0,0,0.1);
       transition: transform 0.3s, background 0.3s, color 0.3s;
     }
-    body.dark-mode .about-card { background: #1e1e1e; color: #f0f0f0; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+    body.dark-mode .about-card {
+      background: #1e1e1e;
+      color: #f0f0f0;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
     .about-card:hover { transform: translateY(-5px); }
 
     .about-card .icon { flex-shrink: 0; width: 60px; height: 60px; }
     .about-card .icon img { width: 100%; height: 100%; object-fit: contain; }
 
-    .about-card .content { flex:1; }
-    .about-card .content h2 { font-size: 1.8rem; margin-bottom: 12px; color: #D4AF37; display: flex; align-items: center; gap:10px; }
-    .about-card .content p { font-size: 16px; line-height: 1.6; color: #555; }
+    .about-card .content { flex: 1; }
+    .about-card .content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: #D4AF37;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .about-card .content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
     body.dark-mode .about-card .content p { color: #ccc; }
 
     @media (max-width: 768px) {
-      .about-card { flex-direction: column; align-items: center; text-align: center; }
-      .about-card .icon { width: 80px; height: 80px; margin-bottom: 15px; }
+      .about-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .about-card .icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+      }
       .about-card .content h2 { justify-content: center; }
     }
 
     /* -------------------- Footer -------------------- */
-    footer { background: #000; color: #fff; padding: 50px 20px; text-align: center; }
-    .footer-container { max-width: 1000px; margin: 0 auto; }
-    .footer-brand img { width: 100px; margin-bottom: 10px; }
-    .footer-brand p { max-width: 500px; margin: 0 auto 20px; font-size: 14px; line-height: 1.5; }
-    .footer-social { margin: 20px 0; }
-    .footer-social a { margin: 0 10px; display: inline-block; }
-    .footer-social img { width: 30px; height: 30px; }
-    .footer-links, .footer-bottom { margin: 15px 0; }
-    .footer-links a, .footer-bottom a { color: #fff; margin: 0 10px; font-size: 14px; text-decoration: none; transition: color 0.3s; }
-    .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
+    footer {
+  background: #000;
+  color: #fff;
+  padding: 25px 15px 30px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  margin-top: 40px;
+}
 
+.footer-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* Brand / Logo */
+.footer-brand img {
+  width: 80px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer-brand img:hover {
+  opacity: 1;
+}
+
+.footer-brand p {
+  max-width: 480px;
+  margin: 0 auto 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+/* Social Icons */
+.footer-social {
+  margin: 8px 0 10px;
+}
+
+.footer-social a {
+  margin: 0 6px;
+  display: inline-block;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.footer-social a:hover {
+  opacity: 1;
+}
+
+.footer-social img {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+/* Page Links */
+.footer-links {
+  margin: 6px 0;
+}
+
+.footer-links a {
+  color: #ccc;
+  margin: 0 8px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #f5c542;
+}
+
+/* Footer Bottom: Copyright + Legal Links */
+.footer-bottom {
+  padding-top: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: #777;
+  margin: 0;
+  font-weight: 400;
+}
+
+.footer-bottom .footer-legal-links {
+  font-size: 10px !important;  /* forces the size */
+  color: #ccc;
+  font-weight: 500;
+}
+
+.footer-bottom .footer-legal-links a {
+  font-size: 10px !important;  /* also for links */
+  color: #ccc;
+  margin: 0 6px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-bottom .footer-legal-links a:hover {
+  color: #f5c542;
+}
   </style>
 </head>
+
 <body>
+  <!-- Navbar -->
+  <nav id="mainNavbar" class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img id="navbarLogo" src="/img/logo.png" alt="NDrivers Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FKRPNKK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 
   <!-- Dark Mode Toggle -->
   <button id="darkModeToggle">🌙</button>
 
   <!-- Header Logo -->
   <div class="logo-container">
-      <a href="index.html">
-        <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
-      </a>
-    </div>
+    <a href="index.html">
+      <img src="/img/logo.png" alt="NDrivers Logo" id="logoImg">
+    </a>
+  </div>
 
   <!-- Intro -->
   <p class="intro-text">
     Hello! I’m Tommy, your neighborhood driver in Irvine. Here’s a little bit about me, my philosophy, and what makes NDrivers special.
   </p>
 
-  <!-- About Cards -->
+  <!-- About Section -->
   <div class="about-section">
     <div class="about-card">
       <div class="icon"><img src="img/user-icon.svg" alt="User Icon"></div>
@@ -141,47 +647,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-container">
-      <div class="footer-brand">
-        <a href="index.html">
-          <img src="img/logo-white.png" alt="NDrivers Logo">
-        </a>
-        <p>Bringing reliable rides and local connections together. Your neighborly driver, making every trip safe, simple, and stress-free.</p>
-      </div>
-      <div class="footer-social">
-        <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
-        <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
-        <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-        <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:35px; height:35px;"></a>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 NDrivers.com. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  <div class="footer-container">
+    
+    <!-- Brand / Logo -->
+    <div class="footer-brand">
+      <a href="index.html">
+        <img id="footerLogo" src="img/logo-white.png" alt="NDrivers Logo">
+      </a>
+      <p>Experience private rides with Tommy, your local chauffeur and neighbor. Based in Irvine and serving Orange County and SoCal, I make every journey smooth, safe, and personalized for your comfort.</p>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:28px; height:28px;"></a>
+    </div>
+
+    <!-- Page Links -->
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 NDrivers.com. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Service</a>
       </div>
     </div>
-  </footer>
 
+  </div>
+</footer>
+
+  <!-- Scripts -->
   <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.getElementById('darkModeToggle');
-  const logoImg = document.getElementById('logoImg');
-  const footerLogo = document.querySelector('.footer-brand img');
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById('darkModeToggle');
+      const logoImg = document.getElementById('logoImg');
+      const navbarLogo = document.getElementById('navbarLogo');
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
 
-  toggle.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-mode');
-    toggle.textContent = isDark ? '☀️' : '🌙';
-    logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
-    footerLogo.src = isDark ? '/img/logo-white.png' : '/img/logo-white.png';
+      // Dark Mode Toggle
+      toggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+        logoImg.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+        navbarLogo.src = isDark ? '/img/logo-white.png' : '/img/logo.png';
+      });
+
+      // Hamburger Menu
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+
+      // Active Link
+      const currentPage = window.location.pathname.split("/").pop();
+      navLinks.querySelectorAll('a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      });
+    });
+  </script>
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("visible");
+    } else {
+      navbar.classList.remove("visible");
+    }
   });
-});
 </script>
+
 </body>
 </html>

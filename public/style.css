@@ -461,11 +461,6 @@ footer {
 .footer-bottom .footer-legal-links a:hover {
   color: #f5c542;
 }
-.footer-links .separator {
-  color: #888; /* any color you like */
-  margin: 0 5px;
-  font-size: 16px; /* match the link size */
-}
 
 /* --------------------------------------------------- */
 /* 8. Dark Mode Adjustments
@@ -630,103 +625,6 @@ body.dark-mode .ride-btn {
   100% { left: 125%; }
 }
 
-<<<<<<< HEAD
-/* Chat widget container */
-#chat-widget {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 320px;
-  max-height: 420px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
-  font-family: 'Inter', sans-serif;
-  overflow: hidden;
-  z-index: 9999;
-  transition: all 0.3s ease;
-  transform: translateY(0);
-}
-
-/* Collapsed header */
-#chat-header {
-  background: linear-gradient(135deg, #111, #444);
-  color: #fff;
-  padding: 12px 16px;
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* Chat body messages */
-#chat-body {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* Chat footer */
-#chat-footer {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-/* Input box */
-#chat-input {
-  flex: 1;
-  border: none;
-  padding: 10px;
-  font-size: 14px;
-}
-
-/* Send button */
-#chat-send {
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 0 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#chat-send:hover {
-  background: #333;
-}
-
-/* Message bubbles */
-.chat-message {
-  padding: 8px 12px;
-  border-radius: 12px;
-  max-width: 80%;
-  word-wrap: break-word;
-  font-size: 14px;
-}
-
-.chat-user {
-  background: #d1e7dd;
-  align-self: flex-end;
-}
-
-.chat-bot {
-  background: #f1f1f1;
-  align-self: flex-start;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 480px) {
-  #chat-widget {
-    width: 90%;
-    bottom: 10px;
-    right: 5%;
-  }
-}
-
-=======
 .text-btn {
   position: fixed;
   bottom: 20px;
@@ -818,7 +716,6 @@ body.dark-mode .ride-btn {
 .text-btn:hover {
   transform: scale(1.1);
 }
->>>>>>> e5dd6cc
     /* -------------------- Global -------------------- */
     body {
       font-family: Arial, sans-serif;
@@ -944,14 +841,6 @@ body.dark-mode .ride-btn {
     }
     .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
     .footer-bottom p { font-size: 13px; margin-bottom: 10px; }
-<<<<<<< HEAD
-    form input, form select, form textarea, form button {
-  font-size: 16px;
-  padding: 10px;
-  width: 100%; /* or fixed width like 250px */
-  box-sizing: border-box;
-  margin-bottom: 10px;
-=======
     .navbar-links li {
   list-style: none;
   margin: 0 15px;
@@ -1270,5 +1159,4 @@ body.dark-mode .ride-btn {
     background: rgba(212, 175, 55, 0.1);
   }
 
->>>>>>> e5dd6cc
 }

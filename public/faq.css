@@ -436,3 +436,38 @@ body.dark-mode {
     }
     .footer-links a:hover, .footer-bottom a:hover { color: #f39c12; }
     .footer-bottom p { font-size: 13px; margin-bottom: 10px; }
+    .footer-payments p {
+  font-size: 12px;       /* text size */
+  color: #ccc;           /* text color */
+  margin-bottom: 8px;    /* space below */
+  margin-top: 20px; /* adds space above payment icons */
+  text-align: center;    /* alignment */
+}
+
+.payment-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* desktop gap */
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* Credit Card icons */
+.payment-icons img.payment-card {
+  width: 40px;  /* desktop size */
+  height: auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .payment-icons img.payment-card {
+    width: 32px;  /* smaller on mobile */
+  }
+  .payment-icons .payment-cash {
+    font-size: 22px;
+  }
+  .payment-icons {
+    gap: 8px;
+  }
+}

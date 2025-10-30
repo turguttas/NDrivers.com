@@ -18,318 +18,127 @@
     /* ---------------- Basic Navbar (shared) ---------------- */
     /* Navbar container */
 .navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1200px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  padding: 10px 25px;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.4s ease;
-  opacity: 0;
-  pointer-events: none;
-}
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      padding: 10px 25px;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .navbar.visible {
+      opacity: 1;
+      top: 10px;
+      pointer-events: all;
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+      transition: opacity 0.4s ease;
+    }
 
-.navbar.visible {
-  opacity: 1;
-  top: 10px;
-  pointer-events: all;
-}
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 55px;
+      align-items: center;
+      margin: 0;
+    }
 
-.nav-inner {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .nav-links li a {
+      color: #D4AF37;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+    }
 
-/* Logo */
-.nav-logo img {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
-  transition: opacity 0.4s ease; /* Smooth fade */
-}
+    .nav-links li a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(210, 168, 17, 0.6);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 12px 12px;
+    }
 
-/* Links */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-  align-items: center;
-  margin: 0;
-}
+    /* ---------------- Hamburger ---------------- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #D4AF37;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-.nav-links li a {
-  color: #D4AF37;;
-  font-weight: 500;
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #D4AF37;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-}
-
-/* ---------------- Hamburger Animation ---------------- */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 10000; /* above nav-links */
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #D4AF37;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-  transform-origin: center;
-}
-
-/* Open state */
-.hamburger.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0; /* hide middle line */
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-
-/* ---------------- Mobile Navbar Improvements ---------------- */
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: -100%; /* start hidden above the viewport */
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 20px;
-    width: 85%;
-    max-height: none; /* remove height restriction */
-    opacity: 0;
-    pointer-events: none;
-    gap: 12px;
-    transition: top 0.5s ease, opacity 0.4s ease;
-  }
-
-  .nav-links.open {
-    top: 70px;  /* slide down to below navbar */
-    opacity: 1;
-    pointer-events: all;
-  }
-}
-
-  /* Individual link styling */
-  .nav-links li a {
-    font-size: 1.2rem;      /* bigger for fingers */
-    padding: 12px 20px;     /* larger hit area */
-    text-align: center;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    display: block;
-    color: #D4AF37;
-  }
-
-  /* Tap/active feedback */
-  .nav-links li a:active {
-    background: rgba(212, 175, 55, 0.2);
-    transform: scale(0.97); /* subtle shrink on tap */
-  }
-
-  /* Hover effect fallback for devices that support hover */
-  .nav-links li a:hover {
-    color: #fff;
-    text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
-    background: rgba(212, 175, 55, 0.1);
-  }
-
-  /* Hamburger icon */
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links li {
-    margin: 0; /* already using gap, no extra margin needed */
-  }/* ---------------- Navbar Container ---------------- */
-.navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1200px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  padding: 10px 25px;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.4s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.navbar.visible {
-  opacity: 1;
-  top: 10px;
-  pointer-events: all;
-}
-
-.nav-inner {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ---------------- Logo ---------------- */
-.nav-logo img {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
-  transition: opacity 0.4s ease;
-}
-
-/* ---------------- Links ---------------- */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-  align-items: center;
-  margin: 0;
-}
-
-.nav-links li a {
-  color: #D4AF37;
-  font-weight: 500;
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #D4AF37;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-}
-
-/* ---------------- Hamburger (Desktop Hidden by Default) ---------------- */
-.hamburger {
-  display: none; /* hidden on desktop */
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 10000; /* above nav-links */
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #D4AF37;
-  border-radius: 2px;
-  transition: all 0.4s ease;
-  transform-origin: center;
-}
-
-/* Open state (X animation) */
-.hamburger.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* ---------------- Mobile Styles ---------------- */
-@media (max-width: 768px) {
-
-  /* Show hamburger */
-  .hamburger {
-    display: flex;
-  }
-
-  /* Mobile nav-links */
-  .nav-links {
-    position: fixed;
-    top: -100%; /* hidden above viewport initially */
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 20px;
-    width: 85%;
-    opacity: 0;
-    pointer-events: none;
-    gap: 12px;
-    transition: top 0.5s ease, opacity 0.4s ease;
-  }
-
-  .nav-links.open {
-    top: 70px; /* slide down below navbar */
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  /* Individual link adjustments for touch */
-  .nav-links li a {
-    font-size: 1.2rem;
-    padding: 12px 20px;
-    text-align: center;
-    border-radius: 10px;
-    display: block;
-    transition: all 0.3s ease;
-    color: #D4AF37;
-  }
-
-  .nav-links li a:active {
-    background: rgba(212, 175, 55, 0.2);
-    transform: scale(0.97);
-  }
-
-  .nav-links li a:hover {
-    color: #fff;
-    text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
-    background: rgba(212, 175, 55, 0.1);
-  }
-
-}
+    /* ---------------- Mobile Navbar ---------------- */
+    @media (max-width:768px) {
+      .nav-links {
+        position: fixed;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        width: 85%;
+        opacity: 0;
+        pointer-events: none;
+        gap: 12px;
+        transition: top 0.5s ease, opacity 0.4s ease;
+      }
+      .nav-links.open {
+        top: 70px;
+        opacity: 1;
+        pointer-events: all;
+      }
+      .hamburger { display: flex; }
+      .nav-links li a {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+        text-align: center;
+        border-radius: 10px;
+        display: block;
+      }
+      .nav-links li a:active {
+        background: rgba(212,175,55,0.2);
+        transform: scale(0.97);
+      }
+    }
 
     /* ---------------- Page (book style) ---------------- */
     :root {

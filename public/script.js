@@ -449,3 +449,77 @@ document.addEventListener('DOMContentLoaded', () => {
         if (homeLink) homeLink.classList.add('active');
     }
 });
+// script.js
+
+async function loadZones() {
+  const response = await fetch('zones.json');
+  return await response.json();
+}
+
+function findZoneForAddress(address, zonesData) {
+  address = address.toLowerCase();
+  for (const [zoneName, cities] of Object.entries(zonesData.zones)) {
+    for (const city of cities) {
+      if (address.includes(city.toLowerCase())) {
+        return zoneName;
+      }
+    }
+  }
+  return null;
+}
+
+function getFlatRate(pickupZone, dropoffZone, zonesData) {
+  if (
+    zonesData.flat_rates[pickupZone] &&
+    zonesData.flat_rates[pickupZone][dropoffZone]
+  ) {
+    return zonesData.flat_rates[pickupZone][dropoffZone];
+  }
+  return null;
+}
+
+function displayRate(rate) {
+  let priceBox = document.getElementById('priceDisplay');
+  if (!priceBox) {
+    priceBox = document.createElement('div');
+    priceBox.id = 'priceDisplay';
+    priceBox.style.marginTop = '10px';
+    priceBox.style.fontWeight = 'bold';
+    document.querySelector('#dropoff').parentElement.appendChild(priceBox);
+  }
+  priceBox.textContent = rate
+    ? `💰 Flat Rate: $${rate}`
+    : 'No flat rate found for this route.';
+}
+
+async function setupFlatRateLookup() {
+  const zonesData = await loadZones();
+
+  const pickupInput = document.getElementById('pickup');
+  const dropoffInput = document.getElementById('dropoff');
+
+  function calculateIfBothFilled() {
+    const pickup = pickupInput.value.trim();
+    const dropoff = dropoffInput.value.trim();
+
+    if (pickup && dropoff) {
+      const pickupZone = findZoneForAddress(pickup, zonesData);
+      const dropoffZone = findZoneForAddress(dropoff, zonesData);
+
+      if (!pickupZone || !dropoffZone) {
+        displayRate(null);
+        return;
+      }
+
+      const rate = getFlatRate(pickupZone, dropoffZone, zonesData);
+      displayRate(rate);
+    }
+  }
+
+  pickupInput.addEventListener('change', calculateIfBothFilled);
+  dropoffInput.addEventListener('change', calculateIfBothFilled);
+  pickupInput.addEventListener('blur', calculateIfBothFilled);
+  dropoffInput.addEventListener('blur', calculateIfBothFilled);
+}
+
+document.addEventListener('DOMContentLoaded', setupFlatRateLookup);

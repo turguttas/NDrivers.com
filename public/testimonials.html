@@ -8,6 +8,18 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5FKRPNKK');</script>
   <!-- End Google Tag Manager -->
+   <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+  img-src 'self' data: https://www.google-analytics.com;
+  connect-src 'self' https://api.yoursite.com https://api.emailjs.com;
+  frame-src 'self' https://www.googletagmanager.com;
+  object-src 'none';
+  form-action 'self';
+  base-uri 'self';
+">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,36 +56,73 @@
       opacity: 0;
       pointer-events: none;
     }
-    .navbar.visible { opacity: 1; top: 10px; pointer-events: all; }
-    .nav-inner { width:100%; display:flex; align-items:center; justify-content:space-between; }
-    .nav-logo img { height:45px; width:auto; object-fit:contain; transition:opacity 0.4s ease; }
+    .navbar.visible {
+      opacity: 1;
+      top: 10px;
+      pointer-events: all;
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+      transition: opacity 0.4s ease;
+    }
 
-    .nav-links { list-style:none; display:flex; gap:35px; align-items:center; margin:0; }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 55px;
+      align-items: center;
+      margin: 0;
+    }
+
     .nav-links li a {
       color: #D4AF37;
       font-weight: 500;
       text-decoration: none;
       letter-spacing: 0.3px;
       transition: all 0.3s ease;
-      padding: 6px 12px;
+    }
+
+    .nav-links li a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(210, 168, 17, 0.6);
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 10px;
-    }
-    .nav-links li a:hover,
-    .nav-links li a.active {
-      color:#fff;
-      text-shadow: 0 0 12px rgba(212,175,55,0.7);
-      background: rgba(212,175,55,0.1);
+      padding: 12px 12px;
     }
 
-    /* Hamburger (desktop hidden) */
-    .hamburger { display:none; flex-direction:column; justify-content:space-between; width:25px; height:20px; cursor:pointer; z-index:10000; }
-    .hamburger span { display:block; height:3px; width:100%; background:#D4AF37; border-radius:2px; transition:all 0.4s ease; transform-origin:center; }
-    .hamburger.open span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2){ opacity:0; }
-    .hamburger.open span:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+    /* ---------------- Hamburger ---------------- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #D4AF37;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-    @media (max-width:768px){
-      .hamburger { display:flex; }
+    /* ---------------- Mobile Navbar ---------------- */
+    @media (max-width:768px) {
       .nav-links {
         position: fixed;
         top: -100%;
@@ -90,9 +139,23 @@
         gap: 12px;
         transition: top 0.5s ease, opacity 0.4s ease;
       }
-      .nav-links.open { top: 70px; opacity: 1; pointer-events: all; }
-      .nav-links li a { font-size:1.2rem; padding:12px 20px; text-align:center; display:block; }
-      .nav-links li a:active { background: rgba(212,175,55,0.2); transform: scale(0.97); }
+      .nav-links.open {
+        top: 70px;
+        opacity: 1;
+        pointer-events: all;
+      }
+      .hamburger { display: flex; }
+      .nav-links li a {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+        text-align: center;
+        border-radius: 10px;
+        display: block;
+      }
+      .nav-links li a:active {
+        background: rgba(212,175,55,0.2);
+        transform: scale(0.97);
+      }
     }
 
     /* -------------------- Dark Mode Toggle -------------------- */
@@ -296,8 +359,7 @@
       </form>
     </section>
   </main>
-
-  <!-- Footer -->
+<!-- Footer -->
 <footer>
   <div class="footer-container">
     
@@ -306,16 +368,130 @@
       <a href="index.html">
         <img id="footerLogo" src="img/logo-white.png" alt="NDrivers Logo">
       </a>
-      </p>Experience private rides with Tommy, your local chauffeur and neighbor. Based in Irvine and serving Orange County and SoCal, I make every journey smooth, safe, and personalized for your comfort.</p>
+      <p>Experience private rides with Tommy, your local chauffeur and neighbor. Based in Irvine and serving Orange County and SoCal, I make every journey smooth, safe, and personalized for your comfort.<p>
     </div>
 
-    <!-- Social Icons -->
-    <div class="footer-social">
-      <a href="https://facebook.com/" target="_blank"><img src="img/facebook-icon.svg" alt="Facebook"></a>
-      <a href="https://instagram.com/" target="_blank"><img src="img/instagram-icon.svg" alt="Instagram"></a>
-      <a href="https://x.com/ndriversapp" target="_blank"><img src="img/x-icon.svg" alt="X"></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="img/linkedin-icon.svg" alt="LinkedIn" style="width:28px; height:28px;"></a>
-    </div>
+    <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- Social Icons -->
+<div class="social-icons">
+  <a href="https://facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://twitter.com/ndriversapp" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+  <a href="https://www.linkedin.com//" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+</div>
+
+<!-- Styling -->
+<style>
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.social-icons a {
+  font-size: 24px;
+  color: #ffffff;
+  background: #111;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  background: #D4AF37;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Footer Mobile Adjustments: Links on Left, Social Icons Centered */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* keep overall container centered */
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;  /* vertical stack */
+    align-items: flex-start; /* left-align links */
+    gap: 14px;               /* spacing between links */
+    margin-top: 20px;
+    border-left: 2px solid rgba(212, 175, 55, 0.5); /* subtle vertical line on left */
+    padding-left: 12px;      /* space between line and links */
+    width: 100%;             /* optional: span full container width */
+  }
+
+  .footer-links a {
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    text-align: left;        /* ensure text aligns left */
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover {
+    color: #f5c542;
+  }
+
+  /* Social icons centered below links */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 10px 0;
+    gap: 10px;
+  }
+
+  .social-icons a {
+    margin: 0;
+  }
+}
+.footer-payments p {
+  font-size: 12px;       /* text size */
+  color: #ccc;           /* text color */
+  margin-bottom: 8px;    /* space below */
+  margin-top: 20px; /* adds space above payment icons */
+  text-align: center;    /* alignment */
+}
+
+.payment-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* desktop gap */
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* Credit Card icons */
+.payment-icons img.payment-card {
+  width: 40px;  /* desktop size */
+  height: auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .payment-icons img.payment-card {
+    width: 32px;  /* smaller on mobile */
+  }
+  .payment-icons .payment-cash {
+    font-size: 22px;
+  }
+  .payment-icons {
+    gap: 8px;
+  }
+}
+</style>
+
 
     <!-- Page Links -->
     <div class="footer-links">
@@ -326,6 +502,20 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </div>
+    <!-- Payment Methods -->
+<div class="footer-payments">
+  <p>Accepted payment methods</p>
+  <div class="payment-icons">
+    
+    <!-- Credit Cards -->
+    <img src="img/amex.svg" class="payment-card" title="American Express" alt="Amex">
+    <img src="img/discover.svg" class="payment-card" title="Discover" alt="Discover">
+    <img src="img/visa.svg" class="payment-card" title="Visa" alt="Visa">
+    <img src="img/mastercard.svg" class="payment-card" title="Mastercard" alt="Mastercard">
+    <img src="img/paypal.svg" class="payment-card" title="PayPal" alt="PayPal">
+    <img src="img/Venmo_idYMSlb9QP_0.svg" class="payment-card" title="Venmo" alt="Venmo">
+    <img src="img/cashapp.svg" class="payment-card" title="CashApp" alt="CashApp">
+  </div>
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
